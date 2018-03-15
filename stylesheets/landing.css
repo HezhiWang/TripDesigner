@@ -36,18 +36,6 @@ h4{
   padding-top: 25vh;
 }
 
-.navbar.navbar-default{
-  z-index: 1;
-  /*background-color: rgba(255, 255, 255, 0.3);*/
-  font-weight: bold;
-  color: #fff;
-  background:transparent;
-  background-image:none;
-  border-color:transparent;
-  box-shadow:none;
-  margin-bottom: 0;
-}
-
 
 .slideshow { 
   background-color: #000;
@@ -61,8 +49,6 @@ h4{
   margin-bottom: 5vh;
   padding: 0;
 }
-
-
 
 
 .slideshow li { 
@@ -79,11 +65,7 @@ h4{
   animation: imageAnimation 70s linear infinite; 
 }
 
-/*.imageHolder {
-    position: relative;
-    width: 285px;
-    height: 175px;
-}*/
+
 .caption {
     position: absolute;
     height: 50px;
@@ -98,36 +80,36 @@ h4{
 }
 
 .slideshow li:nth-child(1) { 
-  background-image: url("landingphotos/the-great-wall-of-china.jpg");
+  background-image: url("../pics/the-great-wall-of-china.jpg");
 }
 
 .slideshow li:nth-child(2) { 
-  background-image: url("landingphotos/skyline_ny.jpg");
+  background-image: url("../pics/skyline_ny.jpg");
   animation-delay: 10s; 
 }
 
 .slideshow li:nth-child(3) { 
-  background-image: url("landingphotos/golden_bridge.jpg");
+  background-image: url("../pics/golden_bridge.jpg");
   animation-delay: 20s;
 }
 
 .slideshow li:nth-child(4) { 
-  background-image: url("landingphotos/Machu_Picchu.jpg");
+  background-image: url("../pics/Machu_Picchu.jpg");
   animation-delay: 30s; 
 }
 
 .slideshow li:nth-child(5) { 
-  background-image: url("landingphotos/Terrace_field_yunnan.jpg");
+  background-image: url("../pics/Terrace_field_yunnan.jpg");
   animation-delay: 40s; 
 }
 
 .slideshow li:nth-child(6) { 
-  background-image: url("landingphotos/aurora_Reykjavik.jpg");
+  background-image: url("../pics/aurora_Reykjavik.jpg");
   animation-delay: 50s; 
 }
 
 .slideshow li:nth-child(7) { 
-  background-image: url("landingphotos/kenya_lake_nakuru.jpg");
+  background-image: url("../pics/kenya_lake_nakuru.jpg");
   animation-delay: 60s; 
 }
 
@@ -138,7 +120,7 @@ h4{
     animation-timing-function: ease-in;
   }
   10% {
-    opacity: 0.8;
+    opacity: 1;
     animation-timing-function: ease-out;
   }
   20% {
@@ -154,69 +136,27 @@ h4{
 	opacity: 1;
 }
 
-.thumbnail{
+.intro{
   box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.1);
   border-color: transparent;
+  padding: 40px 20px 20px;
+  margin: 0px auto 20px;
 }
 
-.thumbnail:hover{
+.intro:hover{
   box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.15);
 }
 
 
-.footer{
-  position: absolute;
-  z-index: 2;
-  background-color: #292c2f;
-  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
-  box-sizing: border-box;
-  width: 100%;
-  height:auto;
-  text-align: center;
-  font: normal 18px sans-serif;
-  color:  #8f9296;
-  /*margin: 0;*/
-  padding: 10px;
-  /*margin-top: 800px;*/
-  margin-bottom: 0px;
+.thumbnail {
+  border-color: transparent;
+  width: 100%; 
+  height:30%; 
+  max-width: 80px;
+  box-shadow: transparent; 
+  margin: 0 auto -30px;
+  padding: 0 auto; 
 }
-
-.footer .footer-icons{
-  display: inline-block;
-  width: 35px;
-  height: 35px;
-  cursor: pointer;
-  background-color:  #33383b;
-  border-radius: 2px;
-
-  font-size: 20px;
-  color: #ffffff;
-  text-align: center;
-  line-height: 35px;
-
-  margin-right: 3px;
-  margin-bottom: 5px;
-}
-
-.btn-success,
-.btn-success:active,
-.btn-success:visited,
-.btn-success:focus {
-    background-color: rgb(145, 181, 77);
-    border-color: rgb(145, 181, 77);
-}
-
-.btn-success:hover {
-    background-color: rgb(71, 106, 48);
-    border-color: rgb(71, 106, 48);
-}
-
-
-
-
-
-
-
 
 
 

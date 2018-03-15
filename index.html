@@ -3,17 +3,24 @@
     <head>
         <title>TripPlanner</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-        <link rel="stylesheet" href="/stylesheets/main.css">
+        <link rel="stylesheet" href="stylesheets/index.css">
+        <link rel="stylesheet" href="stylesheets/partial.css">
+        
+ <!--        <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript" async></script> -->
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+        <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script> -->
+        <script src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places&language=en"></script>
     </head>
     <body>
 
     <nav class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="/">TripPlanner</a >
+                <a class="navbar-brand" href="/"><span style="color:rgb(145, 181, 77);">T</span>rip<span style="color:rgb(145, 181, 77);">P</span>lanner</a >
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
+                    <li><a href="landing.html">About</a ></li>
                     <li><a href="#">Login</a ></li> 
                     <li><a href="#">Sign Up</a ></li>
                     <li><a href="#">Logout</a ></li> 
@@ -21,7 +28,115 @@
             </div>
         </div>
     </nav>
-<a href="landing.html">Back To Home Page</a> 
-</body>
+<!-- header ends -->
 
+<div class="container" style="height:800px">
+    <h2 style="text-align: center;">Get Your Itinerary</h2>
+    <form action="plan.html" method="GET">
+        <table style="width:100%; border: 1px solid #e5e5e5;">
+            <tr>
+                <td>
+                    <h4>Step 1 <span>Enter the City You'll Depart From and Return to</span></h4>
+                    <div class="form-group">
+                        <label for="startcity">Depart From:</label>
+                        <input name="startcity" id="startcity" class="autocomplete" type="text" placeholder="San Francisco" required autocomplete="on">
+                    </div>
+                    <div class="form-group">
+                        <label for="endcity">Return To:</label>
+                        <input name="endcity" id="endcity" class="autocomplete" type="text" placeholder="San Francisco" required autocomplete="on">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h4>Step 2 <span>Choose Your Destination</span></h4>
+                    <div class="form-group">
+                      <select class="form-control" id="destination" name="destination">
+                        <option value="" selected disabled>Please select one</option>
+                        <option value="1">New York City</option>
+                        <option value="2">San Francisco</option>
+                        <option value="3">Los Angeles</option>
+                        <option value="4">Beijing</option>
+                      </select>
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <h4>Step 3 <span>Enter Your Travel Date and Length:</span></h4>
+                    <div class="form-group">
+                        <label for="startdate">Depart On:</label>
+                        <input name="startdate" id="startdate" type="date" required>
+                        <span class="validity"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="length">Length of Trip (days):</label>
+                        <select class="form-control" id="length" name="length">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5" selected="selected">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                      </select>
+                    </div>
+                </td>            
+            </tr>
+
+            <tr>
+                <td>
+                    <h4>Step 4 <span>Enter Your Preference</span></h4>
+                    <div class="form-group">
+                        <label for="time">Time Arrangement:</label>
+                        <select class="form-control" id="time" name="time">
+                            <option value="" selected disabled>Select how many hours you would like to be arranged each day</option>
+                            <option value="1">Casual (Less than 5 hours)</option>
+                            <option value="2">Normal (5 to 8 hours)</option>
+                            <option value="3">Tight (More than 8 hours)</option>
+                        </select>
+                    <div class="form-group">
+                        <label for="hotel">Budget On Hotel:</label>
+                        <select class="form-control" id="hotel" name="hotel">
+                            <option value="" selected disabled>Select quality of hotel</option>
+                            <option value="1">Economy</option>
+                            <option value="2">Mid-scale</option>
+                            <option value="3">Luxury</option>
+                      </select>
+                    </div>
+                </td>            
+            </tr>
+
+        </table>
+
+        <button class="btn btn-danger btn-lg" type="reset" id="reset">Reset</button>
+        <button type="submit" id="submit" class="btn btn-success btn-lg">Submit!</button>
+    </form>
+</div>    
+
+</tr>
+
+<script type="text/javascript" src="index.js"></script>
+<!-- <script>
+  var input = document.getElementById('autocomplete');
+  var autocomplete = new google.maps.places.Autocomplete(input,{types: ['(cities)']});
+  google.maps.event.addListener(autocomplete, 'place_changed', function(){
+     var place = autocomplete.getPlace();
+  })
+</script> -->
+<!-- footer starts -->
+<div class="footer" style="position: relative;">
+    <span style="color:rgb(145, 181, 77);">T</span>rip<span style="color:rgb(145, 181, 77);">P</span>lanner 2018
+    <a class="footer-icons" href="https://github.com/HezhiWang/TripDesigner"><i class="fa fa-github"></i></a>
+    <a class="footer-icons" href="mailto:hz1411@nyu.edu"><i class="fa fa-envelope"></i></a> 
+</div>
+
+
+
+    </body>
 </html>

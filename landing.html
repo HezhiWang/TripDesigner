@@ -3,25 +3,13 @@
     <head>
         <title>TripPlanner</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-        <link rel="stylesheet" href="landing.css">
+        <link rel="stylesheet" href="stylesheets/landing.css">
+        <link rel="stylesheet" href="stylesheets/partial.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript" async></script>
         <!-- <link rel="stylesheet" href="css/footer-distributed-with-search.css"> -->
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
     </head>
     <body>
-    
-<!--     <div class="container">
-        <% if(error && error.length > 0){ %>
-            <div class="alert alert-danger" role="alert">
-                <%= error %>
-            </div>
-        <% } %>
-        <% if(success && success.length > 0){ %>
-            <div class="alert alert-success" role="alert">
-                <%= success %>
-            </div>
-        <% } %>
-    </div> -->
 
     <nav class="navbar navbar-default">
         <div class="container-fluid">
@@ -30,7 +18,7 @@
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">About</a ></li>
+                    <li><a href="landing.html">About</a ></li>
                     <li><a href="#">Login</a ></li> 
                     <li><a href="#">Sign Up</a ></li>
                     <li><a href="#">Logout</a ></li> 
@@ -38,6 +26,8 @@
             </div>
         </div>
     </nav>
+<!-- header ends -->
+
 
     <div class="container">
         <!-- <div id="landing"> -->
@@ -61,38 +51,48 @@
 
     <div class="container-fluid" style="width:90%; padding: 0 2%; margin-bottom: 30px">
         <div class="row text-center">
-            <div class="col-xs-12 col-md-4">
-                <div class="thumbnail" >
-                    <h4>Intelligent Trip Planner Fueled by Machine Learning</h4>
-                       <p style="margin:5px;">
+            <div class="col-xs-12 col-md-4 col-sm-4">
+                <div class="thumbnail">
+                    <img src="pics/icon1.svg" width=100% height=100%/>
+                </div>
+                <div class="intro" >
+                    <h4>Intelligent Planner Fueled by Machine Learning</h4>
+                       <div style = "margin: 20px auto 0px">
                            Our intelligent planner gathers the most up-to-date information from various sources and integrate them with machine learning algorithm to figure out the best travel plan.
-                       </p>
+                       </div>
                 </div>
             </div>
 
-            <div class="col-xs-6 col-md-4">
+            <div class="col-xs-12 col-md-4 col-sm-4">
                 <div class="thumbnail">
+                    <img src="pics/icon2.svg" width=100% height=100%/>
+                </div>
+                <div class="intro">
                     <h4>Your Own Itinerary, Customized</h4>
-                    <p style="margin:5px;">
+                    <div style = "margin: 20px auto 0px">
                         We value your own need: Your date of vacation, your budget and your preferred way of time-management. No two snowflakes are alike.
-                    </p>
+                    </div>
                 </div>
             </div>
 
-            <div class="col-xs-6 col-md-4">
+            <div class="col-xs-12 col-md-4 col-sm-4">
                 <div class="thumbnail">
+                    <img src="pics/icon3.svg" width=100% height=100%/>
+                </div>
+                <div class="intro">
                     <h4>Get All Your Need in One Stop</h4>
-                    <p style="margin:5px;">
+                    <div style = "margin: 20px auto 0px">
                         No need to consult a travel agency or navigate through numerous websites trying to put the pieces all together. Simply enter your destination and personal preference, and here comes your detailed itinerary!
-                    </p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
+<!-- footer starts -->
     <div class="footer" style="position: relative;">
         <span style="color:rgb(145, 181, 77);">T</span>rip<span style="color:rgb(145, 181, 77);">P</span>lanner 2018
-        <a class="footer-icons" href="#"><i class="fa fa-github"></i></a>
+        <a class="footer-icons" href="https://github.com/HezhiWang/TripDesigner"><i class="fa fa-github"></i></a>
         <a class="footer-icons" href="mailto:hz1411@nyu.edu"><i class="fa fa-envelope"></i></a> 
     </div>
 
