@@ -3,6 +3,7 @@
   background-attachment: fixed;
 }
 */
+{% load static %}
 
 .container {
   z-index: 0;
@@ -80,36 +81,36 @@ h4{
 }
 
 .slideshow li:nth-child(1) { 
-  background-image: url("../pics/the-great-wall-of-china.jpg");
+  background-image: url("pics/the-great-wall-of-china.jpg");
 }
 
 .slideshow li:nth-child(2) { 
-  background-image: url("../pics/skyline_ny.jpg");
+  background-image: url("pics/skyline_ny.jpg");
   animation-delay: 10s; 
 }
 
 .slideshow li:nth-child(3) { 
-  background-image: url("../pics/golden_bridge.jpg");
+  background-image: url("pics/golden_bridge.jpg");
   animation-delay: 20s;
 }
 
 .slideshow li:nth-child(4) { 
-  background-image: url("../pics/Machu_Picchu.jpg");
+  background-image: url("pics/Machu_Picchu.jpg");
   animation-delay: 30s; 
 }
 
 .slideshow li:nth-child(5) { 
-  background-image: url("../pics/Terrace_field_yunnan.jpg");
+  background-image: url("pics/Terrace_field_yunnan.jpg");
   animation-delay: 40s; 
 }
 
 .slideshow li:nth-child(6) { 
-  background-image: url("../pics/aurora_Reykjavik.jpg");
+  background-image: url("pics/aurora_Reykjavik.jpg");
   animation-delay: 50s; 
 }
 
 .slideshow li:nth-child(7) { 
-  background-image: url("../pics/kenya_lake_nakuru.jpg");
+  background-image: url("pics/kenya_lake_nakuru.jpg");
   animation-delay: 60s; 
 }
 

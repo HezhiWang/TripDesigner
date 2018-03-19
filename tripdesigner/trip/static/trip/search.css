@@ -1,3 +1,5 @@
+{% load static %}
+
 td{
 	padding: 0px 10px;
 }
@@ -68,7 +70,7 @@ input[type=text] {
     box-sizing: border-box;
     background-color: white;
     background-origin: content-box;
-    background: url("../pics/map-marker-icon.png") no-repeat left 3px center;
+    background: url("pics/map-marker-icon.png") no-repeat left 3px center;
     padding-left: 40px;
 }
 

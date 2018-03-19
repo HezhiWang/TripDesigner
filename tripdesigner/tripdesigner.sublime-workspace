@@ -1,0 +1,834 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"U",
+				"UserCreationForm"
+			],
+			[
+				"Us",
+				"UserChangeForm"
+			],
+			[
+				"user",
+				"username"
+			],
+			[
+				"post",
+				"post_save_user_model_receiver"
+			],
+			[
+				"slu",
+				"slugify"
+			],
+			[
+				"Pos",
+				"PostModel"
+			],
+			[
+				"AP",
+				"API_KEY"
+			],
+			[
+				"input",
+				"input_values"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"inline",
+				"inline-block"
+			],
+			[
+				"box-",
+				"box-sizing"
+			],
+			[
+				"text",
+				"text-decoration"
+			],
+			[
+				"co",
+				"color"
+			],
+			[
+				"ess",
+				"essay_set1"
+			],
+			[
+				"log",
+				"logger"
+			],
+			[
+				"data",
+				"data_iter"
+			],
+			[
+				"batch",
+				"batch_size"
+			],
+			[
+				"result",
+				"result_gokul"
+			],
+			[
+				"tra",
+				"train_result"
+			],
+			[
+				"Ra",
+				"RandomForestClassifier"
+			],
+			[
+				"Lo",
+				"LogisticRegression"
+			],
+			[
+				"fi",
+				"figure\tTag"
+			],
+			[
+				"email",
+				"email_message"
+			],
+			[
+				"get",
+				"get_recipient"
+			],
+			[
+				"em",
+				"email_content"
+			],
+			[
+				"e",
+				"email_content"
+			],
+			[
+				"cl",
+				"cleaned_document_list"
+			],
+			[
+				"do",
+				"document_list"
+			],
+			[
+				"doc",
+				"document"
+			],
+			[
+				"clean",
+				"cleaned_document"
+			],
+			[
+				"tr",
+				"translator"
+			],
+			[
+				"ke",
+				"key_word_dict"
+			],
+			[
+				"docu",
+				"document_list"
+			],
+			[
+				"g",
+				"get_name"
+			],
+			[
+				"re",
+				"record_set"
+			],
+			[
+				"f",
+				"folder"
+			],
+			[
+				"pf",
+				"pff_item"
+			],
+			[
+				"pff",
+				"pff_file"
+			],
+			[
+				"dis",
+				"distributionFunc"
+			],
+			[
+				"as",
+				"AS"
+			],
+			[
+				"bene",
+				"bene_id_demo"
+			],
+			[
+				"be",
+				"bene_Id"
+			],
+			[
+				"Be",
+				"BENE_ID"
+			],
+			[
+				"Y",
+				"YEAR"
+			],
+			[
+				"num",
+				"numip_los"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "accounts/models.py",
+			"settings":
+			{
+				"buffer_size": 3090,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "accounts/templates/accounts/register.html",
+			"settings":
+			{
+				"buffer_size": 110,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "accounts/templates/accounts/base.html",
+			"settings":
+			{
+				"buffer_size": 122,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "tripdesigner/urls.py",
+			"settings":
+			{
+				"buffer_size": 1165,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "trip/urls.py",
+			"settings":
+			{
+				"buffer_size": 280,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "accounts/templates/accounts/form.html",
+			"settings":
+			{
+				"buffer_size": 109,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "accounts/views.py",
+			"settings":
+			{
+				"buffer_size": 310,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "tripdesigner/settings.py",
+			"settings":
+			{
+				"buffer_size": 3206,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "accounts/__init__.py",
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"last_filter": "Package Control: ",
+		"selected_items":
+		[
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 444.0
+	},
+	"console":
+	{
+		"height": 410.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '6f4c264a24d933ce70df5dedcf1dcaee' + 'ebe013ee18cced0ef93d5f746d80ef60'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)",
+			"import urllib.request,os,hashlib; h = 'df21e130d211cfc94d9b0905775a7c0f' + '1e3d39e33b79698005270310898eea76'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)",
+			"import urllib.request,os,hashlib; h = '6f4c264a24d933ce70df5dedcf1dcaee' + 'ebe013ee18cced0ef93d5f746d80ef60'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)",
+			"import urllib.request,os,hashlib; h = 'df21e130d211cfc94d9b0905775a7c0f' + '1e3d39e33b79698005270310898eea76'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/wanghezhi/Desktop/NYU/2018_Spring/advanced python/project/TripDesigner/tripdesigner",
+		"/Users/wanghezhi/Desktop/NYU/2018_Spring/advanced python/project/TripDesigner/tripdesigner/accounts",
+		"/Users/wanghezhi/Desktop/NYU/2018_Spring/advanced python/project/TripDesigner/tripdesigner/accounts/templates",
+		"/Users/wanghezhi/Desktop/NYU/2018_Spring/advanced python/project/TripDesigner/tripdesigner/accounts/templates/accounts",
+		"/Users/wanghezhi/Desktop/NYU/2018_Spring/advanced python/project/TripDesigner/tripdesigner/trip",
+		"/Users/wanghezhi/Desktop/NYU/2018_Spring/advanced python/project/TripDesigner/tripdesigner/trip/migrations",
+		"/Users/wanghezhi/Desktop/NYU/2018_Spring/advanced python/project/TripDesigner/tripdesigner/trip/migrations/__pycache__",
+		"/Users/wanghezhi/Desktop/NYU/2018_Spring/advanced python/project/TripDesigner/tripdesigner/trip/templates",
+		"/Users/wanghezhi/Desktop/NYU/2018_Spring/advanced python/project/TripDesigner/tripdesigner/tripdesigner",
+		"/Users/wanghezhi/Desktop/NYU/2018_Spring/advanced python/project/TripDesigner/tripdesigner/tripdesigner/__pycache__"
+	],
+	"file_history":
+	[
+		"/Users/wanghezhi/Desktop/NYU/2018_Spring/advanced python/project/TripDesigner/tripdesigner/accounts/forms.py",
+		"/Users/wanghezhi/Desktop/NYU/2018_Spring/advanced python/project/TripDesigner/tripdesigner/accounts/admin.py",
+		"/Users/wanghezhi/Desktop/NYU/2018_Spring/advanced python/project/TripDesigner/tripdesigner/trip/views.py",
+		"/Users/wanghezhi/Desktop/django/djmod/src/blog/migrations/0008_auto_20180318_1954.py",
+		"/Users/wanghezhi/Desktop/NYU/2018_Spring/advanced python/project/TripDesigner/tripdesigner/tripdesigner/urls.py",
+		"/Users/wanghezhi/Desktop/NYU/2018_Spring/advanced python/project/TripDesigner/tripdesigner/trip/templates/trip/landing.html",
+		"/Users/wanghezhi/Desktop/NYU/2018_Spring/advanced python/project/TripDesigner/tripdesigner/trip/static/trip/stylesheets/search.css",
+		"/Users/wanghezhi/Desktop/NYU/2018_Spring/advanced python/project/TripDesigner/tripdesigner/trip/static/trip/stylesheets/landing.css",
+		"/Users/wanghezhi/Desktop/NYU/2018_Spring/advanced python/project/TripDesigner/tripdesigner/trip/urls.py",
+		"/Users/wanghezhi/Desktop/NYU/2018_Spring/advanced python/project/TripDesigner/tripdesigner/trip/templates/trip/stylesheets/landing.css",
+		"/Users/wanghezhi/Desktop/NYU/2018_Spring/advanced python/project/TripDesigner/index.js",
+		"/Users/wanghezhi/Desktop/NYU/2018_Spring/advanced python/project/data/tripadvisor/tripadvisor/spiders/example.py",
+		"/Users/wanghezhi/Desktop/NYU/2018_Spring/advanced python/Assignment_5/Assignment5_Hezhi_Wang_speedup",
+		"/Users/wanghezhi/Desktop/NYU/2018_Spring/advanced python/Assignment_5/setup.py",
+		"/Users/wanghezhi/Desktop/NYU/2018_Spring/advanced python/project/data/yelp_api.py",
+		"/Users/wanghezhi/Desktop/NYU/2018_Spring/advanced python/lecture5/external_prime_module_without_compiling.pyx",
+		"/Users/wanghezhi/Desktop/NYU/2018_Spring/advanced python/lecture5/external_prime_module_without_compiling.pyx.txt",
+		"/Users/wanghezhi/Desktop/NYU/2018_Spring/advanced python/lecture5/my_module_with_numpy.pyx",
+		"/Users/wanghezhi/Desktop/NYU/2018_Spring/advanced python/lecture5/my_module_with_numpy.pyx.txt",
+		"/Users/wanghezhi/Desktop/NYU/2018_Spring/advanced python/lecture5/my_module.pyx",
+		"/Users/wanghezhi/Desktop/NYU/2018_Spring/advanced python/lecture5/my_module.pyx.txt",
+		"/Users/wanghezhi/Desktop/NYU/2018_Spring/advanced python/lecture5/setup.py",
+		"/Users/wanghezhi/Desktop/NYU/2018_Spring/advanced python/Assignment_2/nbody_3.py",
+		"/Users/wanghezhi/Desktop/NYU/2018_Spring/advanced python/Assignment_2/nbody_2.py",
+		"/Users/wanghezhi/Downloads/annotations/instances_train2014.json",
+		"/Users/wanghezhi/Desktop/NYU/2018_Spring/advanced python/Assignment_2/logs.txt",
+		"/Users/wanghezhi/Desktop/NYU/2018_Spring/advanced python/Assignment_2/nbody.py",
+		"/Users/wanghezhi/Desktop/NYU/2018_Spring/advanced python/Assignment_2/nbody_1.py",
+		"/Users/wanghezhi/Desktop/data_extraction.py",
+		"/Users/wanghezhi/Desktop/TO_DO_LIST/to_list.css",
+		"/Users/wanghezhi/Desktop/TO_DO_LIST/to_list.js",
+		"/Users/wanghezhi/Desktop/html.html",
+		"/Users/wanghezhi/Desktop/Knotel/plot/plot_map2.html",
+		"/Users/wanghezhi/Desktop/Knotel/plot/plot_map_1.html",
+		"/Users/wanghezhi/Desktop/classification.py",
+		"/Users/wanghezhi/Desktop/train.py",
+		"/Users/wanghezhi/Desktop/features_direction.py",
+		"/Users/wanghezhi/Desktop/quotes_spider.py",
+		"/Users/wanghezhi/Desktop/7_chord/distance_function_train_test/distance_functions.py",
+		"/Users/wanghezhi/Desktop/quotes.json",
+		"/Users/wanghezhi/Desktop/NYU/2017_Fall/Capstone/AIXiaoXueSheng/blog/data/scraper.py",
+		"/Users/wanghezhi/Desktop/NYU/2017_Fall/Inference/project/Autograder/model/regression/train.py",
+		"/Users/wanghezhi/Desktop/NYU/2017_Fall/Inference/project/Autograder/model/regression/data.py",
+		"/Users/wanghezhi/Desktop/NYU/2017_Fall/Capstone/AIXiaoXueSheng/blog/model/train.py",
+		"/Users/wanghezhi/Desktop/NYU/2017_Fall/NLP/project/DS1011_Final_Projet/DIIN/DIIN_PyTorch/pytorch/train_snli_pytorch.py",
+		"/Users/wanghezhi/Desktop/NYU/2017_Fall/NLP/project/DS1011_Final_Projet/DIIN/DIIN_PyTorch/pytorch/util/general.py",
+		"/Users/wanghezhi/Desktop/NYU/2017_Fall/NLP/project/DS1011_Final_Projet/DIIN/DIIN_PyTorch/pytorch/util/data_processing.py",
+		"/Users/wanghezhi/Desktop/NYU/2017_Fall/NLP/project/DS1011_Final_Projet/DIIN/DIIN_PyTorch/pytorch/util/blocks.py",
+		"/Users/wanghezhi/Desktop/NYU/2017_Fall/NLP/project/DS1011_Final_Projet/DIIN/DIIN_PyTorch/pytorch/models/DIIN_pytorch.py",
+		"/Users/wanghezhi/Desktop/NYU/2017_Fall/NLP/project/DS1011_Final_Projet/DIIN/DIIN_PyTorch/pytorch/models/DenseNet.py",
+		"/Users/wanghezhi/Desktop/NYU/2017_Fall/Inference/project/Autograder/model/regression/regression.py",
+		"/Users/wanghezhi/Desktop/NYU/2017_Fall/NLP/project/DS1011_Final_Projet/DIIN/DIIN_PyTorch/python/train_snli_pytorch.py",
+		"/Users/wanghezhi/Desktop/Densely-Interactive-Inference-Network-master/python1/train_mnli.py",
+		"/Users/wanghezhi/Desktop/NYU/2017_Fall/NLP/project/DS1011_Final_Projet/DIIN/DIIN_PyTorch/python/my/tensorflow/rnn.py",
+		"/Users/wanghezhi/Desktop/NYU/2017_Fall/NLP/project/DS1011_Final_Projet/DIIN/DIIN_PyTorch/python/my/utils.py",
+		"/Users/wanghezhi/Desktop/NYU/2017_Fall/NLP/project/DS1011_Final_Projet/DIIN/DIIN_PyTorch/python/my/zip_save.py",
+		"/Users/wanghezhi/Desktop/NYU/2017_Fall/NLP/project/DS1011_Final_Projet/DIIN/DIIN_PyTorch/python/my/nltk_utils.py",
+		"/Users/wanghezhi/Desktop/NYU/2017_Fall/NLP/project/DS1011_Final_Projet/DIIN/DIIN_PyTorch/python/my/corenlp_interface.py",
+		"/Users/wanghezhi/Desktop/NYU/2017_Fall/NLP/project/DS1011_Final_Projet/DIIN/DIIN_PyTorch/python/train_mnli_pytorch.py",
+		"/Users/wanghezhi/Desktop/NYU/2017_Fall/NLP/project/DS1011_Final_Projet/DIIN/DIIN_PyTorch/python/util/evaluate.py",
+		"/Users/wanghezhi/Desktop/NYU/2017_Fall/NLP/project/DS1011_Final_Projet/DIIN/DIIN_PyTorch/python/util/evaluate_pytorch.py",
+		"/Users/wanghezhi/Desktop/NYU/2017_Fall/NLP/project/DS1011_Final_Projet/DIIN/DIIN_PyTorch/python/util/parameters.py",
+		"/Users/wanghezhi/Desktop/NYU/2017_Fall/NLP/project/DS1011_Final_Projet/DIIN/DIIN_PyTorch/python/train_mnli.py",
+		"/Users/wanghezhi/Desktop/NYU/2017_Fall/NLP/project/DIIN_PyTorch/python/models/DIIN_pytorch.py",
+		"/Users/wanghezhi/Desktop/NYU/2017_Fall/NLP/project/DIIN_PyTorch/python/train_mnli_pytorch.py",
+		"/Users/wanghezhi/Desktop/NYU/2017_Fall/NLP/project/DIIN_PyTorch/python/train_mnli_pytorch_copy.py",
+		"/Users/wanghezhi/Desktop/NYU/2017_Fall/NLP/project/Densely-Interactive-Inference-Network/python/train_mnli_pytorch.py",
+		"/Users/wanghezhi/Desktop/7_chord/train.py",
+		"/Users/wanghezhi/Desktop/NYU/2017_Fall/Capstone/AIXiaoXueSheng/blog/model/preprocess.py",
+		"/Users/wanghezhi/Desktop/7_chord/distance_function_train_test/generate_report.py",
+		"/Users/wanghezhi/Desktop/7_chord/distance_function_train_test/main.py",
+		"/Users/wanghezhi/Desktop/7_chord/distance_function_train_test/train.py",
+		"/Users/wanghezhi/Desktop/7_chord/distance_function_train_test/data.py",
+		"/Users/wanghezhi/Desktop/7_chord/test_gokul_cluster.py",
+		"/Users/wanghezhi/Desktop/7_chord/distance_function_test.py",
+		"/Users/wanghezhi/Desktop/NYU/2017_Fall/Capstone/AIXiaoXueSheng/blog/Summary_Stats/plots.py",
+		"/Users/wanghezhi/Desktop/NYU/2017_Spring/DL/a2/DSGA-1008-Spring2017-A2-master/main.py",
+		"/Users/wanghezhi/Desktop/NYU/2017_Fall/Capstone/RNN_sentiment_analysis/model.py",
+		"/Users/wanghezhi/Desktop/NYU/2017_Fall/Capstone/RNN_sentiment_analysis/RNN_sentiment_analysis.py",
+		"/Users/wanghezhi/Desktop/NYU/2017_Fall/Capstone/RNN_sentiment_analysis/data.py",
+		"/Users/wanghezhi/Desktop/NYU/2017_Fall/Capstone/GetOldTweets-python-master/Exporter.py",
+		"/Users/wanghezhi/Desktop/Hezhi_Wang_test.py",
+		"/Users/wanghezhi/Desktop/test.py",
+		"/Users/wanghezhi/Desktop/7_chord/test.py",
+		"/Users/wanghezhi/Desktop/7_chord/kmeans.py",
+		"/Users/wanghezhi/Desktop/etl-master/features/fun_extractor.py",
+		"/Users/wanghezhi/Desktop/etl-master/features/config.py",
+		"/Users/wanghezhi/Desktop/7_chord/etl-master/features/fun_extractor.py",
+		"/Users/wanghezhi/Downloads/2dcollections3d_demo.py",
+		"/Users/wanghezhi/Desktop/7_chord/etl-master/features/query_quantified_derived.py",
+		"/Users/wanghezhi/Downloads/dump.sql",
+		"/Users/wanghezhi/Desktop/HTML/final_project.html",
+		"/Users/wanghezhi/Desktop/test_site/index.html",
+		"/Users/wanghezhi/Desktop/HTML/index.html",
+		"/Users/wanghezhi/Downloads/Logistic+Regression+with+a+Neural+Network+mindset+v3.ipynb.json",
+		"/Users/wanghezhi/Desktop/AWSMPSearchKibanaDashboard/src/com/amazon/awsmp/catalog/search/dashboard/lambda/ApplicationLogHandler.java",
+		"/Users/wanghezhi/Desktop/Case_Study/read_email.py",
+		"/Users/wanghezhi/Desktop/outlook-master/read_email.py",
+		"/Users/wanghezhi/Desktop/outlook-master/outlook.py",
+		"/Users/wanghezhi/Desktop/Case_Study/parse_pst.py",
+		"/Users/wanghezhi/Desktop/parse_pst.py",
+		"/Users/wanghezhi/Desktop/reg_TX.sas",
+		"/Users/wanghezhi/Desktop/reg_tx.sas",
+		"/Users/wanghezhi/Desktop/reg_lasso_FL.sas",
+		"/Users/wanghezhi/Desktop/dtree_reg_FL.sas",
+		"/Users/wanghezhi/Desktop/reg_FL.sas",
+		"/Users/wanghezhi/Desktop/reg_lasso.sas",
+		"/Users/wanghezhi/Desktop/reg_1.sas",
+		"/Users/wanghezhi/Desktop/reg.sas",
+		"/Users/wanghezhi/Desktop/predict_tx_tree.sas",
+		"/Users/wanghezhi/Desktop/NYU/2017_Spring/ML/project/malpractice/SAS_machine_learning_algorithm/dtree.sas",
+		"/Users/wanghezhi/Desktop/dtree_reg.sas",
+		"/Users/wanghezhi/Downloads/reg_lasso.sas",
+		"/Users/wanghezhi/Desktop/merge_TX.sas",
+		"/Users/wanghezhi/Desktop/dtree_reg (2).sas",
+		"/Users/wanghezhi/Desktop/NYU/2017_Spring/ML/hw7-bayesian/code/support_code.py",
+		"/Users/wanghezhi/Desktop/hw7-bayesian/code/problem.py",
+		"/Users/wanghezhi/Desktop/NYU/2017_Spring/BD/project/Big_Data_project/src/visualize_result.py",
+		"/Users/wanghezhi/Desktop/NYU/2017_Spring/BD/project/Big_Data_project/src/plot_by_complaint_type.py",
+		"/Users/wanghezhi/Desktop/NYU/2017_Spring/BD/assignment1/task6/reduce.py",
+		"/Users/wanghezhi/Desktop/NYU/2017_Spring/BD/assignment1/task6/map.py",
+		"/Users/wanghezhi/Desktop/NYU/2017_Spring/BD/assignment1/task4/map.py",
+		"/Users/wanghezhi/Desktop/NYU/2017_Spring/BD/project/Big_Data_project/src/col_ml.py",
+		"/Users/wanghezhi/Desktop/NYU/2017_Spring/BD/assignment1/task4/reduce.py",
+		"/Users/wanghezhi/Desktop/NYU/2017_Spring/BD/assignment1/task5/map.py",
+		"/Users/wanghezhi/Desktop/NYU/2017_Spring/BD/assignment1/task3/map.py",
+		"/Users/wanghezhi/Desktop/NYU/2017_Spring/BD/assignment1/task2/reduce.py",
+		"/Users/wanghezhi/Desktop/NYU/2017_Spring/BD/assignment1/task2/map.py"
+	],
+	"find":
+	{
+		"height": 39.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"date_of_",
+			"date"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 3,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "accounts/models.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3090,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2573,
+								2573
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1048.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "accounts/templates/accounts/register.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 110,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								93,
+								93
+							]
+						],
+						"settings":
+						{
+							"auto_name": "",
+							"syntax": "Packages/HTML/HTML.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "accounts/templates/accounts/base.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 122,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								46,
+								46
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "tripdesigner/urls.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1165,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								958,
+								958
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "trip/urls.py",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 280,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "accounts/templates/accounts/form.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 109,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								63,
+								63
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "accounts/views.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 310,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								107,
+								107
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "tripdesigner/settings.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3206,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1099,
+								1099
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 304.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "accounts/__init__.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 25.0
+	},
+	"input":
+	{
+		"height": 37.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "tripdesigner.sublime-project",
+	"replace":
+	{
+		"height": 46.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 324.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
