@@ -1,15 +1,13 @@
 {% load static %}
-<!DOCTYPE html>
+{% extends "trip/header.html" %}
+<!-- <!DOCTYPE html>
 <html>
     <head>
         <title>TripPlanner</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="{% static 'trip/search.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'trip/partial.css' %}">
-        
- <!--        <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript" async></script> -->
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
-        <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script> -->
         <script src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places&language=en"></script>
     </head>
     <body>
@@ -28,7 +26,7 @@
                 </ul>
             </div>
         </div>
-    </nav>
+    </nav> -->
 <!-- header ends -->
 
 <div class="container" style="height:800px">
@@ -130,8 +128,9 @@
      var place = autocomplete.getPlace();
   })
 </script> -->
+{% extends "trip/footer.html" %}
 <!-- footer starts -->
-<div class="footer" style="position: relative;">
+<!-- <div class="footer" style="position: relative;">
     <span style="color:rgb(145, 181, 77);">T</span>rip<span style="color:rgb(145, 181, 77);">P</span>lanner 2018
     <a class="footer-icons" href="https://github.com/HezhiWang/TripDesigner"><i class="fa fa-github"></i></a>
     <a class="footer-icons" href="mailto:hz1411@nyu.edu"><i class="fa fa-envelope"></i></a> 
@@ -140,4 +139,4 @@
 
 
     </body>
-</html>
+</html> -->

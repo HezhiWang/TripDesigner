@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+{% extends "trip/header.html" %}
+<!-- <!DOCTYPE html>
 <html>
     <head>
         <title>TripPlanner</title>
@@ -7,7 +8,6 @@
         <link rel="stylesheet" href="stylesheets/partial.css">
         <link rel="stylesheet" href="stylesheets/planprint.css" type="text/css" media="print"/>
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
-        <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script> -->
     </head>
     <body>
 
@@ -25,15 +25,15 @@
                 </ul>
             </div>
         </div>
-    </nav>
+    </nav> -->
 <!-- header ends -->
 
-<div class="container" style="height:auto">
+<div class="container plan" style="height:auto">
     <h2 style="text-align: center;">Your Itinerary in "Destination"</h2>
     <table>
         <!-- Day -->
         <tr>
-            <th colspan="6"><h4>Day 1</h4></th>
+            <th colspan="6"><h4 class="plan">Day 1</h4></th>
         </tr>
         <!-- Section for Flight -->
         <tr>
@@ -106,7 +106,7 @@
     <table>
         <!-- Day -->
         <tr>
-            <th colspan="6"><h4>Day 2</h4></th>
+            <th colspan="6"><h4 class="plan">Day 2</h4></th>
         </tr>
         <!-- Section for Flight -->
 <!--         <tr>
@@ -184,9 +184,9 @@
 
 
 <script type="text/javascript" src="index.js"></script>
-
+{% extends "trip/footer.html" %}
 <!-- footer starts -->
-<div class="footer" style="position: relative;">
+<!-- <div class="footer" style="position: relative;">
     <span style="color:rgb(145, 181, 77);">T</span>rip<span style="color:rgb(145, 181, 77);">P</span>lanner 2018
     <a class="footer-icons" href="https://github.com/HezhiWang/TripDesigner"><i class="fa fa-github"></i></a>
     <a class="footer-icons" href="mailto:hz1411@nyu.edu"><i class="fa fa-envelope"></i></a> 
@@ -195,4 +195,4 @@
 
 
     </body>
-</html>
+</html> -->
