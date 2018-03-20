@@ -1,4 +1,5 @@
-{% extends "accounts/base.html" %}
+{% load static %}
+{% include "trip/header.html" %}
 
 {%block content %}
 <h1>Login</h1>
@@ -10,3 +11,5 @@
 	</form> -->
 
 {% endblock %}
+
+{% include "trip/footer.html" %}

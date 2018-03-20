@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"auth",
+				"authenticate"
+			],
+			[
+				"clea",
+				"cleaned_data"
+			],
+			[
 				"U",
 				"UserCreationForm"
 			],
@@ -188,46 +196,20 @@
 	"buffers":
 	[
 		{
-			"file": "accounts/models.py",
+			"file": "trip/templates/trip/landing.html",
 			"settings":
 			{
-				"buffer_size": 3090,
+				"buffer_size": 3334,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "accounts/templates/accounts/register.html",
+			"file": "accounts/templates/accounts/login.html",
 			"settings":
 			{
-				"buffer_size": 110,
+				"buffer_size": 311,
 				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "accounts/templates/accounts/base.html",
-			"settings":
-			{
-				"buffer_size": 122,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "tripdesigner/urls.py",
-			"settings":
-			{
-				"buffer_size": 1165,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "trip/urls.py",
-			"settings":
-			{
-				"buffer_size": 280,
 				"line_ending": "Unix"
 			}
 		},
@@ -235,7 +217,16 @@
 			"file": "accounts/templates/accounts/form.html",
 			"settings":
 			{
-				"buffer_size": 109,
+				"buffer_size": 112,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "trip/templates/trip/header.html",
+			"settings":
+			{
+				"buffer_size": 1733,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -244,25 +235,34 @@
 			"file": "accounts/views.py",
 			"settings":
 			{
-				"buffer_size": 310,
+				"buffer_size": 2312,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "tripdesigner/settings.py",
+			"file": "accounts/forms.py",
 			"settings":
 			{
-				"buffer_size": 3206,
+				"buffer_size": 5460,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "accounts/__init__.py",
+			"file": "trip/views.py",
 			"settings":
 			{
-				"buffer_size": 0,
+				"buffer_size": 796,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "trip/models.py",
+			"settings":
+			{
+				"buffer_size": 57,
 				"line_ending": "Unix"
 			}
 		}
@@ -312,23 +312,37 @@
 		"/Users/wanghezhi/Desktop/NYU/2018_Spring/advanced python/project/TripDesigner/tripdesigner/accounts/templates",
 		"/Users/wanghezhi/Desktop/NYU/2018_Spring/advanced python/project/TripDesigner/tripdesigner/accounts/templates/accounts",
 		"/Users/wanghezhi/Desktop/NYU/2018_Spring/advanced python/project/TripDesigner/tripdesigner/trip",
+		"/Users/wanghezhi/Desktop/NYU/2018_Spring/advanced python/project/TripDesigner/tripdesigner/trip/__pycache__",
 		"/Users/wanghezhi/Desktop/NYU/2018_Spring/advanced python/project/TripDesigner/tripdesigner/trip/migrations",
 		"/Users/wanghezhi/Desktop/NYU/2018_Spring/advanced python/project/TripDesigner/tripdesigner/trip/migrations/__pycache__",
-		"/Users/wanghezhi/Desktop/NYU/2018_Spring/advanced python/project/TripDesigner/tripdesigner/trip/templates",
 		"/Users/wanghezhi/Desktop/NYU/2018_Spring/advanced python/project/TripDesigner/tripdesigner/tripdesigner",
 		"/Users/wanghezhi/Desktop/NYU/2018_Spring/advanced python/project/TripDesigner/tripdesigner/tripdesigner/__pycache__"
 	],
 	"file_history":
 	[
+		"/Users/wanghezhi/Desktop/NYU/2018_Spring/advanced python/project/TripDesigner/tripdesigner/trip/static/trip/landing.css",
+		"/Users/wanghezhi/Desktop/NYU/2018_Spring/advanced python/project/TripDesigner/tripdesigner/trip/templates/trip/search.html",
+		"/Users/wanghezhi/Desktop/NYU/2018_Spring/advanced python/project/TripDesigner/tripdesigner/trip/templates/trip/plan.html",
+		"/Users/wanghezhi/Desktop/NYU/2018_Spring/advanced python/project/TripDesigner/tripdesigner/accounts/templates/accounts/register.html",
+		"/Users/wanghezhi/Desktop/NYU/2018_Spring/advanced python/project/TripDesigner/tripdesigner/tripdesigner/urls.py",
+		"/Users/wanghezhi/Desktop/NYU/2018_Spring/advanced python/project/TripDesigner/tripdesigner/trip/urls.py",
 		"/Users/wanghezhi/Desktop/NYU/2018_Spring/advanced python/project/TripDesigner/tripdesigner/accounts/forms.py",
+		"/Users/wanghezhi/Desktop/NYU/2018_Spring/advanced python/project/TripDesigner/tripdesigner/trip/templates/trip/footer.html",
+		"/Users/wanghezhi/Desktop/NYU/2018_Spring/advanced python/project/TripDesigner/tripdesigner/trip/templates/trip/header.html",
+		"/Users/wanghezhi/Desktop/NYU/2018_Spring/advanced python/project/TripDesigner/tripdesigner/accounts/models.py",
+		"/Users/wanghezhi/Desktop/NYU/2018_Spring/advanced python/project/TripDesigner/tripdesigner/accounts/views.py",
+		"/Users/wanghezhi/Desktop/NYU/2018_Spring/advanced python/project/TripDesigner/tripdesigner/accounts/__init__.py",
+		"/Users/wanghezhi/Desktop/NYU/2018_Spring/advanced python/project/TripDesigner/tripdesigner/tripdesigner/settings.py",
+		"/Users/wanghezhi/Desktop/NYU/2018_Spring/advanced python/project/TripDesigner/tripdesigner/accounts/apps.py",
+		"/Users/wanghezhi/Desktop/NYU/2018_Spring/advanced python/project/TripDesigner/tripdesigner/accounts/templates/accounts/login.html",
+		"/Users/wanghezhi/Desktop/NYU/2018_Spring/advanced python/project/TripDesigner/tripdesigner/accounts/templates/accounts/form.html",
+		"/Users/wanghezhi/Desktop/NYU/2018_Spring/advanced python/project/TripDesigner/tripdesigner/accounts/templates/accounts/base.html",
 		"/Users/wanghezhi/Desktop/NYU/2018_Spring/advanced python/project/TripDesigner/tripdesigner/accounts/admin.py",
 		"/Users/wanghezhi/Desktop/NYU/2018_Spring/advanced python/project/TripDesigner/tripdesigner/trip/views.py",
 		"/Users/wanghezhi/Desktop/django/djmod/src/blog/migrations/0008_auto_20180318_1954.py",
-		"/Users/wanghezhi/Desktop/NYU/2018_Spring/advanced python/project/TripDesigner/tripdesigner/tripdesigner/urls.py",
 		"/Users/wanghezhi/Desktop/NYU/2018_Spring/advanced python/project/TripDesigner/tripdesigner/trip/templates/trip/landing.html",
 		"/Users/wanghezhi/Desktop/NYU/2018_Spring/advanced python/project/TripDesigner/tripdesigner/trip/static/trip/stylesheets/search.css",
 		"/Users/wanghezhi/Desktop/NYU/2018_Spring/advanced python/project/TripDesigner/tripdesigner/trip/static/trip/stylesheets/landing.css",
-		"/Users/wanghezhi/Desktop/NYU/2018_Spring/advanced python/project/TripDesigner/tripdesigner/trip/urls.py",
 		"/Users/wanghezhi/Desktop/NYU/2018_Spring/advanced python/project/TripDesigner/tripdesigner/trip/templates/trip/stylesheets/landing.css",
 		"/Users/wanghezhi/Desktop/NYU/2018_Spring/advanced python/project/TripDesigner/index.js",
 		"/Users/wanghezhi/Desktop/NYU/2018_Spring/advanced python/project/data/tripadvisor/tripadvisor/spiders/example.py",
@@ -433,21 +447,7 @@
 		"/Users/wanghezhi/Desktop/NYU/2017_Spring/ML/project/malpractice/SAS_machine_learning_algorithm/dtree.sas",
 		"/Users/wanghezhi/Desktop/dtree_reg.sas",
 		"/Users/wanghezhi/Downloads/reg_lasso.sas",
-		"/Users/wanghezhi/Desktop/merge_TX.sas",
-		"/Users/wanghezhi/Desktop/dtree_reg (2).sas",
-		"/Users/wanghezhi/Desktop/NYU/2017_Spring/ML/hw7-bayesian/code/support_code.py",
-		"/Users/wanghezhi/Desktop/hw7-bayesian/code/problem.py",
-		"/Users/wanghezhi/Desktop/NYU/2017_Spring/BD/project/Big_Data_project/src/visualize_result.py",
-		"/Users/wanghezhi/Desktop/NYU/2017_Spring/BD/project/Big_Data_project/src/plot_by_complaint_type.py",
-		"/Users/wanghezhi/Desktop/NYU/2017_Spring/BD/assignment1/task6/reduce.py",
-		"/Users/wanghezhi/Desktop/NYU/2017_Spring/BD/assignment1/task6/map.py",
-		"/Users/wanghezhi/Desktop/NYU/2017_Spring/BD/assignment1/task4/map.py",
-		"/Users/wanghezhi/Desktop/NYU/2017_Spring/BD/project/Big_Data_project/src/col_ml.py",
-		"/Users/wanghezhi/Desktop/NYU/2017_Spring/BD/assignment1/task4/reduce.py",
-		"/Users/wanghezhi/Desktop/NYU/2017_Spring/BD/assignment1/task5/map.py",
-		"/Users/wanghezhi/Desktop/NYU/2017_Spring/BD/assignment1/task3/map.py",
-		"/Users/wanghezhi/Desktop/NYU/2017_Spring/BD/assignment1/task2/reduce.py",
-		"/Users/wanghezhi/Desktop/NYU/2017_Spring/BD/assignment1/task2/map.py"
+		"/Users/wanghezhi/Desktop/merge_TX.sas"
 	],
 	"find":
 	{
@@ -465,6 +465,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"header",
+			"@",
 			"date_of_",
 			"date"
 		],
@@ -484,169 +486,82 @@
 	"groups":
 	[
 		{
-			"selected": 3,
+			"selected": 5,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "accounts/models.py",
+					"file": "trip/templates/trip/landing.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3090,
+						"buffer_size": 3334,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2573,
-								2573
+								464,
+								464
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Python/Python.sublime-syntax",
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1048.0,
+						"translation.y": 528.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "accounts/templates/accounts/login.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 311,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								17,
+								17
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 6,
 					"type": "text"
 				},
 				{
-					"buffer": 1,
-					"file": "accounts/templates/accounts/register.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 110,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								93,
-								93
-							]
-						],
-						"settings":
-						{
-							"auto_name": "",
-							"syntax": "Packages/HTML/HTML.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
 					"buffer": 2,
-					"file": "accounts/templates/accounts/base.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 122,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								46,
-								46
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "tripdesigner/urls.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1165,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								958,
-								958
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "trip/urls.py",
-					"semi_transient": true,
-					"settings":
-					{
-						"buffer_size": 280,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
 					"file": "accounts/templates/accounts/form.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 109,
+						"buffer_size": 112,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								63,
-								63
+								48,
+								48
 							]
 						],
 						"settings":
@@ -661,20 +576,109 @@
 					"type": "text"
 				},
 				{
-					"buffer": 6,
-					"file": "accounts/views.py",
+					"buffer": 3,
+					"file": "trip/templates/trip/header.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 310,
+						"buffer_size": 1733,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								107,
-								107
+								1603,
+								1603
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "accounts/views.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2312,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1248,
+								1248
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 164.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "accounts/forms.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5460,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1566,
+								1566
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 65.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "trip/views.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 796,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								710,
+								710
 							]
 						],
 						"settings":
@@ -685,46 +689,16 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
 					"buffer": 7,
-					"file": "tripdesigner/settings.py",
-					"semi_transient": false,
+					"file": "trip/models.py",
+					"semi_transient": true,
 					"settings":
 					{
-						"buffer_size": 3206,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1099,
-								1099
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 304.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 7,
-					"type": "text"
-				},
-				{
-					"buffer": 8,
-					"file": "accounts/__init__.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 0,
+						"buffer_size": 57,
 						"regions":
 						{
 						},
@@ -743,7 +717,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 8,
+					"stack_index": 3,
 					"type": "text"
 				}
 			]

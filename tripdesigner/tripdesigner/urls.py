@@ -21,9 +21,9 @@ from accounts.views import register, user_login, user_logout
 
 urlpatterns = [
 	path('trip/', include('trip.urls')),
-    re_path(r'^register/$', register), 
-    re_path(r'^login/$', user_login), 
-    re_path(r'^logout/$', user_logout), 
+    re_path(r'^register/', register, name='register'),
+    re_path(r'^login/', user_login, name='login'),
+    re_path(r'^logout/', user_logout, name='logout'),
     path('admin/', admin.site.urls), 
     #url(r'^login/$', auth_views.login, name='login'),
     #url(r'^logout/$', auth_views.logout, name='logout'),

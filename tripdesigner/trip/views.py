@@ -1,4 +1,5 @@
-from django.shortcuts import render, render_to_response
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.template import loader
 
@@ -11,10 +12,17 @@ def index(request):
     #context = {
     #    'latest_question_list': latest_question_list,
     #}
-    template = loader.get_template("trip/landing.html")
-    return HttpResponse(template.render())
+
+    #template = loader.get_template("trip/landing.html")
+    template = "trip/landing.html"
+    context = {}
+    return render(request, template, context)
 
 def search(request):
-
-	template = loader.get_template("trip/search.html")
-	return HttpResponse(template.render())
+	if request.user.is_authenticated:
+		template = "trip/search.html"
+	else:
+		template = "../login"
+		return redirect(template)
+	context = {}
+	return render(request, template, context)
