@@ -1,5 +1,8 @@
 /*common*/
 {% load static %}
+div{
+  font-family: 'Open Sans', sans-serif;
+}
 
 .navbar.navbar-default{
   z-index: 100;
@@ -11,6 +14,12 @@
   border-color:transparent;
   box-shadow:none;
   margin-bottom: 0;
+}
+
+.brand{
+  font-family: 'Raleway', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
 }
 
 .footer{
@@ -73,11 +82,25 @@
 }
 
 h1{
+  font-family: 'Raleway', sans-serif;
 	margin-bottom: 5vh;
   color: #fff;
+  font-weight: 700;
+  font-size: 40px;
+}
+
+h2{
+  font-family: 'Raleway', sans-serif;
+  font-weight: 600;
+  text-align: center; 
+  color: black; 
+  margin-bottom: 40px;
+  margin-top: 40px;
 }
 
 h3{
+  font-family: 'Raleway', sans-serif;
+  font-weight: 600;
 	margin-bottom: 10vh;
   font-size: 1.5em;
 	color: #fff;
@@ -85,7 +108,10 @@ h3{
 
 h4{
   /*color: rgb(132, 189, 0);*/
-  color: rgb(145, 181, 77)
+  font-family: 'Lato', sans-serif;
+  font-weight: 600;
+  color: rgb(145, 181, 77);
+  letter-spacing: 1.2px;
 }
 
 #landing-header {
@@ -131,8 +157,11 @@ h4{
     color: #fff;
     /*background: green;*/
     text-align:center;
-    font-weight: bold;
+    font-weight: 400;
+    font-family: 'Lato', sans-serif;
     opacity: 0.7;
+    font-size: 18px;
+    letter-spacing: 1px;
 }
 
 .slideshow li:nth-child(1) { 
@@ -202,6 +231,18 @@ h4{
   box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.15);
 }
 
+.intro-text{
+  margin: 20px auto 0px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.4px;
+}
+
+
+
+
 .thumbnail.intro-icon {
   border-color: transparent;
   width: 100%; 
@@ -256,6 +297,11 @@ h4 span {
 
 label{
     text-align: left;
+}
+
+tr label {
+  width: 150px;
+  margin-top: 20px;
 }
 
 tr:nth-child(1) label {
@@ -403,6 +449,7 @@ text-decoration: none;
 /*about.html*/
 .about{
   margin-bottom: 10vh;
+  font-family: 'Open Sans', sans-serif;
 }
 .about h4{
   margin-bottom: 5vh;
@@ -412,6 +459,9 @@ text-decoration: none;
   margin-right: 100px;
   padding-right: 100px;
   margin-bottom: 3vh;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  line-height: 2;
 }
 
 .clip-circle {

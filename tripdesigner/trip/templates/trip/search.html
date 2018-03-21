@@ -2,13 +2,13 @@
 {% include "trip/header.html" %}
 <!-- header ends -->
 
-<div class="container" style="height:800px">
-    <h2 style="text-align: center;">Get Your Itinerary</h2>
+<div class="container" style="height:auto; margin-bottom: 150px">
+    <h2>Get Your Itinerary</h2>
     <form action="plan.html" method="GET">
         <table style="width:100%; border: 1px solid #e5e5e5;">
             <tr>
                 <td>
-                    <h4>Step 1 <span>Enter the City You'll Depart From and Return to</span></h4>
+                    <h4>Step 1 <span style="letter-spacing: 0">Enter the City You'll Depart From and Return to</span></h4>
                     <div class="form-group">
                         <label for="startcity">Depart From:</label>
                         <input name="startcity" id="startcity" class="autocomplete address" type="text" placeholder="San Francisco" required autocomplete="on">
