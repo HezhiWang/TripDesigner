@@ -26,3 +26,9 @@ def search(request):
 		return redirect(template)
 	context = {}
 	return render(request, template, context)
+
+
+def about(request):
+    template = "trip/about.html"
+    context = {}
+    return render(request, template, context)

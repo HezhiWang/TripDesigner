@@ -1,5 +1,19 @@
+<div class="container login">
+<h2 style="margin-bottom: 1em">{{title}}</h2>
 <form method="POST" action="."> {% csrf_token %}
 	{{ form.as_p }}
-<input type="submit" value="Submit">
+	{% if title == 'Log In' %}
+		<input type="submit" value="Log In" class="btn btn-success btn-lg">
+		<div style="border-top: 1px solid #e5e5e5; margin-top: 4vh; padding-top: 1vh">
+			<p>Don't have an account? <a class="login_link" href="{% url 'register' %}">Sign Up for TripPlanner!</a>
+			</p>
+		</div>
+	{% elif title == 'Sign Up' %}
+		<input type="submit" value="Register" class="btn btn-success btn-lg">
+		<div style="border-top: 1px solid #e5e5e5; margin-top: 4vh; padding-top: 1vh">
+			<p>Already have an account? <a class="login_link" href="{% url 'login' %}">Sign In to TripPlanner!</a>
+			</p>
+		</div>
+	{% endif %}
 </form>
-
+</div>

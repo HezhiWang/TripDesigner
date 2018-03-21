@@ -15,7 +15,7 @@ User = get_user_model()
 def user_login(request):
     print(request.user.is_authenticated)
     next = request.GET.get('next')
-    title = "Login"
+    title = "Log In"
     form = UserLoginForm(request.POST or None)
     if form.is_valid():
         username = form.cleaned_data.get("username")
@@ -30,7 +30,7 @@ def user_login(request):
 def register(request):
     print(request.user.is_authenticated)
     next = request.GET.get('next')
-    title = "Register"
+    title = "Sign Up"
     form = UserCreationForm(request.POST or None)
     if form.is_valid():
         user = form.save(commit=False)

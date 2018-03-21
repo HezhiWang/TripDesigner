@@ -1,0 +1,46 @@
+{% load static %}
+{% include "trip/header.html" %}
+<div class="container" style="margin: 50px 20px">
+	<div class="about">
+		<h4>About TripPlanner</h4>
+		<p>It is always fun to go on a trip, but a pain to make plans for it. You'll need to choose your destination, set the date, book the flight and hotel, figure out the locations of most popular tourist attractions and trendy restaurants. It is common to spend many hours, and even some money, reading through various travel guides, consulting a travel agency or Google your destination and try putting the pieces together from numerous travel notes.
+		</p>
+		<p>TripPlanner is an intelligent personal trip plan designer. We can customize a detailed travel itinerary that provides recommendations for tourists attractions and accommodations, as well as other userful travel tips. It is optimized by machine learning algorithms to find the best arrangment.</p>
+
+		<p>This website is the class project for DS-GA 3001 - Advanced Python, which originates from a previous class project for DS-GA 1007 - Programming for Data Science. The front end is written in HTML, CSS and JavaScript, and backend deployed in Python and Django framework.</p>
+
+ 
+	</div>	
+
+	<div class="about" style="margin-right: 100px">
+		<h4>Team Members</h4>
+		<div class="row text-center">
+
+			<div class="col-xs-12 col-md-5 col-sm-5 col-lg-5">
+	            <div class="thumbnail team-intro">
+	                <img src="{% static 'trip/pics/whz.jpeg' %}" class="img-circle"/>
+	                <div class="caption">
+          				<h6>Hezhi Wang</h6>
+          				Worked at Knotel, 7-Chord, Amazon. A professional data scientist who knows everything. Enjoy LOL, NBA and violin.
+          				<a class="team-contact-icons" href="https://github.com/HezhiWang/TripDesigner"><i class="fa fa-github"></i></a>
+        			</div>
+	            </div>
+			</div>
+
+			<div class="col-xs-12 col-md-5 col-sm-5 col-lg-5">
+	            <div class="thumbnail team-intro">
+	                <img src="{% static 'trip/pics/hz.jpeg' %}" class="img-circle"/>
+	                <div class="caption">
+          				<h6>Han Zhao</h6>
+          				Always the student of Hezhi Wang.
+        			</div>
+	            </div>
+			</div>
+
+
+		</div>
+	</div>
+</div>
+
+
+{% include "trip/footer.html" %}

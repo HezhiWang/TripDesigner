@@ -4,8 +4,8 @@ from django.contrib.auth import authenticate, get_user_model, login, logout
 User = get_user_model()
 
 class UserLoginForm(forms.Form):
-    username = forms.CharField()
-    password = forms.CharField(widget=forms.PasswordInput)
+    username = forms.CharField(widget=forms.TextInput(attrs={'class' : 'login'}))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'class' : 'login'}))
 
     def clean(self, *args, **kwargs):
         username = self.cleaned_data.get("username")
@@ -26,9 +26,9 @@ class UserLoginForm(forms.Form):
 
 
 class UserCreationForm(forms.ModelForm):
-    email = forms.EmailField(label='Email address')
-    email2 = forms.EmailField(label='Confirm Email')
-    password = forms.CharField(widget=forms.PasswordInput)
+    email = forms.EmailField(label='Email address',widget=forms.TextInput(attrs={'class' : 'login'}))
+    email2 = forms.EmailField(label='Confirm Email',widget=forms.TextInput(attrs={'class' : 'login'}))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'class' : 'login'}))
 
     class Meta:
         model = User
@@ -38,7 +38,9 @@ class UserCreationForm(forms.ModelForm):
             'email2',
             'password'
         ]
-
+        widgets = {
+            'username': forms.TextInput(attrs={'class': 'login'}),
+        }
     # def clean(self, *args, **kwargs):
     #     email = self.cleaned_data.get('email')
     #     email2 = self.cleaned_data.get('email2')

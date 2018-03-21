@@ -2,21 +2,21 @@
 {% load static %}
 
 .navbar.navbar-default{
-  z-index: 1;
+  z-index: 100;
   /*background-color: rgba(255, 255, 255, 0.3);*/
   font-weight: bold;
   color: #fff;
-  background:transparent;
+  /*background:rgba(255, 255, 255, 0.3);*/
   background-image:none;
   border-color:transparent;
   box-shadow:none;
   margin-bottom: 0;
 }
 
-
 .footer{
-  position: relative;
-  z-index: 2;
+  position: fixed;
+  bottom: 0;
+  z-index: 100;
   background-color: #292c2f;
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
   box-sizing: border-box;
@@ -122,7 +122,7 @@ h4{
   animation: imageAnimation 70s linear infinite; 
 }
 
-.caption {
+.slideshow.caption {
     position: absolute;
     height: 50px;
     bottom: 0px;
@@ -130,9 +130,9 @@ h4{
     right: 5px;
     color: #fff;
     /*background: green;*/
-  text-align:center;
-  font-weight: bold;
-  opacity: 0.7;
+    text-align:center;
+    font-weight: bold;
+    opacity: 0.7;
 }
 
 .slideshow li:nth-child(1) { 
@@ -202,7 +202,7 @@ h4{
   box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.15);
 }
 
-.thumbnail {
+.thumbnail.intro-icon {
   border-color: transparent;
   width: 100%; 
   height:30%; 
@@ -262,7 +262,7 @@ tr:nth-child(1) label {
 	width: 100px;
 }
 
-input[type=text] {
+input.address {
     width: 30%;
     padding: 6px 6px;
     margin: 4px 0;
@@ -272,6 +272,7 @@ input[type=text] {
     background: url("pics/map-marker-icon.png") no-repeat left 3px center;
     padding-left: 40px;
 }
+
 
 input[type=date]{
 	width: auto;
@@ -363,3 +364,81 @@ table th{
     margin-right: 0;
 }
 
+ label {
+  width: 100px;
+}
+
+/*form.html*/
+.container.login{
+  position: relative;
+  margin: 70px auto;
+  margin-bottom: 100px;
+  width: 35%; 
+  border: 1px solid #e5e5e5;
+  padding: 10px 25px 30px 25px;
+  height: auto;
+  border-radius: 3%
+}
+
+input.login{
+  width: 100%;
+  height: 36px;
+  padding: 0 16px;
+  margin-bottom: 2vh;
+  margin-top: 1vh;
+}
+
+a.login_link:link,
+a.login_link:visited{
+ color: rgb(145, 181, 77);
+ text-decoration: none;
+}
+
+a.login_link:hover,
+a.login_link:active{
+color: rgba(71, 106, 48, 0.8);
+text-decoration: none;
+}
+
+/*about.html*/
+.about{
+  margin-bottom: 10vh;
+}
+.about h4{
+  margin-bottom: 5vh;
+}
+
+.about p {
+  margin-right: 100px;
+  padding-right: 100px;
+  margin-bottom: 3vh;
+}
+
+.clip-circle {
+  clip-path: circle(85px at center);
+  /* OLD VALUE example: circle(245px, 140px, 50px); */
+  /* Yep, even the new clip-path has deprecated stuff. */
+}
+
+.thumbnail.team-intro{
+  margin: 50px 50px 100px 50px;
+  border-color: transparent;
+  padding: 10px 0;
+}
+
+.team-contact-icons{
+  display: inline-block;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+  background-color: rgba(145, 181, 77, 0.8);
+  border-radius: 2px;
+
+  font-size: 20px;
+  color: #ffffff;
+  text-align: center;
+  line-height: 35px;
+
+  margin-right: 3px;
+  margin-bottom: 5px;
+}
