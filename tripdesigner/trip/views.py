@@ -19,13 +19,26 @@ def index(request):
     return render(request, template, context)
 
 def search(request):
-	if request.user.is_authenticated:
-		template = "trip/search.html"
-	else:
-		template = "../login"
-		return redirect(template)
-	context = {}
-	return render(request, template, context)
+    # if request.method == "GET":
+    if request.user.is_authenticated:
+        template = "trip/search.html"
+    else:
+        template = "../login"
+        return redirect(template)
+    context = {}
+    return render(request, template, context)
+    # elif request.method == "POST":
+    #     print(request.POST)
+    #     template = "trip/plan.html"
+    #     return render(request, template, {})
+
+def plan(request):
+    if request.method == "GET":
+        return redirect("../login")
+    elif request.method == "POST":
+        print(request.POST)
+        template = "trip/plan.html"
+        return render(request, template, {})
 
 
 def about(request):

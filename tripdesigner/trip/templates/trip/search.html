@@ -4,7 +4,7 @@
 
 <div class="container" style="height:auto; margin-bottom: 150px">
     <h2>Get Your Itinerary</h2>
-    <form action="plan.html" method="GET">
+    <form action="{% url 'plan' %}" method="POST"> {%csrf_token %}
         <table style="width:100%; border: 1px solid #e5e5e5;">
             <tr>
                 <td>
