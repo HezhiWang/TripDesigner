@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__fil
 SECRET_KEY = 'm-iz9ydkxj1wory8t0((2_2w9iju-(&9n!2tc09(cqlm4v!##)'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['tripdesigner.herokuapp.com']
+ALLOWED_HOSTS = ['tripdesigner.herokuapp.com', "localhost"]
 
 
 # Application definition
