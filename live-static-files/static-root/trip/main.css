@@ -1,0 +1,487 @@
+/*common*/
+{% load static %}
+div{
+  font-family: 'Open Sans', sans-serif;
+}
+
+.navbar.navbar-default{
+  z-index: 100;
+  /*background-color: rgba(255, 255, 255, 0.3);*/
+  font-weight: bold;
+  color: #fff;
+  /*background:rgba(255, 255, 255, 0.3);*/
+  background-image:none;
+  border-color:transparent;
+  box-shadow:none;
+  margin-bottom: 0;
+}
+
+.brand{
+  font-family: 'Raleway', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.footer{
+  position: fixed;
+  bottom: 0;
+  z-index: 100;
+  background-color: #292c2f;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+  box-sizing: border-box;
+  width: 100%;
+  height:auto;
+  text-align: center;
+  font: normal 18px sans-serif;
+  color:  #8f9296;
+  padding: 10px;
+  margin-bottom: 0px;
+}
+
+.footer .footer-icons{
+  display: inline-block;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+  background-color:  #33383b;
+  border-radius: 2px;
+
+  font-size: 20px;
+  color: #ffffff;
+  text-align: center;
+  line-height: 35px;
+
+  margin-right: 3px;
+  margin-bottom: 5px;
+}
+
+.btn-success,
+.btn-success:active,
+.btn-success:active:focus,
+.btn-success:visited,
+.btn-success:focus {
+    background-color: rgb(145, 181, 77);
+    border-color: rgb(145, 181, 77);
+    box-shadow: none;
+}
+
+.btn-success:hover {
+    background-color: rgb(71, 106, 48);
+    border-color: rgb(71, 106, 48);
+}
+
+
+/*landing*/
+.container {
+  z-index: 0;
+  margin-top: 0;
+  margin-bottom: 5vh;
+  width: 100%;
+  height: 600px;
+  position: relative;
+}
+
+h1{
+  font-family: 'Raleway', sans-serif;
+	margin-bottom: 5vh;
+  color: #fff;
+  font-weight: 700;
+  font-size: 40px;
+}
+
+h2{
+  font-family: 'Raleway', sans-serif;
+  font-weight: 600;
+  text-align: center; 
+  color: black; 
+  margin-bottom: 40px;
+  margin-top: 40px;
+}
+
+h3{
+  font-family: 'Raleway', sans-serif;
+  font-weight: 600;
+	margin-bottom: 10vh;
+  font-size: 1.5em;
+	color: #fff;
+}
+
+h4{
+  /*color: rgb(132, 189, 0);*/
+  font-family: 'Lato', sans-serif;
+  font-weight: 600;
+  color: rgb(145, 181, 77);
+  letter-spacing: 1.2px;
+}
+
+#landing-header {
+  z-index: 1;
+  position: relative;
+  text-align: center;
+  padding-top: 25vh;
+}
+
+.slideshow { 
+  background-color: #000;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  list-style: none;
+  margin-bottom: 5vh;
+  padding: 0;
+}
+
+.slideshow li { 
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-size: cover;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  opacity: 0;
+  z-index: 0;
+  animation: imageAnimation 70s linear infinite; 
+}
+
+.slide-caption {
+    position: absolute;
+    height: 50px;
+    bottom: 0px;
+    padding-bottom: 0px;
+    right: 5px;
+    color: #fff;
+    /*background: green;*/
+    text-align:center;
+    font-weight: 400;
+    font-family: 'Lato', sans-serif;
+    opacity: 0.7;
+    font-size: 18px;
+    letter-spacing: 1px;
+}
+
+.slideshow li:nth-child(1) { 
+  background-image: url("pics/the-great-wall-of-china.jpg");
+}
+
+.slideshow li:nth-child(2) { 
+  background-image: url("pics/skyline_ny.jpg");
+  animation-delay: 10s; 
+}
+
+.slideshow li:nth-child(3) { 
+  background-image: url("pics/golden_bridge.jpg");
+  animation-delay: 20s;
+}
+
+.slideshow li:nth-child(4) { 
+  background-image: url("pics/Machu_Picchu.jpg");
+  animation-delay: 30s; 
+}
+
+.slideshow li:nth-child(5) { 
+  background-image: url("pics/Terrace_field_yunnan.jpg");
+  animation-delay: 40s; 
+}
+
+.slideshow li:nth-child(6) { 
+  background-image: url("pics/aurora_Reykjavik.jpg");
+  animation-delay: 50s; 
+}
+
+.slideshow li:nth-child(7) { 
+  background-image: url("pics/kenya_lake_nakuru.jpg");
+  animation-delay: 60s; 
+}
+
+
+@keyframes imageAnimation { 
+  0% { 
+    opacity: 0.1; 
+    animation-timing-function: ease-in;
+  }
+  10% {
+    opacity: 1;
+    animation-timing-function: ease-out;
+  }
+  20% {
+    opacity: 1
+  }
+  30% {
+    opacity: 0
+  }
+}
+
+.no-cssanimations .slideshow li {
+	opacity: 1;
+}
+
+.intro{
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.1);
+  border-color: transparent;
+  padding: 40px 20px 20px;
+  margin: 0px auto 20px;
+}
+
+.intro:hover{
+  box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.15);
+}
+
+.intro-text{
+  margin: 20px auto 0px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.4px;
+}
+
+
+
+
+.thumbnail.intro-icon {
+  border-color: transparent;
+  width: 100%; 
+  height:30%; 
+  max-width: 80px;
+  box-shadow: transparent; 
+  margin: 0 auto -30px;
+  padding: 0 auto; 
+}
+
+/*search*/
+td{
+	padding: 0px 10px;
+}
+
+input:invalid+span:after {
+    content: 'Please enter a valid date.';
+    padding-left: 12px;
+    color: rgba(71, 106, 48, 0.8);
+}
+
+input:valid+span:after {
+    /*content: "valid";*/
+    padding-left: 5px;
+}
+
+input[type=date]::-webkit-inner-spin-button, 
+input[type=date]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+  display: none;
+}
+
+::-webkit-datetime-edit-text {padding: 0 0.3em; }
+::-webkit-inner-spin-button { display: none; }
+::-webkit-calendar-picker-indicator { background: rgb(145, 181, 77); }
+
+
+#submit, #reset {
+	margin: 10px auto;
+	width: 15%;
+}
+
+#reset {
+	margin-right: 10px;
+}
+
+h4 span {
+	color: black; 
+	opacity: 0.7;
+}
+
+label{
+    text-align: left;
+}
+
+tr label {
+  width: 150px;
+  margin-top: 20px;
+}
+
+tr:nth-child(1) label {
+	width: 100px;
+}
+
+input.address {
+    width: 30%;
+    padding: 6px 6px;
+    margin: 4px 0;
+    box-sizing: border-box;
+    background-color: white;
+    background-origin: content-box;
+    background: url("pics/map-marker-icon.png") no-repeat left 3px center;
+    padding-left: 40px;
+}
+
+
+input[type=date]{
+	width: auto;
+}
+
+input:focus {
+    border: 3px solid rgba(145, 181, 77, 0.8);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgb(145, 181, 77, 0.6);
+    outline: 0 none;
+}
+
+
+select#length,
+select#destination,
+select#time,
+select#hotel
+ {
+    width: 65%;
+    padding: 6px 10px;
+    margin: 4px 0;
+    border: none;
+    border-radius: 4px;
+    background-color: #f1f1f1;
+}
+
+/*plan*/
+div.container.plan{
+  z-index: 0;
+  margin-top: 0;
+  margin-bottom: 5vh;
+  width: 85%;
+  height:auto;
+  position: relative;
+}
+
+h4.plan{
+  color: rgb(145, 181, 77);
+  text-align: center;
+  font-size: 1.4em;
+  font-weight: bold;
+}
+
+h5{
+	font-size: 1.2em;
+	color: rgb(71, 106, 48);
+	text-align: left;
+}
+
+h6 {
+	font-size: 1em;
+	font-weight: bold;
+}
+table {
+    empty-cells: show;
+    /*border-collapse:collapse*/
+    width:100%; 
+	margin: 10px auto;
+}
+
+table td,
+table th{
+	min-width: 2em;
+    min-height: 2em;
+	padding:2px 10px;
+	border-width:0px;
+	overflow:hidden;
+	word-break:normal;
+	border-top-width:1px solid #e5e5e5;
+	border-bottom:1px solid #e5e5e5;
+	vertical-align:center;
+}
+
+
+.last{
+	text-align: right
+}
+
+.free {
+	color:rgb(255,68,68, 0.6);
+}
+
+.print-button{
+	margin-right: 20px;
+}
+
+.last img {
+    display: block;
+    margin-left: auto;
+    margin-right: 0;
+}
+
+ label {
+  width: 100px;
+}
+
+/*form.html*/
+.container.login{
+  position: relative;
+  margin: 70px auto;
+  margin-bottom: 100px;
+  width: 35%; 
+  border: 1px solid #e5e5e5;
+  padding: 10px 25px 30px 25px;
+  height: auto;
+  border-radius: 3%
+}
+
+input.login{
+  width: 100%;
+  height: 36px;
+  padding: 0 16px;
+  margin-bottom: 2vh;
+  margin-top: 1vh;
+}
+
+a.login_link:link,
+a.login_link:visited{
+ color: rgb(145, 181, 77);
+ text-decoration: none;
+}
+
+a.login_link:hover,
+a.login_link:active{
+color: rgba(71, 106, 48, 0.8);
+text-decoration: none;
+}
+
+/*about.html*/
+.about{
+  margin-bottom: 10vh;
+  font-family: 'Open Sans', sans-serif;
+}
+.about h4{
+  margin-bottom: 5vh;
+}
+
+.about p {
+  margin-right: 100px;
+  padding-right: 100px;
+  margin-bottom: 3vh;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  line-height: 2;
+}
+
+.clip-circle {
+  clip-path: circle(85px at center);
+  /* OLD VALUE example: circle(245px, 140px, 50px); */
+  /* Yep, even the new clip-path has deprecated stuff. */
+}
+
+.thumbnail.team-intro{
+  margin: 50px 50px 100px 50px;
+  border-color: transparent;
+  padding: 10px 0;
+}
+
+hr {
+    border: 0;
+    height: 1.5px;
+    margin-top: 8px;
+    margin-bottom: 10px;
+    /*background-color: rgba(71, 106, 48, 0.8);*/
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(71, 106, 48, 0.8), rgba(0, 0, 0, 0));
+}
+

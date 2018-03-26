@@ -1,0 +1,64 @@
+div.container {
+  z-index: 0;
+  margin-top: 0;
+  margin-bottom: 5vh;
+  width: 85%;
+  height:auto;
+  position: relative;
+}
+
+h4{
+  color: rgb(145, 181, 77);
+  text-align: center;
+  font-size: 1.4em;
+  font-weight: bold;
+}
+
+h5{
+	font-size: 1.2em;
+	color: rgb(71, 106, 48);
+	text-align: left;
+}
+
+h6 {
+	font-size: 1em;
+	font-weight: bold;
+}
+table {
+    empty-cells: show;
+    /*border-collapse:collapse*/
+    width:100%; 
+	margin: 10px auto;
+}
+
+table td,
+table th{
+	min-width: 2em;
+    min-height: 2em;
+	padding:2px 10px;
+	border-width:0px;
+	overflow:hidden;
+	word-break:normal;
+	border-top-width:1px solid #e5e5e5;
+	border-bottom:1px solid #e5e5e5;
+	vertical-align:center;
+}
+
+
+.last{
+	text-align: right
+}
+
+.free {
+	color:rgb(255,68,68, 0.6);
+}
+
+.print-button{
+	margin-right: 20px;
+}
+
+.last img {
+    display: block;
+    margin-left: auto;
+    margin-right: 0;
+}
