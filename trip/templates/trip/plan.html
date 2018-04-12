@@ -1,7 +1,7 @@
 {% load static %}
 {% include "trip/header.html" %}
 
-<div class="container plan" style="height:auto">
+<div class="container plan" style="height:auto; margin-bottom: 150px">
     <h2 style="text-align: center;">Your Itinerary in "Destination"</h2>
     <table>
         <!-- Day -->
@@ -24,8 +24,8 @@
         <!-- Attraction One -->
         <tr>       
             <td><h6>The Metropolitan Museum of Art</h6></td>
-            <td colspan="1">2-3 hours</td>
-            <td colspan="2" class="last"><img src="pics/ticket.png" width=45px height=35px></td>
+            <td colspan="1"></td>
+            <td colspan="2" class='last'>2-3 hours</td>
         </tr>
         <tr>
             <td colspan="6">Address: 1000 5th Ave, New York City, NY 10028-0198</td>
@@ -36,8 +36,8 @@
         <!-- Attraction Two -->
         <tr>       
             <td><h6>Central Park </h6></td>
-            <td colspan="1"> 3-5 hours</td>
-            <td colspan="2" class="last free">FREE</td>
+            <td colspan="1"></td>
+            <td colspan="2" class='last'>2-3 hours</td>
         </tr>
         <tr>
             <td colspan="6">Address: 59th to 110th Street, Manhattan Borough, from Central Park West to 5th Avenue, New York City, NY 10022</td>
@@ -97,8 +97,8 @@
         <!-- Attraction One -->
         <tr>       
             <td><h6>The Metropolitan Museum of Art</h6></td>
-            <td colspan="1">2-3 hours</td>
-            <td colspan="2" class="last"><img src="pics/ticket.png" width=45px height=35px></td>
+            <td colspan="1"></td>
+            <td colspan="2" class='last'>2-3 hours</td>
         </tr>
         <tr>
             <td colspan="6">Address: 1000 5th Ave, New York City, NY 10028-0198</td>
@@ -109,8 +109,8 @@
         <!-- Attraction Two -->
         <tr>       
             <td><h6>Central Park </h6></td>
-            <td colspan="1"> 3-5 hours</td>
-            <td colspan="2" class="last free">FREE</td>
+            <td colspan="1"></td>
+            <td colspan="2" class='last'>2-3 hours</td>
         </tr>
         <tr>
             <td colspan="6">Address: 59th to 110th Street, Manhattan Borough, from Central Park West to 5th Avenue, New York City, NY 10022</td>
@@ -148,11 +148,9 @@
             <td colspan="5" class="last">Score: 5.0/5 (From 153 Reviews)</td>
         </tr>
     </table>
-</div>
-<div class="container">
     <a class="btn btn-danger btn-lg print-button" href="{% url 'search' %}" role="button">Make Another Plan</a>
     <a href="javascript:window.print()" role="button" class="btn btn-success btn-lg print-button">Get Printable Version</a>
-</div>    
+</div>  
 
 
 

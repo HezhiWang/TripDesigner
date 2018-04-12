@@ -1,10 +1,10 @@
-var inputs = document.querySelectorAll('.autocomplete');
-for(var i = 0; i < inputs.length; i++){
-    var autocomplete = new google.maps.places.Autocomplete(inputs[i],{types: ['(cities)']});
-    // google.maps.event.addListener(autocomplete, 'place_changed', function(){
-    //     var place = autocomplete.getPlace();
-    // })
-};
+// var inputs = document.querySelectorAll('.autocomplete');
+// for(var i = 0; i < inputs.length; i++){
+//     var autocomplete = new google.maps.places.Autocomplete(inputs[i],{types: ['(cities)']});
+//     // google.maps.event.addListener(autocomplete, 'place_changed', function(){
+//     //     var place = autocomplete.getPlace();
+//     // })
+// };
 
 
 
