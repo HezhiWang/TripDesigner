@@ -12,10 +12,14 @@
                     <div class="form-group">
                         <label for="startcity">Depart From:</label>
                         <input name="startcity" id="startcity" class="autocomplete address" type="text" placeholder="San Francisco" required autocomplete="on">
+                        <input class="field" id="startcitylat" name="startcitylat" disabled="true" type="hidden"></input>
+      					<input class="field" id="startcitylng" name="startcitylng" disabled="true" type="hidden"></input>
                     </div>
                     <div class="form-group">
                         <label for="endcity">Return To:</label>
                         <input name="endcity" id="endcity" class="autocomplete address" type="text" placeholder="San Francisco" required autocomplete="on">
+                        <input class="field" id="endcitylat" name="endcitylat" disabled="true" type="hidden"></input>
+      					<input class="field" id="endcitylng" name="endcitylng" disabled="true" type="hidden"></input>
                     </div>
                 </td>
             </tr>
@@ -23,13 +27,17 @@
                 <td>
                     <h4>Step 2 <span>Choose Your Destination</span></h4>
                     <div class="form-group">
-                      <select class="form-control" id="destination" name="destination">
+                    	<label for="destination">Destination:</label>
+                        <input name="destination" id="destination" class="autocomplete address" type="text" placeholder="San Francisco" required autocomplete="on">
+                        <input class="field" id="destinationlat" name="destinationlat" disabled="true" type="hidden"></input>
+      					<input class="field" id="destinationlng" name="destinationlng" disabled="true" type="hidden"></input>
+<!--                       <select class="form-control" id="destination" name="destination">
                         <option value="" selected disabled>Please select one</option>
                         <option value="1">New York City</option>
                         <option value="2">San Francisco</option>
                         <option value="3">Los Angeles</option>
                         <option value="4">Beijing</option>
-                      </select>
+                      </select> -->
                     </div>
                 </td>
             </tr>
@@ -93,15 +101,35 @@
 
 </tr>
 
-<script type="text/javascript" src="{% static 'trip/search.js' %}"></script>
-<!-- <script>
-  var input = document.getElementById('autocomplete');
-  var autocomplete = new google.maps.places.Autocomplete(input,{types: ['(cities)']});
-  google.maps.event.addListener(autocomplete, 'place_changed', function(){
-     var place = autocomplete.getPlace();
-  })
-</script> -->
 
+
+<script>
+	  var autoplaces = ['startcity','endcity','destination']
+
+      function initAutocomplete() {
+        // Create the autocomplete object, restricting the search to geographical
+        // location types.
+        for (var i = 0; i < autoplaces.length; i++){
+        	var elementid = autoplaces[i]
+			var auto = new google.maps.places.Autocomplete(
+            /** @type {!HTMLInputElement} */(document.getElementById(elementid)),
+            {types: ['(cities)']});
+            auto.addListener('place_changed', function(){
+            	var place = this.getPlace();
+            	document.getElementById(elementid+'lat').value = place.geometry.location.lat();
+        		document.getElementById(elementid+'lat').disabled = false;
+        		document.getElementById(elementid+'lng').value = place.geometry.location.lng();
+        		document.getElementById(elementid+'lng').disabled = false;
+				console.log(place.geometry.location.lat(), place.geometry.location.lng())
+            });
+    	};
+      }
+
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBmBkizXu70OrVXb9GXbbWAgasRIsND7js&libraries=places&callback=initAutocomplete"
+        async defer>
+</script>
+<script type="text/javascript" src="{% static 'trip/search.js' %}"></script>
 <!-- footer starts -->
 
 {% include "trip/footer.html" %}

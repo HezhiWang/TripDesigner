@@ -300,7 +300,7 @@ label{
 }
 
 tr label {
-  width: 150px;
+  width: 200px;
   margin-top: 20px;
 }
 
@@ -308,8 +308,17 @@ tr:nth-child(1) label {
 	width: 100px;
 }
 
+tr:nth-child(2) label {
+  width: 100px;
+}
+
+tr:nth-child(3) td div:nth-child(2) label {
+  width: 100px;
+}
+
+
 input.address {
-    width: 30%;
+    width: 40%;
     padding: 6px 6px;
     margin: 4px 0;
     box-sizing: border-box;
@@ -332,11 +341,10 @@ input:focus {
 
 
 select#length,
-select#destination,
 select#time,
 select#hotel
  {
-    width: 65%;
+    width: 75%;
     padding: 6px 10px;
     margin: 4px 0;
     border: none;
