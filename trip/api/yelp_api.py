@@ -15,9 +15,9 @@ from urllib.parse import quote
 from urllib.parse import urlencode
 from functools import partial
 from multiprocessing.pool import Pool
-from .request import request
 
-API_KEY= "MqDnnf4EXd7WZ-u_aiCKCM5I1-Kt6qhHWo2Wn2WwZbDhKxTz79EYyvP89EQE0XRqljnAEeefZl6jQqZ772DU8rQMgCyVvScES-Jf4Hs9PuvijSg6xUSiTk6wC2zTWnYx" 
+from .request import request
+from .config import YELP_API_KEY
 
 # API constants, you shouldn't have to change these.
 API_HOST = 'https://api.yelp.com'
@@ -90,7 +90,7 @@ def yelp_api(latitude, longitude):
     business_id_list = []
     for offset in range(0, 100, 50):
         print(offset)
-        response = search_business(API_KEY, latitude, longitude, offset)
+        response = search_business(YELP_API_KEY, latitude, longitude, offset)
 
         businesses = response.get('businesses')
 
@@ -101,7 +101,7 @@ def yelp_api(latitude, longitude):
         print(u'No businesses found.')
         return
 
-    restarants = get_business(API_KEY, business_id_list) 
+    restarants = get_business(YELP_API_KEY, business_id_list) 
 
     restarants = pd.DataFrame(restarants)
 

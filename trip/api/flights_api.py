@@ -8,13 +8,12 @@ import sys
 import urllib
 
 from .request import request
+from .config import AMADEUS_API_KEY
 
 from urllib.error import HTTPError
 from urllib.parse import quote
 from urllib.parse import urlencode
 
-
-API_KEY = 'EqdnCpZIoZ2WtgEKgPZG2tmqIIQPCEml'
 API_HOST = 'https://api.sandbox.amadeus.com/v1.2/'
 FLIGHT_PATH = 'flights/low-fare-search'
 NUMBER_OF_RESULTS = 50
@@ -35,11 +34,11 @@ def get_flights(origin, destination, departure_date, return_date):
     	'destination': 'MSP',
     	'departure_date': '2018-05-15',
     	'return_date': '2018-05-21', 
-    	'apikey': API_KEY,
+    	'apikey': AMADEUS_API_KEY,
     	'number_of_results': NUMBER_OF_RESULTS
     }
 
-	flights = request(API_HOST, FLIGHT_PATH, API_KEY, params)
+	flights = request(API_HOST, FLIGHT_PATH, AMADEUS_API_KEY, params)
 
 	print(flights)
 	
