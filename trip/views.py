@@ -2,6 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.template import loader
+from django.views.decorators.csrf import csrf_exempt
 
 #from .models import Question
 
@@ -32,6 +33,7 @@ def search(request):
     #     template = "trip/plan.html"
     #     return render(request, template, {})
 
+@csrf_exempt
 def plan(request):
     if request.method == "GET":
         return redirect("../login")

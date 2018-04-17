@@ -4,7 +4,7 @@
 
 <div class="container" style="height:auto; margin-bottom: 150px">
     <h2>Get Your Itinerary</h2>
-    <form action="{% url 'plan' %}" method="POST"> {%csrf_token %}
+    <form id="myform" action="{% url 'plan' %}" method="POST"> {%csrf_token %}
         <table style="width:100%; border: 1px solid #e5e5e5;">
             <tr>
                 <td>
@@ -129,6 +129,21 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBmBkizXu70OrVXb9GXbbWAgasRIsND7js&libraries=places&callback=initAutocomplete"
         async defer>
 </script>
+
+<script>
+$('#myform').submit(function(event){
+    $.ajax({
+      url: $('#myform').attr('action'),
+      type: 'POST',
+      data : $('#myform').serialize(),
+      success: function(response){
+        alert("The server says: " + response);
+      }
+    });
+    return false;
+});
+</script>
+
 <script type="text/javascript" src="{% static 'trip/search.js' %}"></script>
 <!-- footer starts -->
 
