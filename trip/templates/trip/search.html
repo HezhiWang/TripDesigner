@@ -2,7 +2,7 @@
 {% include "trip/header.html" %}
 <!-- header ends -->
 
-<div class="container" style="height:auto; margin-bottom: 150px">
+<div class="container" id="mainbody" style="height:auto; margin-bottom: 150px">
     <h2>Get Your Itinerary</h2>
     <form id="myform" action="{% url 'crawl' %}" method="POST"> {%csrf_token %}
         <table style="width:100%; border: 1px solid #e5e5e5;">
@@ -28,16 +28,9 @@
                     <h4>Step 2 <span>Choose Your Destination</span></h4>
                     <div class="form-group">
                     	<label for="destination">Destination:</label>
-                        <input name="destination" id="destination" class="autocomplete address" type="text" placeholder="San Francisco" required autocomplete="on">
+                        <input name="destination" id="destination" class="autocomplete address" type="text" placeholder="New York" required autocomplete="on">
                         <input class="field" id="destinationlat" name="destinationlat" disabled="true" type="hidden"></input>
       					<input class="field" id="destinationlng" name="destinationlng" disabled="true" type="hidden"></input>
-<!--                       <select class="form-control" id="destination" name="destination">
-                        <option value="" selected disabled>Please select one</option>
-                        <option value="1">New York City</option>
-                        <option value="2">San Francisco</option>
-                        <option value="3">Los Angeles</option>
-                        <option value="4">Beijing</option>
-                      </select> -->
                     </div>
                 </td>
             </tr>
@@ -95,16 +88,15 @@
         </table>
 
         <button class="btn btn-danger btn-lg" type="reset" id="reset">Reset</button>
-        <button type="submit" id="submit" class="btn btn-success btn-lg">Submit!</button>
+        <button type="submit" id="submit" class="btn btn-success btn-lg" onclick="showloader();">Submit!</button>
     </form>
     <form id="plan-form" action="{% url 'plan' %}" method="post" style="display: none">
     <input name="finaldata" id="finaldata" type="hidden"></input>
     <button type="submit" id="go" class="btn btn-success btn-lg" style="display: none">Go</button>
     </form>
-    <!-- <button id="get" class="btn btn-success btn-lg" onclick="go();">Get</button> -->
 </div>    
-</tr>
 
+<div id="loader" style="display:none;"></div>
 
 <script>
 	  var autoplaces = ['startcity','endcity','destination']
@@ -156,7 +148,6 @@ $('#myform').submit(function(event){
             globalstate.state.uniqueID= response.unique_id;
             globalstate.state.crawlingStatus= response.status;
             globalstate.statusInterval = setInterval(checkCrawlStatus, 2000);
-            // alert("The server says: " + response.task_id + response.status);
         }
         
     });
@@ -167,11 +158,10 @@ function checkCrawlStatus(){
     $.get($('#myform').attr('action'),
         {task_id: globalstate.state.taskID, unique_id: globalstate.state.uniqueID},
         function(response){
-            // alert(response.status)
             if(response.data || typeof response.status === 'undefined'){
                 clearInterval(globalstate.statusInterval);
                 globalstate.state.data = response.data;
-                alert("finished!")
+                // alert("finished!")
                 var form_data = {};
                 $.each($('#myform').serializeArray(), function(_, kv) {
                 if (form_data.hasOwnProperty(kv.name)) {
@@ -182,11 +172,6 @@ function checkCrawlStatus(){
                 var finaldata = {'form_data':form_data, 'crawl_data': globalstate.state.data}
                 document.getElementById('finaldata').value = JSON.stringify(finaldata)
                 $("#go").click();
-                // $.ajax({
-                //     url: $('#plan-form').attr('action'),
-                //     type: "POST",
-                //     data: finaldata,
-                // });
             }
             else if(response.error){
                 clearInterval(globalstate.statusInterval);
@@ -203,9 +188,10 @@ function checkCrawlStatus(){
         }
 )};
 
-// function go(){
-//     $("#go").click();
-// };
+function showloader(){
+    document.getElementById("loader").style.display = "block";
+    document.getElementById("mainbody").style.display = "none";
+}
 
 </script>
 
