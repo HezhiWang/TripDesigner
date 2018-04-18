@@ -31,37 +31,26 @@ class AttractioncrawlerSpider(CrawlSpider):
         #self.attractions=[]
         self.url = kwargs.get('url')
         self.start_urls = [self.url]
+        self.number_of_attractions = 0
         #self.start_urls = kwargs.get('url')
         #start_urls = [self.start_url]
         #print(self.start_urls)
 
     def parse_start_url(self, response):
         links = response.css('div.listing_commerce a::attr(href)').extract()
+            
         for link in links:
             yield response.follow(link, callback=self.parse_attraction)
-            
-        # print(self.attractions)
-        # return self.attractions
-        #Give the extracted content row wise
-#        for item in zip(titles,comments,links):
-#            #create a dictionary to store the scraped info
-#            number_comment = item[1].split()[0];
-#            posts['title'].append(item[0])
-#            posts['num_reply'].append(number_comment)
-#            posts['thread_url'].append(item[2])
-#            
-            #yield or give the scraped info to scrapy
-            #if number_comment != 'comment': #and int(number_comment) >= 5:            
-                #yield response.follow(item[2], callback=self.thread_parse)
-
+ 
         next_page = response.css('a.nav.next.rndBtn.ui_button.primary.taLnk::attr(href)').extract_first()
-        print(next_page)
+
         if next_page is not None:
             yield response.follow(next_page, callback=self.parse)
 
     def parse_attraction(self, response):
         attraction = {}
-        
+        self.number_of_attractions += 1
+        print(self.number_of_attractions) 
         title = response.css('#HEADING::text').extract_first()
         
         rating= response.css('span.header_rating div span::attr(content)').extract_first()
