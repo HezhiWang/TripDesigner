@@ -36,15 +36,7 @@ class AttractioncrawlerSpider(CrawlSpider):
         #print(self.start_urls)
 
     def parse_start_url(self, response):
-        #titles = response.css('.listing_title a::text').extract()
-        #comments = response.css('.comments::text').extract()
-        #print(titles)
         links = response.css('div.listing_commerce a::attr(href)').extract()
-
-        #print(links)
-
-        #atttractions = {}
-
         for link in links:
             yield response.follow(link, callback=self.parse_attraction)
             
@@ -62,10 +54,10 @@ class AttractioncrawlerSpider(CrawlSpider):
             #if number_comment != 'comment': #and int(number_comment) >= 5:            
                 #yield response.follow(item[2], callback=self.thread_parse)
 
-        # next_page = response.css('div.unified.pagination a::attr(href)').extract_first()
-        # print(next_page)
-        # if next_page is not None:
-        #     yield response.follow(next_page, callback=self.parse)
+        next_page = response.css('a.nav.next.rndBtn.ui_button.primary.taLnk::attr(href)').extract_first()
+        print(next_page)
+        if next_page is not None:
+            yield response.follow(next_page, callback=self.parse)
 
     def parse_attraction(self, response):
         attraction = {}

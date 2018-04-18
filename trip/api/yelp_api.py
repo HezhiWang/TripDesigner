@@ -105,7 +105,7 @@ def yelp_api(latitude, longitude):
 
     restarants = pd.DataFrame(restarants)
 
-    print(restarants)
+    #print(restarants)
     print(restarants.shape)
 
     return restarants

@@ -40,7 +40,7 @@ def get_flights(origin, destination, departure_date, return_date):
 
 	flights = request(API_HOST, FLIGHT_PATH, AMADEUS_API_KEY, params)
 
-	print(flights)
+	#print(flights)
 	
 	return flights
 
