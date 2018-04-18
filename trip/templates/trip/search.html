@@ -4,7 +4,7 @@
 
 <div class="container" style="height:auto; margin-bottom: 150px">
     <h2>Get Your Itinerary</h2>
-    <form id="myform" action="{% url 'plan' %}" method="POST"> {%csrf_token %}
+    <form id="myform" action="{% url 'crawl' %}" method="POST"> {%csrf_token %}
         <table style="width:100%; border: 1px solid #e5e5e5;">
             <tr>
                 <td>
@@ -97,10 +97,13 @@
         <button class="btn btn-danger btn-lg" type="reset" id="reset">Reset</button>
         <button type="submit" id="submit" class="btn btn-success btn-lg">Submit!</button>
     </form>
+    <form id="plan-form" action="{% url 'plan' %}" method="post" style="display: none">
+    <input name="finaldata" id="finaldata" type="hidden"></input>
+    <button type="submit" id="go" class="btn btn-success btn-lg" style="display: none">Go</button>
+    </form>
+    <!-- <button id="get" class="btn btn-success btn-lg" onclick="go();">Get</button> -->
 </div>    
-
 </tr>
-
 
 
 <script>
@@ -131,17 +134,79 @@
 </script>
 
 <script>
+var globalstate = {
+          state: {
+          url: '',
+          crawlingStatus: null,
+          data: null,
+          taskID: null,
+          uniqueID: null
+      },
+      statusInterval: 1
+}
+
 $('#myform').submit(function(event){
     $.ajax({
       url: $('#myform').attr('action'),
       type: 'POST',
       data : $('#myform').serialize(),
-      success: function(response){
-        alert("The server says: " + response);
-      }
+      success: 
+        function(response){
+            globalstate.state.taskID = response.task_id;
+            globalstate.state.uniqueID= response.unique_id;
+            globalstate.state.crawlingStatus= response.status;
+            globalstate.statusInterval = setInterval(checkCrawlStatus, 2000);
+            // alert("The server says: " + response.task_id + response.status);
+        }
+        
     });
     return false;
 });
+
+function checkCrawlStatus(){
+    $.get($('#myform').attr('action'),
+        {task_id: globalstate.state.taskID, unique_id: globalstate.state.uniqueID},
+        function(response){
+            // alert(response.status)
+            if(response.data || typeof response.status === 'undefined'){
+                clearInterval(globalstate.statusInterval);
+                globalstate.state.data = response.data;
+                alert("finished!")
+                var form_data = {};
+                $.each($('#myform').serializeArray(), function(_, kv) {
+                if (form_data.hasOwnProperty(kv.name)) {
+                    form_data[kv.name] = $.makeArray(form_data[kv.name]);
+                    form_data[kv.name].push(kv.value);}
+                else {form_data[kv.name] = kv.value;}
+                });
+                var finaldata = {'form_data':form_data, 'crawl_data': globalstate.state.data}
+                document.getElementById('finaldata').value = JSON.stringify(finaldata)
+                $("#go").click();
+                // $.ajax({
+                //     url: $('#plan-form').attr('action'),
+                //     type: "POST",
+                //     data: finaldata,
+                // });
+            }
+            else if(response.error){
+                clearInterval(globalstate.statusInterval);
+                alert(response.error)
+            }
+            else if(response.status){
+                globalstate.state.crawlingStatus = response.status;
+                console.log(response.status)
+            }
+            else{
+                clearInterval(globalstate.statusInterval);
+                alert("terminated")
+            }
+        }
+)};
+
+// function go(){
+//     $("#go").click();
+// };
+
 </script>
 
 <script type="text/javascript" src="{% static 'trip/search.js' %}"></script>
