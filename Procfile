@@ -1,2 +1,2 @@
 web: gunicorn tripdesigner.wsgi --log-file -
-web: scrapyd-heroku
+web2: scrapyd-heroku
