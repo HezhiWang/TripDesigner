@@ -1,0 +1,2 @@
+python: python manage.py runserver
+scrapyd: cd scrapy_app && scrapyd
