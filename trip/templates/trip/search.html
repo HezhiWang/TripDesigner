@@ -158,8 +158,11 @@ function checkCrawlStatus(){
     $.get($('#myform').attr('action'),
         {task_id: globalstate.state.taskID, unique_id: globalstate.state.uniqueID},
         function(response){
+            console.log(response.status)
+            console.log(response.data)
             if(response.data || typeof response.status === 'undefined'){
                 clearInterval(globalstate.statusInterval);
+                alert("finished")
                 globalstate.state.data = response.data;
                 // alert("finished!")
                 console.log(globalstate.state.data)
