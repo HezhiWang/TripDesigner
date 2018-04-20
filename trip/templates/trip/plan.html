@@ -3,154 +3,81 @@
 
 <div class="container plan" style="height:auto; margin-bottom: 150px">
 
-    <h2 style="text-align: center;">Your Itinerary in "Destination"</h2>
+    <h2 style="text-align: center;">Your Itinerary in {{destination}}</h2>
+    {% for day in schedule %}
     <table>
         <!-- Day -->
         <tr>
-            <th colspan="6"><h4 class="plan">Day 1</h4></th>
+            <th colspan="6"><h4 class="plan">Day {{forloop.counter}}</h4></th>
         </tr>
         <!-- Section for Flight -->
+        
+        {% if day.flight %}
         <tr>
             <td colspan="6"><h5>Flight</h5></td>
         </tr>
         <tr>       
-            <td>"StartCity" - "Destination"</td>
-            <td colspan="1">"TimeTakingoff" - "TimeLanding"</td>
-            <td colspan="2" class="last">"Price"</td>
+            <td>{{day.flight.0}} - {{day.flight.1}}</td>
+            <td colspan="1">{{day.flight.2}} - {{day.flight.3}}</td>
+            <td colspan="2" class="last">{{day.flight.4}}</td>
         </tr>
+        {% endif %}
         <!-- Section for Attraction -->
         <tr>
             <td colspan="6"><h5>Attractions/Things To Do</h5></td>
         </tr>
+        {% for attraction in day.attractions %}
         <!-- Attraction One -->
         <tr>       
-            <td><h6>The Metropolitan Museum of Art</h6></td>
+            <td><h6>{{attraction.name}}</h6></td>
             <td colspan="1"></td>
-            <td colspan="2" class='last'>2-3 hours</td>
+            <td colspan="2" class='last'>{{attraction.time}}</td>
         </tr>
         <tr>
-            <td colspan="6">Address: 1000 5th Ave, New York City, NY 10028-0198</td>
+            <td colspan="6">Address: {{attraction.address}}</td>
         </tr>
         <tr>
-            <td colspan="6">Description: At New York City's most visited museum and attraction, you will experience over 5,000 years of art from around the world. The Met is for anyone as a source of inspiration, insight and understanding. You can learn, escape, play, dream, discover, connect. </td>
+            <td colspan="6">Description: {{attraction.desc}} </td>
         </tr>
-        <!-- Attraction Two -->
-        <tr>       
-            <td><h6>Central Park </h6></td>
-            <td colspan="1"></td>
-            <td colspan="2" class='last'>2-3 hours</td>
-        </tr>
-        <tr>
-            <td colspan="6">Address: 59th to 110th Street, Manhattan Borough, from Central Park West to 5th Avenue, New York City, NY 10022</td>
-        </tr>
-        <tr>
-            <td colspan="6">Description:  For more than 150 years, visitors have flocked to Central Park's 843 green acres in the heart of Manhattan. Since 1980, the Park has been managed by the Central Park Conservancy, in partnership with the public. Central Park is open 6 am to 1 am daily. Visit the official website of Central Park to learn more about Park happenings and activities and to learn how you to help Central Park!</td>
-        </tr>
+        {% endfor %}
 
         <!-- Section for Hotel -->
+
         <tr>
             <td colspan="6"><h5>Hotels</h5></td>
         </tr>
-        <!-- Hotel One -->
+        {% for hotel in day.hotel %}
         <tr>       
-            <td><h6>414 Hotel</h6></td>   <!-- (Add a link?) -->
-            <td colspan="1">Score: 9.4/10 (From 387 Reviews)</td>
-            <td colspan="2" class="last">Price:...</td>
+            <td><h6>{{hotel.name}}</h6></td>   <!-- (Add a link?) -->
+            <td colspan="1">Score: {{hotel.score}}/10 (From {{hotel.reviews}} Reviews)</td>
+            <td colspan="2" class="last">{{hotel.price}}</td>
         </tr>
         <tr>
-            <td colspan="6">Address: 414 West 46 Street, Hell's Kitchen, New York City, NY 10036, United States of America </td>
+            <td colspan="6">Address: {{hotel.address}}</td>
         </tr>
+        {% endfor %}
 
         <!-- Section for Restaurant -->
         <tr>
             <td colspan="6"><h5>Restaurants</h5></td>
         </tr>
         <!-- Restaurant One-->
+        {% for restaurant in day.restaurant %}
         <tr>       
-            <td><h6>D'Amore Winebar & Ristorante</h6></td>   <!-- (Add a link?) -->
-            <td colspan="1">("Type") French </td>
-            <td colspan="2" class="last">$$$$</td>
+            <td><h6>{{restaurant.name}}</h6></td>   <!-- (Add a link?) -->
+            <td colspan="1">{{restaurant.type}} </td>
+            <td colspan="2" class="last">{{restaurant.price}}</td>
         </tr>
         <tr>
-            <td>Address: West 46 Street, Hell's Kitchen, New York City, NY 10036, United States of America </td>
-            <td colspan="5" class="last">Score: 5.0/5 (From 153 Reviews)</td>
+            <td>Address: {{restaurant.address}} </td>
+            <td colspan="5" class="last">Score: {{restaurant.score}}/5 (From {{restaurant.reviews}} Reviews)</td>
         </tr>
+        {% endfor %}
     </table>
+{% endfor %}
 
-    <table>
-        <!-- Day -->
-        <tr>
-            <th colspan="6"><h4 class="plan">Day 2</h4></th>
-        </tr>
-        <!-- Section for Flight -->
-<!--         <tr>
-            <td colspan="6"><h5>Flight</h5></td>
-        </tr>
-        <tr>       
-            <td>"StartCity" - "Destination"</td>
-            <td colspan="2">"TimeTakingoff" - "TimeLanding"</td>
-            <td colspan="3" class="last">"Price"</td>
-        </tr> -->
-        <!-- Section for Attraction -->
-        <tr>
-            <td colspan="6"><h5>Attractions/Things To Do</h5></td>
-        </tr>
-        <!-- Attraction One -->
-        <tr>       
-            <td><h6>The Metropolitan Museum of Art</h6></td>
-            <td colspan="1"></td>
-            <td colspan="2" class='last'>2-3 hours</td>
-        </tr>
-        <tr>
-            <td colspan="6">Address: 1000 5th Ave, New York City, NY 10028-0198</td>
-        </tr>
-        <tr>
-            <td colspan="6">Description: At New York City's most visited museum and attraction, you will experience over 5,000 years of art from around the world. The Met is for anyone as a source of inspiration, insight and understanding. You can learn, escape, play, dream, discover, connect. </td>
-        </tr>
-        <!-- Attraction Two -->
-        <tr>       
-            <td><h6>Central Park </h6></td>
-            <td colspan="1"></td>
-            <td colspan="2" class='last'>2-3 hours</td>
-        </tr>
-        <tr>
-            <td colspan="6">Address: 59th to 110th Street, Manhattan Borough, from Central Park West to 5th Avenue, New York City, NY 10022</td>
-        </tr>
-        <tr>
-            <td colspan="6">Description:  For more than 150 years, visitors have flocked to Central Park's 843 green acres in the heart of Manhattan. Since 1980, the Park has been managed by the Central Park Conservancy, in partnership with the public. Central Park is open 6 am to 1 am daily. Visit the official website of Central Park to learn more about Park happenings and activities and to learn how you to help Central Park!</td>
-        </tr>
-
-        <!-- Section for Hotel -->
-        <tr>
-            <td colspan="6"><h5>Hotels</h5></td>
-        </tr>
-        <!-- Hotel One -->
-        <tr>       
-            <td><h6>414 Hotel</h6></td>   <!-- (Add a link?) -->
-            <td colspan="1">Score: 9.4/10 (From 387 Reviews)</td>
-            <td colspan="2" class="last">Price:...</td>
-        </tr>
-        <tr>
-            <td colspan="6">A 414 West 46 Street, Hell's Kitchen, New York City, NY 10036, United States of America </td>
-        </tr>
-
-        <!-- Section for Restaurant -->
-        <tr>
-            <td colspan="6"><h5>Restaurants</h5></td>
-        </tr>
-        <!-- Restaurant One-->
-        <tr>       
-            <td><h6>D'Amore Winebar & Ristorante</h6></td>   <!-- (Add a link?) -->
-            <td colspan="1">("Type") French </td>
-            <td colspan="2" class="last">$$$$</td>
-        </tr>
-        <tr>
-            <td>Address: West 46 Street, Hell's Kitchen, New York City, NY 10036, United States of America </td>
-            <td colspan="5" class="last">Score: 5.0/5 (From 153 Reviews)</td>
-        </tr>
-    </table>
-    <a class="btn btn-danger btn-lg print-button" href="{% url 'search' %}" role="button">Make Another Plan</a>
-    <a href="javascript:window.print()" role="button" class="btn btn-success btn-lg print-button">Get Printable Version</a>
+<a class="btn btn-danger btn-lg print-button" href="{% url 'search' %}" role="button">Make Another Plan</a>
+<a href="javascript:window.print()" role="button" class="btn btn-success btn-lg print-button">Get Printable Version</a>
 </div>  
 
 

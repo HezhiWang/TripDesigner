@@ -108,7 +108,7 @@ def plan(request):
 
         form_data = final_data["form_data"]
         crawl_data = final_data["crawl_data"]
-        print(form_data)
+        # print(form_data)
 
 
 
@@ -145,9 +145,55 @@ def plan(request):
 
         #Attraction.objects.all().delete()
 
+        #TODO: calculate daily schedule - k means
+        #suggested saving format: 
+        schedule = [
+        {'flight':[start_city, destination_city, "05:10", "08:20","$210.00"],
+        'attractions':
+            [
+                {'name':"The Metropolitan Museum of Art", 'time': "2-3 hours","address":"1000 5th Ave, New York City, NY 10028-0198","desc": "A museum"},
+                {'name':"The Metropolitan Museum of Art", 'time': "2-3 hours","address":"1000 5th Ave, New York City, NY 10028-0198","desc": "A museum"},
+                {'name':"The Metropolitan Museum of Art", 'time': "2-3 hours","address":"1000 5th Ave, New York City, NY 10028-0198","desc": "A museum"}
+            ],
+        'hotel':
+            [
+                {'name':"414 Hotel", 'score': "9.4","reviews":"287", "address":"414 West 46 Street, Hell's Kitchen, New York City, NY 10036, United States of America","price": "$260"},
+                {'name':"414 Hotel", 'score': "9.4","reviews":"287", "address":"414 West 46 Street, Hell's Kitchen, New York City, NY 10036, United States of America","price": "$260"}
+
+            ],
+        'restaurant':
+            [
+                {'name':"D'Amore Winebar & Ristorante", 'type': "French","score":"5","reviews":"153", "address":"West 46 Street, Hell's Kitchen, New York City, NY 10036, United States of America","price": "$$$$"},
+                {'name':"D'Amore Winebar & Ristorante", 'type': "French","score":"5","reviews":"153", "address":"West 46 Street, Hell's Kitchen, New York City, NY 10036, United States of America","price": "$$$$"}
+            ],
+        },
+
+        {'flight':[],
+        'attractions':
+            [
+                {'name':"The Metropolitan Museum of Art", 'time': "2-3 hours","address":"1000 5th Ave, New York City, NY 10028-0198","desc": "A museum"},
+                {'name':"The Metropolitan Museum of Art", 'time': "2-3 hours","address":"1000 5th Ave, New York City, NY 10028-0198","desc": "A museum"},
+                {'name':"The Metropolitan Museum of Art", 'time': "2-3 hours","address":"1000 5th Ave, New York City, NY 10028-0198","desc": "A museum"}
+            ],
+        'hotel':
+            [
+                {'name':"414 Hotel", 'score': "9.4","reviews":"287", "address":"414 West 46 Street, Hell's Kitchen, New York City, NY 10036, United States of America","price": "$$"}
+            ],
+        'restaurant':
+            [
+                {'name':"D'Amore Winebar & Ristorante", 'type': "French","score":"5","reviews":"153", "address":"West 46 Street, Hell's Kitchen, New York City, NY 10036, United States of America","price": "$$$$"}
+            ]
+        }
+
+        ]
         template = "trip/plan.html"
+        context={
+            "range":range(length),
+            "schedule": schedule, 
+            "destination": destination_city
+        }
         # return redirect("../login")
-        return render(request, template, {})
+        return render(request, template, context)
         #return JsonResponse({'task_id': task, 'unique_id': unique_id, 'status': 'started'})
 
 
