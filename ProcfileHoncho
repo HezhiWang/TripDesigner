@@ -1,2 +1,2 @@
-python: python manage.py runserver
-scrapyd: cd scrapy_app && scrapyd
+python: cd server && pip install requirements.txt && gunicorn tripdesigner.wsgi --log-file -
+

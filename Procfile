@@ -1,1 +1,1 @@
-web: gunicorn tripdesigner.wsgi --log-file -
+web: honcho -f ProcfileHoncho start
