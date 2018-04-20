@@ -82,5 +82,5 @@ class AttractioncrawlerSpider(CrawlSpider):
         attraction["location"] = location
 
         #self.attractions.append(attraction)
-        #print(attraction)
+        print(attraction)
         return attraction
