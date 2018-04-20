@@ -1,1 +1,1 @@
-web: honcho -f ProfileHoncho startu
+web: gunicorn tripdesigner.wsgi --log-file -
