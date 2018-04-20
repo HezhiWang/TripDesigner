@@ -61,7 +61,7 @@ def crawl(request):
             try:
                 # this is the unique_id that we created even before crawling started.
                 attraction = Attraction.objects.get(unique_id=unique_id)
-                print(attraction.to_dict['data'])
+                print("get number of attractions: " + str(len(attraction.to_dict['data'])))
                 return JsonResponse({'data': attraction.to_dict['data']})
             except Exception as e:
                 return JsonResponse({'error': str(e)})
