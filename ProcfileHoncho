@@ -1,2 +1,2 @@
 python: gunicorn tripdesigner.wsgi --log-file -
-
+scrapyd: cd scrapy_app && scrapyd
