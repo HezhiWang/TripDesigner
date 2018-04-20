@@ -1,2 +1,2 @@
-python: cd server && pip install requirements.txt && gunicorn tripdesigner.wsgi --log-file -
+python: pip install requirements.txt && gunicorn tripdesigner.wsgi --log-file -
 
