@@ -162,6 +162,7 @@ function checkCrawlStatus(){
                 clearInterval(globalstate.statusInterval);
                 globalstate.state.data = response.data;
                 // alert("finished!")
+                console.log(globalstate.state.data)
                 var form_data = {};
                 $.each($('#myform').serializeArray(), function(_, kv) {
                 if (form_data.hasOwnProperty(kv.name)) {

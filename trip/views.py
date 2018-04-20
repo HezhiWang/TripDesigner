@@ -108,7 +108,7 @@ def plan(request):
         print(final_data)
         form_data = final_data["form_data"]
         print(form_data)
-        crawl_data = final_data["crawl_data"]
+        #crawl_data = final_data["crawl_data"]
         
 
 
