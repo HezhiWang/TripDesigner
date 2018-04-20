@@ -105,10 +105,11 @@ def plan(request):
     elif request.method == "POST":
 
         final_data = json.loads(request.POST['finaldata'])
-
+        print(final_data)
         form_data = final_data["form_data"]
-        crawl_data = final_data["crawl_data"]
         print(form_data)
+        crawl_data = final_data["crawl_data"]
+        
 
 
 
