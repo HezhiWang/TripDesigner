@@ -59,7 +59,7 @@ def crawl(request):
         print(status)
         if status == 'finished':
             try:
-                # this is the unique_id that we created even before crawling started.
+                # this is the unique_id that we created even before crawling started.\
                 attraction = Attraction.objects.get(unique_id=unique_id)
                 print("get number of attractions: " + str(len(attraction.to_dict['data'])))
                 return JsonResponse({'data': attraction.to_dict['data']})
