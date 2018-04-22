@@ -1,19 +1,9 @@
-// var inputs = document.querySelectorAll('.autocomplete');
-// for(var i = 0; i < inputs.length; i++){
-//     var autocomplete = new google.maps.places.Autocomplete(inputs[i],{types: ['(cities)']});
-//     // google.maps.event.addListener(autocomplete, 'place_changed', function(){
-//     //     var place = autocomplete.getPlace();
-//     // })
-// };
-
-
-
 function mindate(){
-    var dtToday = new Date();
-    
-    var month = dtToday.getMonth() + 1;
-    var day = dtToday.getDate();
-    var year = dtToday.getFullYear();
+    var today = new Date();
+    var tomorrow = new Date(today.getTime() + (24 * 60 * 60 * 1000));
+    var month = tomorrow.getMonth() + 1;
+    var day = tomorrow.getDate();
+    var year = tomorrow.getFullYear();
     if(month < 10)
         month = '0' + month.toString();
     if(day < 10)
@@ -22,7 +12,6 @@ function mindate(){
     var minDate = year + '-' + month + '-' + day;
     var start = document.querySelector("#startdate")
     start.min = minDate
-    // $('#startdate').attr('min', minDate);
 };
 
 mindate();
