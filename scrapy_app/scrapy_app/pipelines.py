@@ -6,6 +6,12 @@
 # See: https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 from trip.models import Attraction, Hotel
 import json
+import psycopg2
+
+HOSTNAME = 'localhost'
+username = 'postgres' # the username when you create the database
+password = '***' #change to your password
+database = 'quotes'
 
 class ScrapyAppPipeline(object):
     def process_item(self, item, spider):
