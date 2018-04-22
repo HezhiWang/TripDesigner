@@ -28,7 +28,7 @@ BUSINESS_PATH = '/v3/businesses/'  # Business ID will come after slash.
 # Defaults for our simple example.
 DEFAULT_TERM = 'Chinese'
 DEFAULT_LOCATION = 'San Francisco, CA'
-SEARCH_LIMIT = 50
+SEARCH_LIMIT = 10
 NUMBER_OF_PROCESS = 2
 LAT = 40.7127753
 LNG = -74.0059728
@@ -81,7 +81,7 @@ def get_business(api_key, business_id_list):
     return restarants
 
 
-def yelp_api(latitude, longitude):
+def get_restaurants(latitude, longitude, number_of_best=1):
     """Queries the API by the input values from the user.
     Args:
         latitude (decimal): The latitude of the business to query.
@@ -105,11 +105,14 @@ def yelp_api(latitude, longitude):
 
     restarants = pd.DataFrame(restarants)
 
+    #sort by review_count, rating
+    restarants.sort_values(by=["review_count", "rating"], inplace=True)
+
     #print(restarants)
     print(restarants.shape)
-
-    return restarants
-
+    if (number_of_best > 1):
+        return restarants[number_of_best]
+    return restarants[0]
 
 
 ################# Multiprocessing version #################

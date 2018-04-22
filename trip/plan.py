@@ -5,7 +5,7 @@ import os
 from sklearn.cluster import KMeans
 from geopy.distance import vincenty
 
-class planer():
+class Planner():
 	"""
 	This class trip_planner will create the travel route for users automatically based on 
 	three input filters they input: travel time, budget, schedule.
@@ -52,15 +52,16 @@ class planer():
 		elif (self.bugdet == 3):
 			bugdet_list = [5]
 
+		travel_data.sort_values(by=["number_of_reviews", "rating"], inplace=True)
 		recommended_attraction = travel_data.iloc[:total_num_attractions, :]
-		recommended_attraction = recommended_attraction.replace(to_replace= '-999', value='N.A.')
+		#recommended_attraction = recommended_attraction.replace(to_replace= '-999', value='N.A.')
 
 		#get cordinate_data into a list of list
 		cordinate_data = []
 		for i in range(recommended_attraction.shape[0]):
 			temp = []
-			temp.append(recommended_attraction['lat'].iloc[i])
-			temp.append(recommended_attraction['lng'].iloc[i])
+			temp.append(recommended_attraction['latitude'].iloc[i])
+			temp.append(recommended_attraction['longitude'].iloc[i])
 			cordinate_data.append(temp)
 
 		#call Kmeans method
@@ -81,7 +82,7 @@ class planer():
 		recommended_center = center_points[recommendation_order, :]
 
 		#write the result into rtf file
-		write_trip_plan_to_rtf(index_list, recommendation_order, recommended_center, recommended_attraction, bugdet_list)
+		#write_trip_plan_to_rtf(index_list, recommendation_order, recommended_center, recommended_attraction, bugdet_list)
 
 		return index_list, center_points, cordinate_data
 

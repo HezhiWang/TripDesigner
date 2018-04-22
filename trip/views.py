@@ -11,11 +11,13 @@ from django.template import loader
 from django.views.decorators.csrf import csrf_exempt
 
 from scrapyd_api import ScrapydAPI
-from .models import Attraction, Hotel #ScrapyItem
 from uuid import uuid4
-from .plan import *
 
-from .api.yelp_api import yelp_api, get_business, search_business
+from .models import Attraction, Hotel #ScrapyItem
+from .plan import Planner
+from .utils import serialize
+
+from .api.yelp_api import get_restaurants, get_business, search_business
 from .api.flights_api import get_flights, sort_flights
 from .api.googlemap import get_lat_log
 
@@ -108,8 +110,8 @@ def plan(request):
     elif request.method == "POST":
         final_data = json.loads(request.POST['finaldata'])
 
-        crawl_data, start_city, end_city, destination_city, start_date_str, length, end_date_str, destination_lat, destination_lng, start_city_iatas, end_city_iatas, destination_city_iatas = serialize(final_data)
-        
+        form_data, crawl_data, start_city, end_city, destination_city, start_date_str, length, end_date_str, destination_lat, destination_lng, start_city_iatas, end_city_iatas, destination_city_iatas = serialize(final_data)
+        print(form_data)
         #print(crawl_data)
 
         attractions = get_lat_log(crawl_data)
@@ -117,29 +119,49 @@ def plan(request):
 
         attractions_df = pd.DataFrame(attractions)
 
+        bugdet = int(form_data["hotel"])
+        degree = int(form_data["time"])
 
-        planer(length, )
+        planer = Planner(length, bugdet, degree)
+        index_list, center_points, cordinate_data = planer.design_attraction(attractions_df)
 
+        print(index_list)
+        print(center_points)
+        print(cordinate_data)
         #trip_planer = trip_planer(1, 2, 3)
         #call yelp api to get restaurant data
         #restarants = yelp_api(destination_lat, destination_lng)
 
+        for i, cordinate in enumerate(cordinate_data):
+            if len(cordinate) == 1:
+                restarants = get_restaurants(cordinate[0][0], cordinate[0][1], 2)
+                restarant_lunch, restarant_dinner = restarants[0], restarants[1]
+            elif len(cordinate) == 2 and len(cordinate) == 3:
+                restarant_lunch = get_restaurants(cordinate[0][0], cordinate[0][1])
+                restarant_dinner = get_restaurants(cordinate[-1][0], cordinate[-1][1])
+            elif len(cordinate) >= 4:
+                if len(cordinate) % 2 == 0:
+                    restarant_lunch = get_restaurants(cordinate[len(cordinate)/2-1][0], cordinate[len(cordinate)/2-1][1])
+                else:
+                    restarant_lunch = get_restaurants(cordinate[len(cordinate)//2][0], cordinate[len(cordinate)//2][1])
+                restarant_dinner = get_restaurants(cordinate[-1][0], cordinate[-1][1])
         # call flights api to get flights data
 
         # if start city is the same as end city
         if (start_city_iatas[0] == end_city_iatas[0]):
             flights = get_flights(start_city_iatas[0], destination_city_iatas[0], start_date_str, end_date_str, False)
             best_flight = sort_flights(flights)
+            print(best_flight)
         else:
             flight1 = get_flights(start_city_iatas[0], destination_city_iatas[0], start_date_str, None, False)
             flight2 = get_flights(destination_city_iatas[0], end_city_iatas[0], end_date_str, None, False)
+            print(flight1)
+            print(flight2)
             best_flight1 = sort_flights(flight1)
             best_flight2 = sort_flights(flight2)
         
             print(best_flight1)
             print(best_flight2)
-
-        print(best_flight)
 
         #TODO: calculate daily schedule - k means
         #suggested saving format: 
@@ -197,34 +219,3 @@ def about(request):
     template = "trip/about.html"
     context = {}
     return render(request, template, context)
-
-def serialize(final_data):
-    # serialize json data
-    form_data = final_data["form_data"]
-    crawl_data = final_data["crawl_data"]
-
-    start_address = form_data["startcity"]
-    end_address = form_data["endcity"]
-    destination_address = form_data["destination"]
-
-    start_city = start_address.split(",")[0]
-    end_city = end_address.split(",")[0]
-    destination_city = destination_address.split(",")[0]
-
-    start_date = datetime.datetime.strptime(form_data["startdate"], "%Y-%m-%d")
-    start_date_str = start_date.strftime("%Y-%m-%d")
-    length = int(form_data["length"])
-    end_date = start_date + datetime.timedelta(days=length)
-    end_date_str = end_date.strftime("%Y-%m-%d")
-
-    destination_lat = form_data["destinationlat"]
-    destination_lng = form_data["destinationlng"]
-
-    current_dir = os.path.dirname(__file__)
-    airports = pd.read_csv(current_dir + '/data/airports.txt', sep=",", header=0) 
-
-    start_city_iatas = list(airports[airports['City'] == start_city]['IATA'])
-    end_city_iatas = list(airports[airports['City'] == end_city]['IATA'])
-    destination_city_iatas = list(airports[airports['City'] == destination_city]['IATA'])
-
-    return crawl_data, start_city, end_city, destination_city, start_date_str, length, end_date_str, destination_lat, destination_lng, start_city_iatas, end_city_iatas, destination_city_iatas

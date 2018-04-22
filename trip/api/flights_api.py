@@ -1,18 +1,7 @@
-from __future__ import print_function
-
-import argparse
 import json
-import pprint
 import requests
-import sys
-import urllib
-
 from .request import request
 from .config import AMADEUS_API_KEY
- 
-from urllib.error import HTTPError
-from urllib.parse import quote
-from urllib.parse import urlencode
 
 API_HOST = 'https://api.sandbox.amadeus.com/v1.2/'
 FLIGHT_PATH = 'flights/low-fare-search'
@@ -40,9 +29,7 @@ def get_flights(origin, destination, departure_date, return_date=None, none_stop
     }
 
 	flights = request(API_HOST, FLIGHT_PATH, AMADEUS_API_KEY, params)
-
-	#print(flights)
-	#print(flights['results'][0])
+    
 	return flights
 
 def sort_flights(flights):
@@ -57,4 +44,3 @@ def sort_flights(flights):
     if "results" not in flights:
         return None
     return flights['results'][0]
-#get_flights("NYC", "MSP", "2018-05-15", "2018-05-23")
