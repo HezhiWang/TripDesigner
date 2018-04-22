@@ -54,6 +54,7 @@ def sort_flights(flights):
     Return:
         dict: best_flight
     """
-
+    if "results" not in flights:
+        return None
     return flights['results'][0]
 #get_flights("NYC", "MSP", "2018-05-15", "2018-05-23")

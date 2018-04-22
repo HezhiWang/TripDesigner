@@ -13,7 +13,7 @@ from django.views.decorators.csrf import csrf_exempt
 from scrapyd_api import ScrapydAPI
 from .models import Attraction, Hotel #ScrapyItem
 from uuid import uuid4
-from .trip_plan import trip_planer
+from .plan import *
 
 from .api.yelp_api import yelp_api, get_business, search_business
 from .api.flights_api import get_flights, sort_flights
@@ -114,13 +114,17 @@ def plan(request):
 
         attractions = get_lat_log(crawl_data)
 
-        print(attractions)
+
+        attractions_df = pd.DataFrame(attractions)
+
+
+        planer(length, )
+
         #trip_planer = trip_planer(1, 2, 3)
         #call yelp api to get restaurant data
         #restarants = yelp_api(destination_lat, destination_lng)
 
-        #call flights api to get flights data
-
+        # call flights api to get flights data
 
         # if start city is the same as end city
         if (start_city_iatas[0] == end_city_iatas[0]):
@@ -136,7 +140,6 @@ def plan(request):
             print(best_flight2)
 
         print(best_flight)
-        #Attraction.objects.all().delete()
 
         #TODO: calculate daily schedule - k means
         #suggested saving format: 
