@@ -4,6 +4,54 @@
 <div class="container plan" style="height:auto; margin-bottom: 150px">
 
     <h2 style="text-align: center;">Your Itinerary in {{destination}}</h2>
+    {% if flight %}
+    <table>
+      <tr>
+        <th colspan="4"><h4 class="plan">Flights</h4></th>
+      </tr>
+      <tr>
+        <th colspan="4"><h5>Departure</h5></th>
+      </tr>
+      {% if flight.depart %}
+      {% for f in flight.depart%}
+      <tr>
+        <td>{{f.depart}} - {{f.arrive}}</td>
+        <td>{{f.departs_at}} - {{f.arrives_at}}</td>
+        <td>{{f.number}}</td>
+        <td class='last'>{{f.cabin}}</td>
+      </tr>
+      {% endfor %}
+      {% else %}
+      <tr>
+        <td colspan="4">Not Available</td>
+      </tr>
+      {% endif %}
+
+      
+      <tr>
+        <th colspan="4"><h5>Return</h5></th>
+      </tr>
+      {% if flight.return %}
+      {% for f in flight.return%}
+      <tr>
+        <td>{{f.depart}} - {{f.arrive}}</td>
+        <td>{{f.departs_at}} - {{f.arrives_at}}</td>
+        <td>{{f.number}}</td>
+        <td class='last'>{{f.cabin}}</td>
+      </tr>
+      {% endfor %}
+      {% else %}
+      <tr>
+        <td colspan="4">Not Available</td>
+      </tr>
+      {% endif %}
+      <tr>
+        <td><h5>Total Price: </h5></td>
+        <td colspan="3">$ {{flight.fare.total}} + $ {{flight.fare.tax}} Tax</td>
+      </tr>
+    </table>
+    {% endif %}
+
     {% for day in schedule %}
     <table>
         <!-- Day -->
