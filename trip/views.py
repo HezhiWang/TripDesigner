@@ -19,6 +19,7 @@ from .utils import serialize
 
 from .api.yelp_api import get_restaurants, get_business, search_business
 from .api.flights_api import get_flights, sort_flights
+from .api.hotel_api import get_hotels, sort_hotels
 from .api.googlemap import get_lat_log
 
 scrapyd = ScrapydAPI('http://localhost:6800')
@@ -123,28 +124,98 @@ def plan(request):
         degree = int(form_data["time"])
 
         planer = Planner(length, bugdet, degree)
-        index_list, center_points, cordinate_data = planer.design_attraction(attractions_df)
+        index_list, center_points, cordinate_data, recommendation_order, recommended_attractions = planer.design_attraction(attractions_df)
 
         print(index_list)
         print(center_points)
+        #print(cordinate_data)2018-04-23
+        #print(recommendation_order)
+        #print(recommended_attraction)
+        start_date = datetime.datetime.strptime(start_date_str, '%Y-%M-%d')
+        end_date = datetime.datetime.strptime(end_date_str, '%Y-%M-%d')
+        dates = []
+        while start_date <= end_date:
+            dates.append(start_date.strftime('%Y-%M-%d'))
+            start_date += datetime.timedelta(days=1)
+        print(dates)
+        #check_in = start_date_str
+        #check_out = end_date.strptime('%Y-%M-%d')
+
+        hotels = {}
+        for i, center in enumerate(center_points):
+            hotel = get_hotels(center[0], center[1], 1, dates[i], dates[i+1])
+            best_hotel = sort_hotels(hotel)
+            hotels[i] = best_hotel
+
+        #print(hotels)
+
         print(cordinate_data)
+            
+        # restarants = {}
+        # for i, cordinate in enumerate(cordinate_data):
+        #     if len(cordinate) == 1:
+        #         restarant = get_restaurants(cordinate[0][0], cordinate[0][1], 2)
+        #         restarant_lunch, restarant_dinner = restarant[0], restarant[1]
+        #     elif len(cordinate) == 2 and len(cordinate) == 3:
+        #         restarant_lunch = get_restaurants(cordinate[0][0], cordinate[0][1])
+        #         restarant_dinner = get_restaurants(cordinate[-1][0], cordinate[-1][1])
+        #     elif len(cordinate) >= 4:
+        #         if len(cordinate) % 2 == 0:
+        #             restarant_lunch = get_restaurants(cordinate[len(cordinate)/2-1][0], cordinate[len(cordinate)/2-1][1])
+        #         else:
+        #             restarant_lunch = get_restaurants(cordinate[len(cordinate)//2][0], cordinate[len(cordinate)//2][1])
+        #         restarant_dinner = get_restaurants(cordinate[-1][0], cordinate[-1][1])
+        #     restarants[i] = {"lunch": restarant_lunch, "dinner": restarant_dinner}
+
+        # print(restarants)
+
+        recommended_attractions = recommended_attractions[["name", "hours", "description", "number_of_reviews", "rating", "url"]]
+        schedule = []
+        restarants = {}
+
+        for day in index_list:
+            attractions, hotel, restaurant = [], [], []
+            for attraction_index in index_list[day]:
+                attractions.append(recommended_attractions.iloc[attraction_index].to_dict())
+                #print(recommended_attractions.iloc[attraction_index].to_dict())
+
+            l = len(index_list[day])
+            print("length: " + str(l))
+            print(index_list[day])
+            if l == 1:
+                print(cordinate_data[index_list[day][0]][0], cordinate_data[index_list[day][0]][1])
+                restarant = get_restaurants(cordinate_data[index_list[day][0]][0], cordinate_data[index_list[day][0]][1], 2)
+                restarant_lunch, restarant_dinner = restarant[0], restarant[1]
+            elif l == 2 or l== 3:
+                print(cordinate_data[index_list[day][0]][0], cordinate_data[index_list[day][0]][1], cordinate_data[index_list[day][-1]][0], cordinate_data[index_list[day][-1]][1])
+                restarant_lunch = get_restaurants(cordinate_data[index_list[day][0]][0], cordinate_data[index_list[day][0]][1])
+                restarant_dinner = get_restaurants(cordinate_data[index_list[day][-1]][0], cordinate_data[index_list[day][-1]][1])
+            elif l >= 4:
+                if l % 2 == 0:
+                    print(cordinate_data[index_list[day][l//2-1]][0], cordinate_data[index_list[day][l//2-1]][1])
+                    restarant_lunch = get_restaurants(cordinate_data[index_list[day][l//2-1]][0], cordinate_data[index_list[day][l//2-1]][1])
+                else:
+                    print(cordinate_data[index_list[day][l//2]][0], cordinate_data[index_list[day][l//2]][1])
+                    restarant_lunch = get_restaurants(cordinate_data[index_list[day][l//2]][0], cordinate_data[index_list[day][l//2]][1])
+                print(cordinate_data[index_list[day][-1]][0], cordinate_data[index_list[day][-1]][1])
+                restarant_dinner = get_restaurants(cordinate_data[index_list[day][-1]][0], cordinate_data[index_list[day][-1]][1])
+            else:
+                print("haha")
+                print(index_list[day])
+                continue
+
+            restarants[i] = {"lunch": restarant_lunch, "dinner": restarant_dinner}
+
+            schedule.append({"attractions": attractions, "hotel": hotels[day], "restaurant": {"lunch": restarant_lunch.to_dict(), "dinner": restarant_dinner.to_dict()}})
+
+        #print(restarants)
+        print(schedule)
         #trip_planer = trip_planer(1, 2, 3)
         #call yelp api to get restaurant data
         #restarants = yelp_api(destination_lat, destination_lng)
 
-        for i, cordinate in enumerate(cordinate_data):
-            if len(cordinate) == 1:
-                restarants = get_restaurants(cordinate[0][0], cordinate[0][1], 2)
-                restarant_lunch, restarant_dinner = restarants[0], restarants[1]
-            elif len(cordinate) == 2 and len(cordinate) == 3:
-                restarant_lunch = get_restaurants(cordinate[0][0], cordinate[0][1])
-                restarant_dinner = get_restaurants(cordinate[-1][0], cordinate[-1][1])
-            elif len(cordinate) >= 4:
-                if len(cordinate) % 2 == 0:
-                    restarant_lunch = get_restaurants(cordinate[len(cordinate)/2-1][0], cordinate[len(cordinate)/2-1][1])
-                else:
-                    restarant_lunch = get_restaurants(cordinate[len(cordinate)//2][0], cordinate[len(cordinate)//2][1])
-                restarant_dinner = get_restaurants(cordinate[-1][0], cordinate[-1][1])
+        
+
         # call flights api to get flights data
 
         # if start city is the same as end city
@@ -155,8 +226,8 @@ def plan(request):
         else:
             flight1 = get_flights(start_city_iatas[0], destination_city_iatas[0], start_date_str, None, False)
             flight2 = get_flights(destination_city_iatas[0], end_city_iatas[0], end_date_str, None, False)
-            print(flight1)
-            print(flight2)
+            #print(flight1)
+            #print(flight2)
             best_flight1 = sort_flights(flight1)
             best_flight2 = sort_flights(flight2)
         

@@ -23,16 +23,16 @@ def get_hotels(latitude, longitude, radius, check_in, check_out, all_rooms=None)
     	'latitude': latitude,
     	'longitude': longitude,
     	'radius': radius,
-    	'return_date': return_date, 
         'check_in': check_in,
     	'check_out': check_out,
     	'all_rooms': all_rooms,
+        'apikey': AMADEUS_API_KEY,
         'number_of_results': NUMBER_OF_RESULTS
     }
 
 	hotels = request(API_HOST, HOTEL_PATH, AMADEUS_API_KEY, params)
 
-	print(hotels)
+	#print(hotels)
 	return hotels
 
 def sort_hotels(hotels):
@@ -46,4 +46,4 @@ def sort_hotels(hotels):
     """
     if "results" not in hotels:
         return None
-    return hotels['results'][0]
+    return hotels['results'][0:2]

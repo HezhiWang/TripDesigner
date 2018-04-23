@@ -52,8 +52,11 @@ class Planner():
 		elif (self.bugdet == 3):
 			bugdet_list = [5]
 
-		travel_data.sort_values(by=["number_of_reviews", "rating"], inplace=True)
-		recommended_attraction = travel_data.iloc[:total_num_attractions, :]
+		travel_data.fillna(value=np.nan, inplace=True)
+		travel_data.dropna(subset=['location'], inplace=True)
+		travel_data.sort_values(by=["number_of_reviews", "rating"], inplace=True, ascending=False)
+		recommended_attraction = travel_data.iloc[:total_num_attractions, :].reset_index(drop=True)
+		#print(recommended_attraction)
 		#recommended_attraction = recommended_attraction.replace(to_replace= '-999', value='N.A.')
 
 		#get cordinate_data into a list of list
@@ -74,9 +77,14 @@ class Planner():
 		order_list = sorted(index_list, key=lambda k: len(index_list[k]), reverse = True)
 		center_points = kmeans.cluster_centers_
 
+		#print("haha")
+		#print(index_list)
+		#print(order_list)
 		#call revised_kmeans method
 		index_list, center_points = self.revised_kmeans(index_list, order_list, cordinate_data, center_points, self.time, self.degree)
 
+		#print("hahaha")
+		#print(index_list)
 		center_points = np.asarray(center_points)
 		recommendation_order = np.random.permutation(self.time)
 		recommended_center = center_points[recommendation_order, :]
@@ -84,7 +92,7 @@ class Planner():
 		#write the result into rtf file
 		#write_trip_plan_to_rtf(index_list, recommendation_order, recommended_center, recommended_attraction, bugdet_list)
 
-		return index_list, center_points, cordinate_data
+		return index_list, center_points, cordinate_data, recommendation_order, recommended_attraction
 
 	def distance(self, lat1, lng1, lat2, lng2):
 		"""

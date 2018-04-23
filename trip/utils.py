@@ -32,3 +32,16 @@ def serialize(final_data):
     destination_city_iatas = list(airports[airports['City'] == destination_city]['IATA'])
 
     return form_data, crawl_data, start_city, end_city, destination_city, start_date_str, length, end_date_str, destination_lat, destination_lng, start_city_iatas, end_city_iatas, destination_city_iatas
+
+def parse_flight(flights):
+    parsed = []
+    if flights:
+        for flight in flights:
+            start = flight['origin']['airport']
+            end = flight['destination']['airport']
+            departs_at = flight['departs_at'].replace("T"," ")
+            arrives_at = flight['arrives_at'].replace("T"," ")
+            number = flight['operating_airline']+flight['flight_number']
+            cabin = flight['booking_info']['travel_class'].capitalize()
+            parsed.append({'depart':start, 'arrive':end, 'departs_at':departs_at, 'arrives_at':arrives_at, 'number':number, 'cabin':cabin})
+    return parsed

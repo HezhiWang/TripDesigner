@@ -106,13 +106,15 @@ def get_restaurants(latitude, longitude, number_of_best=1):
     restarants = pd.DataFrame(restarants)
 
     #sort by review_count, rating
-    restarants.sort_values(by=["review_count", "rating"], inplace=True)
+    restarants.sort_values(by=["review_count", "rating"], inplace=True, ascending=False)
 
     #print(restarants)
     print(restarants.shape)
     if (number_of_best > 1):
-        return restarants[number_of_best]
-    return restarants[0]
+        return restarants.iloc[:number_of_best]
+        print(restarants.iloc[:number_of_best])
+    print(restarants.iloc[0])
+    return restarants.iloc[0]
 
 
 ################# Multiprocessing version #################

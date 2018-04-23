@@ -62,7 +62,14 @@ class AttractioncrawlerSpider(CrawlSpider):
         description = response.xpath("//*[@id='taplc_location_detail_overview_attraction_0']/div/div[2]/div[2]/div[1]/div[1]/div/div[1]/text()").extract_first()
         hours = response.xpath("//*[@id='taplc_attraction_detail_listing_0']/div[1]/div[2]/text()").extract_first()
         location = response.xpath("//*[@id='taplc_attraction_detail_listing_0']/div[2]/div[2]/span/text()").extract()
-        location = ", ".join(location).strip()
+        if len(location) > 0:
+            location = ", ".join(location).strip()
+            attraction["location"] = location
+        else:
+            attraction["location"] = None
+        #print(type(location))
+        #print(len(location))
+        #print(location)
         # locmap = response.xpath("//*[@id='LOCATION_TAB']/div[2]/div/div[2]/div/div/div[1]").extract()
         # print(locmap)
         
@@ -79,8 +86,8 @@ class AttractioncrawlerSpider(CrawlSpider):
         attraction["number_of_reviews"] = reviews
         attraction["description"] = description
         attraction["hours"] = hours
-        attraction["location"] = location
+        attraction["url"] = response.request.url
 
         #self.attractions.append(attraction)
-        print(attraction)
+        #print(attraction)
         return attraction
