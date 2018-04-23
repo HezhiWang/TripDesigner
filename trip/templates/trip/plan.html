@@ -65,12 +65,12 @@
         {% for attraction in day.attractions %}
         <!-- Attraction One -->
         <tr>       
-            <td><h6>{{attraction.name}}</h6></td>
-            <td colspan="1">Rating: {{attraction.rating}} (From {{attraction.number_of_reviews}} Reviews)</td>
+            <td><h6><a href={{attraction.url}}>{{attraction.name}}</a></h6></td>
+            <td colspan="1">Rating: {{attraction.rating}}/5 (From {{attraction.number_of_reviews}} Reviews)</td>
             <td colspan="2" class='last'>{{attraction.hours}}</td>
         </tr>
         <tr>
-            <td colspan="6">Address: {{attraction.address}}</td>
+            <td colspan="6">Address: {{attraction.location}}</td>
         </tr>
         <tr>
             <td colspan="6">Description: {{attraction.description}} </td>
@@ -78,18 +78,17 @@
         {% endfor %}
 
         <!-- Section for Hotel -->
-
         <tr>
             <td colspan="6"><h5>Hotels</h5></td>
         </tr>
         {% for hotel in day.hotel %}
         <tr>       
-            <td><h6>{{hotel.name}}</h6></td>   <!-- (Add a link?) -->
-            <td colspan="1">Rating: {{hotel.score}}/10 (From {{hotel.reviews}} Reviews)</td>
-            <td colspan="2" class="last">{{hotel.price}}</td>
+            <td><h6>{{hotel.property_name}}</h6></td> 
+            <td colspan="1"></td>
+            <td colspan="2" class="last">${{hotel.min_daily_rate.amount}}</td>
         </tr>
         <tr>
-            <td colspan="6">Address: {{hotel.address}}</td>
+            <td colspan="6">Address: {{hotel.address.line1}}, {{hotel.address.region}}, {{hotel.address.postal_code}}, {{hotel.address.city}}, {{hotel.address.country}}</td>
         </tr>
         {% endfor %}
 
@@ -97,18 +96,26 @@
         <tr>
             <td colspan="6"><h5>Restaurants</h5></td>
         </tr>
-        <!-- Restaurant One-->
-        {% for restaurant in day.restaurant %}
+        <!-- lunch  -->
         <tr>       
-            <td><h6>{{restaurant.name}}</h6></td>   <!-- (Add a link?) -->
-            <td colspan="1">{{restaurant.type}} </td>
-            <td colspan="2" class="last">{{restaurant.price}}</td>
+            <td><h6>{{day.restaurant.lunch.name}}</h6></td>   <!-- (Add a link?) -->
+            <td colspan="1"></td>
+            <td colspan="2" class="last">{{day.restaurant.lunch.price}}</td>
         </tr>
         <tr>
-            <td>Address: {{restaurant.address}} </td>
-            <td colspan="5" class="last">Score: {{restaurant.score}}/5 (From {{restaurant.reviews}} Reviews)</td>
+            <td>Address: {{day.restaurant.dinner.address.0}}, {{day.restaurant.dinner.address.1}} </td>
+            <td colspan="5" class="last">Rating: {{day.restaurant.lunch.rating}}/5 (From {{day.restaurant.lunch.review_count}} Reviews)</td>
         </tr>
-        {% endfor %}
+        <!-- dinner -->
+        <tr>       
+            <td><h6>{{day.restaurant.dinner.name}}</h6></td>   <!-- (Add a link?) -->
+            <td colspan="1"></td>
+            <td colspan="2" class="last">{{day.restaurant.dinner.price}}</td>
+        </tr>
+        <tr>
+            <td>Address: {{day.restaurant.dinner.address.0}}, {{day.restaurant.dinner.address.1}}</td>
+            <td colspan="5" class="last">Rating: {{day.restaurant.dinner.rating}}/5 (From {{day.restaurant.dinner.review_count}} Reviews)</td>
+        </tr>
     </table>
 {% endfor %}
 
