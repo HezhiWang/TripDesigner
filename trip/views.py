@@ -218,26 +218,52 @@ def plan(request):
 
         # call flights api to get flights data
 
-        # if start city is the same as end city
+        flightsinfo = {
+            'depart':[],
+            'return':[],
+            'fare': {}
+        }
+
         if (start_city_iatas[0] == end_city_iatas[0]):
             flights = get_flights(start_city_iatas[0], destination_city_iatas[0], start_date_str, end_date_str, False)
             best_flight = sort_flights(flights)
-            print(best_flight)
+            if best_flight:
+                departf = best_flight['itineraries'][0]['outbound']['flights']
+                returnf = best_flight['itineraries'][0]['inbound']['flights']
+                flightsinfo['depart'] = parse_flight(departf)
+                flightsinfo['return'] = parse_flight(returnf)
+                flightsinfo['fare'] = {'total': best_flight['fare']['total_price'], 'tax':best_flight['fare']['price_per_adult']['tax']}
         else:
             flight1 = get_flights(start_city_iatas[0], destination_city_iatas[0], start_date_str, None, False)
             flight2 = get_flights(destination_city_iatas[0], end_city_iatas[0], end_date_str, None, False)
-            #print(flight1)
-            #print(flight2)
             best_flight1 = sort_flights(flight1)
             best_flight2 = sort_flights(flight2)
-        
-            print(best_flight1)
-            print(best_flight2)
+            try:
+                departf = best_flight1['itineraries'][0]['outbound']['flights']
+                total1 = float(best_flight1['fare']['total_price'])
+                tax1 = float(best_flight1['fare']['price_per_adult']['tax'])
+            except:
+                departf = None
+                total1 = 0
+                tax1 = 0
+            try:
+                returnf = best_flight2['itineraries'][0]['outbound']['flights']
+                total2 = float(best_flight2['fare']['total_price'])
+                tax2 = float(best_flight2['fare']['price_per_adult']['tax'])
+            except:
+                returnf = None
+                total2 = 0
+                tax2 = 0
+            flightsinfo['depart'] = parse_flight(departf)
+            flightsinfo['return'] = parse_flight(returnf)
+            flightsinfo['fare'] = {'total': round(total1+total2,2), 'tax':round(tax1+tax2,2)}
+
+        print(flightsinfo)
 
         #TODO: calculate daily schedule - k means
         #suggested saving format: 
         schedule = [
-        {'flight':[start_city, destination_city, "05:10", "08:20","$210.00"],
+        {
         'attractions':
             [
                 {'name':"The Metropolitan Museum of Art", 'time': "2-3 hours","address":"1000 5th Ave, New York City, NY 10028-0198","desc": "A museum"},
@@ -257,7 +283,7 @@ def plan(request):
             ],
         },
 
-        {'flight':[],
+        {
         'attractions':
             [
                 {'name':"The Metropolitan Museum of Art", 'time': "2-3 hours","address":"1000 5th Ave, New York City, NY 10028-0198","desc": "A museum"},
@@ -273,14 +299,15 @@ def plan(request):
                 {'name':"D'Amore Winebar & Ristorante", 'type': "French","score":"5","reviews":"153", "address":"West 46 Street, Hell's Kitchen, New York City, NY 10036, United States of America","price": "$$$$"}
             ]
         }
-
         ]
+
         template = "trip/plan.html"
         context={
-            "range":range(length),
+            "flight":flightsinfo,
             "schedule": schedule, 
             "destination": destination_city
         }
+        
         # return redirect("../login")
         return render(request, template, context)
         #return JsonResponse({'task_id': task, 'unique_id': unique_id, 'status': 'started'})
