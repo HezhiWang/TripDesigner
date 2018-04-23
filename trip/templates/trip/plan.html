@@ -58,18 +58,6 @@
         <tr>
             <th colspan="6"><h4 class="plan">Day {{forloop.counter}}</h4></th>
         </tr>
-        <!-- Section for Flight -->
-        
-        {% if day.flight %}
-        <tr>
-            <td colspan="6"><h5>Flight</h5></td>
-        </tr>
-        <tr>       
-            <td>{{day.flight.0}} - {{day.flight.1}}</td>
-            <td colspan="1">{{day.flight.2}} - {{day.flight.3}}</td>
-            <td colspan="2" class="last">{{day.flight.4}}</td>
-        </tr>
-        {% endif %}
         <!-- Section for Attraction -->
         <tr>
             <td colspan="6"><h5>Attractions/Things To Do</h5></td>
@@ -78,14 +66,14 @@
         <!-- Attraction One -->
         <tr>       
             <td><h6>{{attraction.name}}</h6></td>
-            <td colspan="1"></td>
-            <td colspan="2" class='last'>{{attraction.time}}</td>
+            <td colspan="1">Rating: {{attraction.rating}} (From {{attraction.number_of_reviews}} Reviews)</td>
+            <td colspan="2" class='last'>{{attraction.hours}}</td>
         </tr>
         <tr>
             <td colspan="6">Address: {{attraction.address}}</td>
         </tr>
         <tr>
-            <td colspan="6">Description: {{attraction.desc}} </td>
+            <td colspan="6">Description: {{attraction.description}} </td>
         </tr>
         {% endfor %}
 
@@ -97,7 +85,7 @@
         {% for hotel in day.hotel %}
         <tr>       
             <td><h6>{{hotel.name}}</h6></td>   <!-- (Add a link?) -->
-            <td colspan="1">Score: {{hotel.score}}/10 (From {{hotel.reviews}} Reviews)</td>
+            <td colspan="1">Rating: {{hotel.score}}/10 (From {{hotel.reviews}} Reviews)</td>
             <td colspan="2" class="last">{{hotel.price}}</td>
         </tr>
         <tr>

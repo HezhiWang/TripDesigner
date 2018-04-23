@@ -15,7 +15,7 @@ from uuid import uuid4
 
 from .models import Attraction, Hotel #ScrapyItem
 from .plan import Planner
-from .utils import serialize
+from .utils import serialize, parse_flight
 
 from .api.yelp_api import get_restaurants, get_business, search_business
 from .api.flights_api import get_flights, sort_flights
