@@ -169,7 +169,7 @@ def plan(request):
 
         # print(restarants)
 
-        recommended_attractions = recommended_attractions[["name", "hours", "description", "number_of_reviews", "rating", "url"]]
+        recommended_attractions = recommended_attractions[["name", "hours", "location", "description", "number_of_reviews", "rating", "url"]]
         schedule = []
         restarants = {}
 
