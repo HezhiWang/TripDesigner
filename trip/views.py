@@ -113,200 +113,185 @@ def plan(request):
 
         form_data, crawl_data, start_city, end_city, destination_city, start_date_str, length, end_date_str, destination_lat, destination_lng, start_city_iatas, end_city_iatas, destination_city_iatas = serialize(final_data)
         print(form_data)
-        #print(crawl_data)
+        print(type(crawl_data))
 
-        attractions = get_lat_log(crawl_data)
+        if crawl_data is None:
+            print("crawl_data is not avaliable")
+        else:
+            attractions = get_lat_log(crawl_data)
 
 
-        attractions_df = pd.DataFrame(attractions)
+            attractions_df = pd.DataFrame(attractions)
 
-        bugdet = int(form_data["hotel"])
-        degree = int(form_data["time"])
+            bugdet = int(form_data["hotel"])
+            degree = int(form_data["time"])
 
-        planer = Planner(length, bugdet, degree)
-        index_list, center_points, cordinate_data, recommendation_order, recommended_attractions = planer.design_attraction(attractions_df)
+            planer = Planner(length, bugdet, degree)
+            index_list, center_points, cordinate_data, recommendation_order, recommended_attractions = planer.design_attraction(attractions_df)
 
-        print(index_list)
-        print(center_points)
-        #print(cordinate_data)2018-04-23
-        #print(recommendation_order)
-        #print(recommended_attraction)
-        start_date = datetime.datetime.strptime(start_date_str, '%Y-%M-%d')
-        end_date = datetime.datetime.strptime(end_date_str, '%Y-%M-%d')
-        dates = []
-        while start_date <= end_date:
-            dates.append(start_date.strftime('%Y-%M-%d'))
-            start_date += datetime.timedelta(days=1)
-        print(dates)
-        #check_in = start_date_str
-        #check_out = end_date.strptime('%Y-%M-%d')
+            print(index_list)
+            print(center_points)
+            #print(cordinate_data)2018-04-23
+            #print(recommendation_order)
+            #print(recommended_attraction)
+            start_date = datetime.datetime.strptime(start_date_str, '%Y-%M-%d')
+            end_date = datetime.datetime.strptime(end_date_str, '%Y-%M-%d')
+            dates = []
+            while start_date <= end_date:
+                dates.append(start_date.strftime('%Y-%M-%d'))
+                start_date += datetime.timedelta(days=1)
+            print(dates)
+            #check_in = start_date_str
+            #check_out = end_date.strptime('%Y-%M-%d')
 
-        hotels = {}
-        for i, center in enumerate(center_points):
-            hotel = get_hotels(center[0], center[1], 1, dates[i], dates[i+1])
-            best_hotel = sort_hotels(hotel)
-            hotels[i] = best_hotel
+            hotels = {}
+            for i, center in enumerate(center_points):
+                hotel = get_hotels(center[0], center[1], 1, dates[i], dates[i+1])
+                best_hotel = sort_hotels(hotel)
+                hotels[i] = best_hotel
 
-        #print(hotels)
+            #print(hotels)
 
-        print(cordinate_data)
-            
-        # restarants = {}
-        # for i, cordinate in enumerate(cordinate_data):
-        #     if len(cordinate) == 1:
-        #         restarant = get_restaurants(cordinate[0][0], cordinate[0][1], 2)
-        #         restarant_lunch, restarant_dinner = restarant[0], restarant[1]
-        #     elif len(cordinate) == 2 and len(cordinate) == 3:
-        #         restarant_lunch = get_restaurants(cordinate[0][0], cordinate[0][1])
-        #         restarant_dinner = get_restaurants(cordinate[-1][0], cordinate[-1][1])
-        #     elif len(cordinate) >= 4:
-        #         if len(cordinate) % 2 == 0:
-        #             restarant_lunch = get_restaurants(cordinate[len(cordinate)/2-1][0], cordinate[len(cordinate)/2-1][1])
-        #         else:
-        #             restarant_lunch = get_restaurants(cordinate[len(cordinate)//2][0], cordinate[len(cordinate)//2][1])
-        #         restarant_dinner = get_restaurants(cordinate[-1][0], cordinate[-1][1])
-        #     restarants[i] = {"lunch": restarant_lunch, "dinner": restarant_dinner}
+            print(cordinate_data)
+                
+            recommended_attractions = recommended_attractions[["name", "hours", "location", "description", "number_of_reviews", "rating", "url"]]
+            schedule = []
+            restarants = {}
 
-        # print(restarants)
+            for day in index_list:
+                attractions, hotel, restaurant = [], [], []
+                for attraction_index in index_list[day]:
+                    attractions.append(recommended_attractions.iloc[attraction_index].to_dict())
+                    #print(recommended_attractions.iloc[attraction_index].to_dict())
 
-        recommended_attractions = recommended_attractions[["name", "hours", "location", "description", "number_of_reviews", "rating", "url"]]
-        schedule = []
-        restarants = {}
-
-        for day in index_list:
-            attractions, hotel, restaurant = [], [], []
-            for attraction_index in index_list[day]:
-                attractions.append(recommended_attractions.iloc[attraction_index].to_dict())
-                #print(recommended_attractions.iloc[attraction_index].to_dict())
-
-            l = len(index_list[day])
-            print("length: " + str(l))
-            print(index_list[day])
-            if l == 1:
-                print(cordinate_data[index_list[day][0]][0], cordinate_data[index_list[day][0]][1])
-                restarant = get_restaurants(cordinate_data[index_list[day][0]][0], cordinate_data[index_list[day][0]][1], 2)
-                restarant_lunch, restarant_dinner = restarant.iloc[0], restarant.iloc[1]
-            elif l == 2 or l== 3:
-                print(cordinate_data[index_list[day][0]][0], cordinate_data[index_list[day][0]][1], cordinate_data[index_list[day][-1]][0], cordinate_data[index_list[day][-1]][1])
-                restarant_lunch = get_restaurants(cordinate_data[index_list[day][0]][0], cordinate_data[index_list[day][0]][1])
-                restarant_dinner = get_restaurants(cordinate_data[index_list[day][-1]][0], cordinate_data[index_list[day][-1]][1])
-            elif l >= 4:
-                if l % 2 == 0:
-                    print(cordinate_data[index_list[day][l//2-1]][0], cordinate_data[index_list[day][l//2-1]][1])
-                    restarant_lunch = get_restaurants(cordinate_data[index_list[day][l//2-1]][0], cordinate_data[index_list[day][l//2-1]][1])
-                else:
-                    print(cordinate_data[index_list[day][l//2]][0], cordinate_data[index_list[day][l//2]][1])
-                    restarant_lunch = get_restaurants(cordinate_data[index_list[day][l//2]][0], cordinate_data[index_list[day][l//2]][1])
-                print(cordinate_data[index_list[day][-1]][0], cordinate_data[index_list[day][-1]][1])
-                restarant_dinner = get_restaurants(cordinate_data[index_list[day][-1]][0], cordinate_data[index_list[day][-1]][1])
-            else:
-                print("haha")
+                l = len(index_list[day])
+                print("length: " + str(l))
                 print(index_list[day])
-                continue
+                if l == 1:
+                    print(cordinate_data[index_list[day][0]][0], cordinate_data[index_list[day][0]][1])
+                    restarant = get_restaurants(cordinate_data[index_list[day][0]][0], cordinate_data[index_list[day][0]][1], 2)
+                    restarant_lunch, restarant_dinner = restarant[0], restarant[1]
+                elif l == 2 or l== 3:
+                    print(cordinate_data[index_list[day][0]][0], cordinate_data[index_list[day][0]][1], cordinate_data[index_list[day][-1]][0], cordinate_data[index_list[day][-1]][1])
+                    restarant_lunch = get_restaurants(cordinate_data[index_list[day][0]][0], cordinate_data[index_list[day][0]][1])
+                    restarant_dinner = get_restaurants(cordinate_data[index_list[day][-1]][0], cordinate_data[index_list[day][-1]][1])
+                elif l >= 4:
+                    if l % 2 == 0:
+                        print(cordinate_data[index_list[day][l//2-1]][0], cordinate_data[index_list[day][l//2-1]][1])
+                        restarant_lunch = get_restaurants(cordinate_data[index_list[day][l//2-1]][0], cordinate_data[index_list[day][l//2-1]][1])
+                    else:
+                        print(cordinate_data[index_list[day][l//2]][0], cordinate_data[index_list[day][l//2]][1])
+                        restarant_lunch = get_restaurants(cordinate_data[index_list[day][l//2]][0], cordinate_data[index_list[day][l//2]][1])
+                    print(cordinate_data[index_list[day][-1]][0], cordinate_data[index_list[day][-1]][1])
+                    restarant_dinner = get_restaurants(cordinate_data[index_list[day][-1]][0], cordinate_data[index_list[day][-1]][1])
+                else:
+                    print("haha")
+                    print(index_list[day])
+                    continue
 
-            restarants[i] = {"lunch": restarant_lunch, "dinner": restarant_dinner}
+                restarants[i] = {"lunch": restarant_lunch, "dinner": restarant_dinner}
 
-            schedule.append({"attractions": attractions, "hotel": hotels[day], "restaurant": {"lunch": restarant_lunch.to_dict(), "dinner": restarant_dinner.to_dict()}})
+                schedule.append({"attractions": attractions, "hotel": hotels[day], "restaurant": {"lunch": restarant_lunch.to_dict(), "dinner": restarant_dinner.to_dict()}})
 
-        #print(restarants)
-        print(schedule)
-        #trip_planer = trip_planer(1, 2, 3)
-        #call yelp api to get restaurant data
-        #restarants = yelp_api(destination_lat, destination_lng)
+            #print(restarants)
+            print(schedule)
+            #trip_planer = trip_planer(1, 2, 3)
+            #call yelp api to get restaurant data
+            #restarants = yelp_api(destination_lat, destination_lng)
 
-        
+            
 
-        # call flights api to get flights data
+            # call flights api to get flights data
 
-        flightsinfo = {
-            'depart':[],
-            'return':[],
-            'fare': {}
-        }
+            flightsinfo = {
+                'depart':[],
+                'return':[],
+                'fare': {}
+            }
 
-        if (start_city_iatas[0] == end_city_iatas[0]):
-            flights = get_flights(start_city_iatas[0], destination_city_iatas[0], start_date_str, end_date_str, False)
-            best_flight = sort_flights(flights)
-            if best_flight:
-                departf = best_flight['itineraries'][0]['outbound']['flights']
-                returnf = best_flight['itineraries'][0]['inbound']['flights']
+            if (start_city_iatas[0] == end_city_iatas[0]):
+                flights = get_flights(start_city_iatas[0], destination_city_iatas[0], start_date_str, end_date_str, False)
+                best_flight = sort_flights(flights)
+                if best_flight:
+                    departf = best_flight['itineraries'][0]['outbound']['flights']
+                    returnf = best_flight['itineraries'][0]['inbound']['flights']
+                    flightsinfo['depart'] = parse_flight(departf)
+                    flightsinfo['return'] = parse_flight(returnf)
+                    flightsinfo['fare'] = {'total': best_flight['fare']['total_price'], 'tax':best_flight['fare']['price_per_adult']['tax']}
+            else:
+                flight1 = get_flights(start_city_iatas[0], destination_city_iatas[0], start_date_str, None, False)
+                flight2 = get_flights(destination_city_iatas[0], end_city_iatas[0], end_date_str, None, False)
+                best_flight1 = sort_flights(flight1)
+                best_flight2 = sort_flights(flight2)
+                try:
+                    departf = best_flight1['itineraries'][0]['outbound']['flights']
+                    total1 = float(best_flight1['fare']['total_price'])
+                    tax1 = float(best_flight1['fare']['price_per_adult']['tax'])
+                except:
+                    departf = None
+                    total1 = 0
+                    tax1 = 0
+                try:
+                    returnf = best_flight2['itineraries'][0]['outbound']['flights']
+                    total2 = float(best_flight2['fare']['total_price'])
+                    tax2 = float(best_flight2['fare']['price_per_adult']['tax'])
+                except:
+                    returnf = None
+                    total2 = 0
+                    tax2 = 0
                 flightsinfo['depart'] = parse_flight(departf)
                 flightsinfo['return'] = parse_flight(returnf)
-                flightsinfo['fare'] = {'total': best_flight['fare']['total_price'], 'tax':best_flight['fare']['price_per_adult']['tax']}
-        else:
-            flight1 = get_flights(start_city_iatas[0], destination_city_iatas[0], start_date_str, None, False)
-            flight2 = get_flights(destination_city_iatas[0], end_city_iatas[0], end_date_str, None, False)
-            best_flight1 = sort_flights(flight1)
-            best_flight2 = sort_flights(flight2)
-            try:
-                departf = best_flight1['itineraries'][0]['outbound']['flights']
-                total1 = float(best_flight1['fare']['total_price'])
-                tax1 = float(best_flight1['fare']['price_per_adult']['tax'])
-            except:
-                departf = None
-                total1 = 0
-                tax1 = 0
-            try:
-                returnf = best_flight2['itineraries'][0]['outbound']['flights']
-                total2 = float(best_flight2['fare']['total_price'])
-                tax2 = float(best_flight2['fare']['price_per_adult']['tax'])
-            except:
-                returnf = None
-                total2 = 0
-                tax2 = 0
-            flightsinfo['depart'] = parse_flight(departf)
-            flightsinfo['return'] = parse_flight(returnf)
-            flightsinfo['fare'] = {'total': round(total1+total2,2), 'tax':round(tax1+tax2,2)}
+                flightsinfo['fare'] = {'total': round(total1+total2,2), 'tax':round(tax1+tax2,2)}
 
-        print(flightsinfo)
+            print(flightsinfo)
 
-        #TODO: calculate daily schedule - k means
-        #suggested saving format: 
-        # schedule = [
-        # {
-        # 'attractions':
-        #     [
-        #         {'name':"The Metropolitan Museum of Art", 'time': "2-3 hours","address":"1000 5th Ave, New York City, NY 10028-0198","desc": "A museum"},
-        #         {'name':"The Metropolitan Museum of Art", 'time': "2-3 hours","address":"1000 5th Ave, New York City, NY 10028-0198","desc": "A museum"},
-        #         {'name':"The Metropolitan Museum of Art", 'time': "2-3 hours","address":"1000 5th Ave, New York City, NY 10028-0198","desc": "A museum"}
-        #     ],
-        # 'hotel':
-        #     [
-        #         {'name':"414 Hotel", 'score': "9.4","reviews":"287", "address":"414 West 46 Street, Hell's Kitchen, New York City, NY 10036, United States of America","price": "$260"},
-        #         {'name':"414 Hotel", 'score': "9.4","reviews":"287", "address":"414 West 46 Street, Hell's Kitchen, New York City, NY 10036, United States of America","price": "$260"}
+            #TODO: calculate daily schedule - k means
+            #suggested saving format: 
+            schedule = [
+            {
+            'attractions':
+                [
+                    {'name':"The Metropolitan Museum of Art", 'time': "2-3 hours","address":"1000 5th Ave, New York City, NY 10028-0198","desc": "A museum"},
+                    {'name':"The Metropolitan Museum of Art", 'time': "2-3 hours","address":"1000 5th Ave, New York City, NY 10028-0198","desc": "A museum"},
+                    {'name':"The Metropolitan Museum of Art", 'time': "2-3 hours","address":"1000 5th Ave, New York City, NY 10028-0198","desc": "A museum"}
+                ],
+            'hotel':
+                [
+                    {'name':"414 Hotel", 'score': "9.4","reviews":"287", "address":"414 West 46 Street, Hell's Kitchen, New York City, NY 10036, United States of America","price": "$260"},
+                    {'name':"414 Hotel", 'score': "9.4","reviews":"287", "address":"414 West 46 Street, Hell's Kitchen, New York City, NY 10036, United States of America","price": "$260"}
 
-        #     ],
-        # 'restaurant':
-        #     [
-        #         {'name':"D'Amore Winebar & Ristorante", 'type': "French","score":"5","reviews":"153", "address":"West 46 Street, Hell's Kitchen, New York City, NY 10036, United States of America","price": "$$$$"},
-        #         {'name':"D'Amore Winebar & Ristorante", 'type': "French","score":"5","reviews":"153", "address":"West 46 Street, Hell's Kitchen, New York City, NY 10036, United States of America","price": "$$$$"}
-        #     ],
-        # },
+                ],
+            'restaurant':
+                [
+                    {'name':"D'Amore Winebar & Ristorante", 'type': "French","score":"5","reviews":"153", "address":"West 46 Street, Hell's Kitchen, New York City, NY 10036, United States of America","price": "$$$$"},
+                    {'name':"D'Amore Winebar & Ristorante", 'type': "French","score":"5","reviews":"153", "address":"West 46 Street, Hell's Kitchen, New York City, NY 10036, United States of America","price": "$$$$"}
+                ],
+            },
 
-        # {
-        # 'attractions':
-        #     [
-        #         {'name':"The Metropolitan Museum of Art", 'time': "2-3 hours","address":"1000 5th Ave, New York City, NY 10028-0198","desc": "A museum"},
-        #         {'name':"The Metropolitan Museum of Art", 'time': "2-3 hours","address":"1000 5th Ave, New York City, NY 10028-0198","desc": "A museum"},
-        #         {'name':"The Metropolitan Museum of Art", 'time': "2-3 hours","address":"1000 5th Ave, New York City, NY 10028-0198","desc": "A museum"}
-        #     ],
-        # 'hotel':
-        #     [
-        #         {'name':"414 Hotel", 'score': "9.4","reviews":"287", "address":"414 West 46 Street, Hell's Kitchen, New York City, NY 10036, United States of America","price": "$$"}
-        #     ],
-        # 'restaurant':
-        #     [
-        #         {'name':"D'Amore Winebar & Ristorante", 'type': "French","score":"5","reviews":"153", "address":"West 46 Street, Hell's Kitchen, New York City, NY 10036, United States of America","price": "$$$$"}
-        #     ]
-        # }
-        # ]
+            {
+            'attractions':
+                [
+                    {'name':"The Metropolitan Museum of Art", 'time': "2-3 hours","address":"1000 5th Ave, New York City, NY 10028-0198","desc": "A museum"},
+                    {'name':"The Metropolitan Museum of Art", 'time': "2-3 hours","address":"1000 5th Ave, New York City, NY 10028-0198","desc": "A museum"},
+                    {'name':"The Metropolitan Museum of Art", 'time': "2-3 hours","address":"1000 5th Ave, New York City, NY 10028-0198","desc": "A museum"}
+                ],
+            'hotel':
+                [
+                    {'name':"414 Hotel", 'score': "9.4","reviews":"287", "address":"414 West 46 Street, Hell's Kitchen, New York City, NY 10036, United States of America","price": "$$"}
+                ],
+            'restaurant':
+                [
+                    {'name':"D'Amore Winebar & Ristorante", 'type': "French","score":"5","reviews":"153", "address":"West 46 Street, Hell's Kitchen, New York City, NY 10036, United States of America","price": "$$$$"}
+                ]
+            }
+            ]
 
-        template = "trip/plan.html"
-        context={
-            "flight":flightsinfo,
-            "schedule": schedule, 
-            "destination": destination_city
-        }
+            template = "trip/plan.html"
+            context={
+                "flight":flightsinfo,
+                "schedule": schedule, 
+                "destination": destination_city
+            }
         
         # return redirect("../login")
         return render(request, template, context)
