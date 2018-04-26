@@ -144,6 +144,11 @@ def plan(request):
             # print("eds",end_date_str)
             start_date = datetime.datetime.strptime(start_date_str, '%Y-%M-%d')
             end_date = datetime.datetime.strptime(end_date_str, '%Y-%M-%d')
+            flight_end_date = end_date + datetime.timedelta(days=1)
+
+            flight_end_date_str = flight_end_date.strftime("%Y-%M-%d")
+
+            print(end_date, flight_end_date, flight_end_date_str)
             # print(start_date, end_date)
             # print(start_date <= end_date)
             dates = []
@@ -218,10 +223,12 @@ def plan(request):
                 'return':[],
                 'fare': {}
             }
-
+            print(start_date_str, flight_end_date_str)
             if (start_city_iatas[0] == end_city_iatas[0]):
-                flights = get_flights(start_city_iatas[0], destination_city_iatas[0], start_date_str, end_date_str, False)
+                flights = get_flights(start_city_iatas[0], destination_city_iatas[0], start_date_str, flight_end_date_str, False)
                 best_flight = sort_flights(flights)
+                print("HAHA")
+                print(best_flight)
                 if best_flight:
                     departf = best_flight['itineraries'][0]['outbound']['flights']
                     returnf = best_flight['itineraries'][0]['inbound']['flights']
@@ -230,7 +237,7 @@ def plan(request):
                     flightsinfo['fare'] = {'total': best_flight['fare']['total_price'], 'tax':best_flight['fare']['price_per_adult']['tax']}
             else:
                 flight1 = get_flights(start_city_iatas[0], destination_city_iatas[0], start_date_str, None, False)
-                flight2 = get_flights(destination_city_iatas[0], end_city_iatas[0], end_date_str, None, False)
+                flight2 = get_flights(destination_city_iatas[0], end_city_iatas[0], flight_end_date_str, None, False)
                 best_flight1 = sort_flights(flight1)
                 best_flight2 = sort_flights(flight2)
                 try:
