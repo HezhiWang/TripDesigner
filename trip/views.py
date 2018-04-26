@@ -26,22 +26,14 @@ from .api.googlemap import get_lat_log
 
 scrapyd = ScrapydAPI('http://localhost:6800')
 NUMBER_OF_PROCESS = 8
-#from .models import Question
+
 
 def index(request):
-    #latest_question_list = Question.objects.order_by('-pub_date')[:5]
-    #template = loader.get_template('trip/landing.html')
-    #context = {
-    #    'latest_question_list': latest_question_list,
-    #}
-
-    #template = loader.get_template("trip/landing.html")
     template = "trip/landing.html"
     context = {}
     return render(request, template, context)
 
 def search(request):
-    # if request.method == "GET":
     if request.user.is_authenticated:
         template = "trip/search.html"
     else:
@@ -49,10 +41,6 @@ def search(request):
         return redirect(template)
     context = {}
     return render(request, template, context)
-    # elif request.method == "POST":
-    #     print(request.POST)
-    #     template = "trip/plan.html"
-    #     return render(request, template, {})
 
 @csrf_exempt
 def crawl(request):
@@ -114,11 +102,14 @@ def plan(request):
         final_data = json.loads(request.POST['finaldata'])
 
         form_data, crawl_data, start_city, end_city, destination_city, start_date_str, length, end_date_str, destination_lat, destination_lng, start_city_iatas, end_city_iatas, destination_city_iatas = serialize(final_data)
+
         print(form_data)
         print(type(crawl_data))
 
         if crawl_data is None:
-            print("crawl_data is not avaliable")
+            template = "trip/error.html"
+            context = {}
+            return render(request, template, context)
         else:
             with Pool(NUMBER_OF_PROCESS) as p:
                 attractions = p.map(get_lat_log, crawl_data)
@@ -142,15 +133,11 @@ def plan(request):
             #print(recommended_attraction)
             # print("sds",start_date_str)
             # print("eds",end_date_str)
-            start_date = datetime.datetime.strptime(start_date_str, '%Y-%M-%d')
-            end_date = datetime.datetime.strptime(end_date_str, '%Y-%M-%d')
+            start_date = datetime.datetime.strptime(start_date_str, '%Y-%m-%d')
+            end_date = datetime.datetime.strptime(end_date_str, '%Y-%m-%d')
             flight_end_date = end_date + datetime.timedelta(days=1)
+            flight_end_date_str = flight_end_date.strftime("%Y-%m-%d")
 
-            flight_end_date_str = flight_end_date.strftime("%Y-%M-%d")
-
-            print(end_date, flight_end_date, flight_end_date_str)
-            # print(start_date, end_date)
-            # print(start_date <= end_date)
             dates = []
             while start_date <= end_date:
                 dates.append(start_date.strftime('%Y-%M-%d'))
@@ -206,15 +193,7 @@ def plan(request):
 
                 restarants[i] = {"lunch": restarant_lunch, "dinner": restarant_dinner}
 
-                schedule.append({"attractions": attractions, "hotel": hotels[day], "restaurant": {"lunch": restarant_lunch.to_dict(), "dinner": restarant_dinner.to_dict()}})
-
-            #print(restarants)
-            print(schedule)
-            #trip_planer = trip_planer(1, 2, 3)
-            #call yelp api to get restaurant data
-            #restarants = yelp_api(destination_lat, destination_lng)
-
-            
+                schedule.append({"attractions": attractions, "hotel": hotels[day], "restaurant": {"lunch": restarant_lunch.to_dict(), "dinner": restarant_dinner.to_dict()}})            
 
             # call flights api to get flights data
 
