@@ -25,7 +25,7 @@
             </tr>
             <tr>
                 <td>
-                    <h4>Step 2 <span>Choose Your Destination</span></h4>
+                    <h4>Step 2 <span>Enter Your Destination</span></h4>
                     <div class="form-group">
                     	<label for="destination">Destination:</label>
                         <input name="destination" id="destination" class="autocomplete address" type="text" placeholder="New York" required autocomplete="on">
@@ -97,6 +97,8 @@
 </div>    
 
 <div id="loader" style="display:none;"></div>
+<div id="loader-text1" style="display:none;position: absolute;left:44%;top:55%;font-size: 20px;">Retriving Data...</div>
+<div id="loader-text2" style="display:none;position: absolute;left:45%;top:55%;font-size: 20px;">Loading...</div>
 
 <script>
 	  var autoplaces = ['startcity','endcity','destination']
@@ -121,9 +123,17 @@
       }
 
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBmBkizXu70OrVXb9GXbbWAgasRIsND7js&libraries=places&callback=initAutocomplete"
-        async defer>
-</script>
+<script type='text/javascript' src="{% static 'trip/config.js' %}"></script>
+<script>
+var key= config.Googlemapskey;
+var script = document.createElement('script');
+script.src = "https://maps.googleapis.com/maps/api/js?key="+key+"&libraries=places&callback=initAutocomplete";
+script.async = ''
+script.defer = ''
+document.getElementsByTagName('script')[2].parentNode.appendChild(script);
+</script>  
+
+<!-- <script src="https://maps.googleapis.com/maps/api/js?key=" +  + "&libraries=places&callback=initAutocomplete" async defer></script> -->
 
 <script>
 var globalstate = {
@@ -162,7 +172,8 @@ function checkCrawlStatus(){
             console.log(response.data)
             if(response.data || typeof response.status === 'undefined'){
                 clearInterval(globalstate.statusInterval);
-                alert("finished")
+                document.getElementById("loader-text1").style.display = "none";
+                document.getElementById("loader-text2").style.display = "block";
                 globalstate.state.data = response.data;
                 // alert("finished!")
                 console.log(globalstate.state.data)
@@ -194,6 +205,7 @@ function checkCrawlStatus(){
 
 function showloader(){
     document.getElementById("loader").style.display = "block";
+    document.getElementById("loader-text1").style.display = "block";
     document.getElementById("mainbody").style.display = "none";
 }
 
