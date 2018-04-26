@@ -130,17 +130,21 @@ def plan(request):
             index_list, center_points, cordinate_data, recommendation_order, recommended_attractions = planer.design_attraction(attractions_df)
 
             print(index_list)
-            print(center_points)
+            # print("center_points",center_points)
             #print(cordinate_data)2018-04-23
             #print(recommendation_order)
             #print(recommended_attraction)
+            # print("sds",start_date_str)
+            # print("eds",end_date_str)
             start_date = datetime.datetime.strptime(start_date_str, '%Y-%M-%d')
             end_date = datetime.datetime.strptime(end_date_str, '%Y-%M-%d')
+            # print(start_date, end_date)
+            # print(start_date <= end_date)
             dates = []
             while start_date <= end_date:
                 dates.append(start_date.strftime('%Y-%M-%d'))
                 start_date += datetime.timedelta(days=1)
-            print(dates)
+            print("dates",dates)
             #check_in = start_date_str
             #check_out = end_date.strptime('%Y-%M-%d')
 
@@ -152,7 +156,7 @@ def plan(request):
 
             #print(hotels)
 
-            print(cordinate_data)
+            # print(cordinate_data)
                 
             recommended_attractions = recommended_attractions[["name", "hours", "location", "description", "number_of_reviews", "rating", "url"]]
             schedule = []
@@ -166,23 +170,23 @@ def plan(request):
 
                 l = len(index_list[day])
                 print("length: " + str(l))
-                print(index_list[day])
+                # print(index_list[day])
                 if l == 1:
-                    print(cordinate_data[index_list[day][0]][0], cordinate_data[index_list[day][0]][1])
+                    # print(cordinate_data[index_list[day][0]][0], cordinate_data[index_list[day][0]][1])
                     restarant = get_restaurants(cordinate_data[index_list[day][0]][0], cordinate_data[index_list[day][0]][1], 2)
                     restarant_lunch, restarant_dinner = restarant.iloc[0], restarant.iloc[1]
                 elif l == 2 or l== 3:
-                    print(cordinate_data[index_list[day][0]][0], cordinate_data[index_list[day][0]][1], cordinate_data[index_list[day][-1]][0], cordinate_data[index_list[day][-1]][1])
+                    # print(cordinate_data[index_list[day][0]][0], cordinate_data[index_list[day][0]][1], cordinate_data[index_list[day][-1]][0], cordinate_data[index_list[day][-1]][1])
                     restarant_lunch = get_restaurants(cordinate_data[index_list[day][0]][0], cordinate_data[index_list[day][0]][1])
                     restarant_dinner = get_restaurants(cordinate_data[index_list[day][-1]][0], cordinate_data[index_list[day][-1]][1])
                 elif l >= 4:
                     if l % 2 == 0:
-                        print(cordinate_data[index_list[day][l//2-1]][0], cordinate_data[index_list[day][l//2-1]][1])
+                        # print(cordinate_data[index_list[day][l//2-1]][0], cordinate_data[index_list[day][l//2-1]][1])
                         restarant_lunch = get_restaurants(cordinate_data[index_list[day][l//2-1]][0], cordinate_data[index_list[day][l//2-1]][1])
                     else:
-                        print(cordinate_data[index_list[day][l//2]][0], cordinate_data[index_list[day][l//2]][1])
+                        # print(cordinate_data[index_list[day][l//2]][0], cordinate_data[index_list[day][l//2]][1])
                         restarant_lunch = get_restaurants(cordinate_data[index_list[day][l//2]][0], cordinate_data[index_list[day][l//2]][1])
-                    print(cordinate_data[index_list[day][-1]][0], cordinate_data[index_list[day][-1]][1])
+                    # print(cordinate_data[index_list[day][-1]][0], cordinate_data[index_list[day][-1]][1])
                     restarant_dinner = get_restaurants(cordinate_data[index_list[day][-1]][0], cordinate_data[index_list[day][-1]][1])
                 else:
                     print("haha")
@@ -245,47 +249,6 @@ def plan(request):
 
             print(flightsinfo)
 
-            #TODO: calculate daily schedule - k means
-            #suggested saving format: 
-            # schedule = [
-            # {
-            # 'attractions':
-            #     [
-            #         {'name':"The Metropolitan Museum of Art", 'time': "2-3 hours","address":"1000 5th Ave, New York City, NY 10028-0198","desc": "A museum"},
-            #         {'name':"The Metropolitan Museum of Art", 'time': "2-3 hours","address":"1000 5th Ave, New York City, NY 10028-0198","desc": "A museum"},
-            #         {'name':"The Metropolitan Museum of Art", 'time': "2-3 hours","address":"1000 5th Ave, New York City, NY 10028-0198","desc": "A museum"}
-            #     ],
-            # 'hotel':
-            #     [
-            #         {'name':"414 Hotel", 'score': "9.4","reviews":"287", "address":"414 West 46 Street, Hell's Kitchen, New York City, NY 10036, United States of America","price": "$260"},
-            #         {'name':"414 Hotel", 'score': "9.4","reviews":"287", "address":"414 West 46 Street, Hell's Kitchen, New York City, NY 10036, United States of America","price": "$260"}
-
-            #     ],
-            # 'restaurant':
-            #     [
-            #         {'name':"D'Amore Winebar & Ristorante", 'type': "French","score":"5","reviews":"153", "address":"West 46 Street, Hell's Kitchen, New York City, NY 10036, United States of America","price": "$$$$"},
-            #         {'name':"D'Amore Winebar & Ristorante", 'type': "French","score":"5","reviews":"153", "address":"West 46 Street, Hell's Kitchen, New York City, NY 10036, United States of America","price": "$$$$"}
-            #     ],
-            # },
-
-            # {
-            # 'attractions':
-            #     [
-            #         {'name':"The Metropolitan Museum of Art", 'time': "2-3 hours","address":"1000 5th Ave, New York City, NY 10028-0198","desc": "A museum"},
-            #         {'name':"The Metropolitan Museum of Art", 'time': "2-3 hours","address":"1000 5th Ave, New York City, NY 10028-0198","desc": "A museum"},
-            #         {'name':"The Metropolitan Museum of Art", 'time': "2-3 hours","address":"1000 5th Ave, New York City, NY 10028-0198","desc": "A museum"}
-            #     ],
-            # 'hotel':
-            #     [
-            #         {'name':"414 Hotel", 'score': "9.4","reviews":"287", "address":"414 West 46 Street, Hell's Kitchen, New York City, NY 10036, United States of America","price": "$$"}
-            #     ],
-            # 'restaurant':
-            #     [
-            #         {'name':"D'Amore Winebar & Ristorante", 'type': "French","score":"5","reviews":"153", "address":"West 46 Street, Hell's Kitchen, New York City, NY 10036, United States of America","price": "$$$$"}
-            #     ]
-            # }
-            # ]
-
             template = "trip/plan.html"
             context={
                 "flight":flightsinfo,
@@ -293,9 +256,7 @@ def plan(request):
                 "destination": destination_city
             }
         
-        # return redirect("../login")
         return render(request, template, context)
-        #return JsonResponse({'task_id': task, 'unique_id': unique_id, 'status': 'started'})
 
 
 def about(request):
