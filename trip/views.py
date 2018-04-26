@@ -1,6 +1,7 @@
 import datetime
 import os
 import pandas as pd
+import numpy as np
 import json
 import googlemaps
 
@@ -10,6 +11,7 @@ from django.http import HttpResponse, JsonResponse
 from django.template import loader
 from django.views.decorators.csrf import csrf_exempt
 
+from multiprocessing.pool import Pool
 from scrapyd_api import ScrapydAPI
 from uuid import uuid4
 
@@ -23,7 +25,7 @@ from .api.hotel_api import get_hotels, sort_hotels
 from .api.googlemap import get_lat_log
 
 scrapyd = ScrapydAPI('http://localhost:6800')
-
+NUMBER_OF_PROCESS = 8
 #from .models import Question
 
 def index(request):
@@ -118,11 +120,15 @@ def plan(request):
         if crawl_data is None:
             print("crawl_data is not avaliable")
         else:
-            attractions = get_lat_log(crawl_data)
+            with Pool(NUMBER_OF_PROCESS) as p:
+                attractions = p.map(get_lat_log, crawl_data)
 
-
+            print(len(attractions))
             attractions_df = pd.DataFrame(attractions)
+            attractions_df.fillna(value=np.nan, inplace=True)
+            attractions_df.dropna(axis=0, subset=["latitude", "longitude"], inplace=True)
 
+            print(attractions_df.shape)
             bugdet = int(form_data["hotel"])
             degree = int(form_data["time"])
 
