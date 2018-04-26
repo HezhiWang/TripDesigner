@@ -53,7 +53,7 @@ class Planner():
 			bugdet_list = [5]
 
 		travel_data.fillna(value=np.nan, inplace=True)
-		travel_data.dropna(subset=['location'], inplace=True)
+		travel_data.dropna(subset=['location', 'latitude', 'longitude'], inplace=True)
 		travel_data.sort_values(by=["number_of_reviews", "rating"], inplace=True, ascending=False)
 		recommended_attraction = travel_data.iloc[:total_num_attractions, :].reset_index(drop=True)
 		#print(recommended_attraction)
@@ -67,6 +67,7 @@ class Planner():
 			temp.append(recommended_attraction['longitude'].iloc[i])
 			cordinate_data.append(temp)
 
+		print(cordinate_data)
 		#call Kmeans method
 		kmeans = KMeans(n_clusters = self.time, random_state = 0).fit(cordinate_data)
 		

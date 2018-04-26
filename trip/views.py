@@ -170,7 +170,7 @@ def plan(request):
                 if l == 1:
                     print(cordinate_data[index_list[day][0]][0], cordinate_data[index_list[day][0]][1])
                     restarant = get_restaurants(cordinate_data[index_list[day][0]][0], cordinate_data[index_list[day][0]][1], 2)
-                    restarant_lunch, restarant_dinner = restarant[0], restarant[1]
+                    restarant_lunch, restarant_dinner = restarant.iloc[0], restarant.iloc[1]
                 elif l == 2 or l== 3:
                     print(cordinate_data[index_list[day][0]][0], cordinate_data[index_list[day][0]][1], cordinate_data[index_list[day][-1]][0], cordinate_data[index_list[day][-1]][1])
                     restarant_lunch = get_restaurants(cordinate_data[index_list[day][0]][0], cordinate_data[index_list[day][0]][1])
@@ -247,44 +247,44 @@ def plan(request):
 
             #TODO: calculate daily schedule - k means
             #suggested saving format: 
-            schedule = [
-            {
-            'attractions':
-                [
-                    {'name':"The Metropolitan Museum of Art", 'time': "2-3 hours","address":"1000 5th Ave, New York City, NY 10028-0198","desc": "A museum"},
-                    {'name':"The Metropolitan Museum of Art", 'time': "2-3 hours","address":"1000 5th Ave, New York City, NY 10028-0198","desc": "A museum"},
-                    {'name':"The Metropolitan Museum of Art", 'time': "2-3 hours","address":"1000 5th Ave, New York City, NY 10028-0198","desc": "A museum"}
-                ],
-            'hotel':
-                [
-                    {'name':"414 Hotel", 'score': "9.4","reviews":"287", "address":"414 West 46 Street, Hell's Kitchen, New York City, NY 10036, United States of America","price": "$260"},
-                    {'name':"414 Hotel", 'score': "9.4","reviews":"287", "address":"414 West 46 Street, Hell's Kitchen, New York City, NY 10036, United States of America","price": "$260"}
+            # schedule = [
+            # {
+            # 'attractions':
+            #     [
+            #         {'name':"The Metropolitan Museum of Art", 'time': "2-3 hours","address":"1000 5th Ave, New York City, NY 10028-0198","desc": "A museum"},
+            #         {'name':"The Metropolitan Museum of Art", 'time': "2-3 hours","address":"1000 5th Ave, New York City, NY 10028-0198","desc": "A museum"},
+            #         {'name':"The Metropolitan Museum of Art", 'time': "2-3 hours","address":"1000 5th Ave, New York City, NY 10028-0198","desc": "A museum"}
+            #     ],
+            # 'hotel':
+            #     [
+            #         {'name':"414 Hotel", 'score': "9.4","reviews":"287", "address":"414 West 46 Street, Hell's Kitchen, New York City, NY 10036, United States of America","price": "$260"},
+            #         {'name':"414 Hotel", 'score': "9.4","reviews":"287", "address":"414 West 46 Street, Hell's Kitchen, New York City, NY 10036, United States of America","price": "$260"}
 
-                ],
-            'restaurant':
-                [
-                    {'name':"D'Amore Winebar & Ristorante", 'type': "French","score":"5","reviews":"153", "address":"West 46 Street, Hell's Kitchen, New York City, NY 10036, United States of America","price": "$$$$"},
-                    {'name':"D'Amore Winebar & Ristorante", 'type': "French","score":"5","reviews":"153", "address":"West 46 Street, Hell's Kitchen, New York City, NY 10036, United States of America","price": "$$$$"}
-                ],
-            },
+            #     ],
+            # 'restaurant':
+            #     [
+            #         {'name':"D'Amore Winebar & Ristorante", 'type': "French","score":"5","reviews":"153", "address":"West 46 Street, Hell's Kitchen, New York City, NY 10036, United States of America","price": "$$$$"},
+            #         {'name':"D'Amore Winebar & Ristorante", 'type': "French","score":"5","reviews":"153", "address":"West 46 Street, Hell's Kitchen, New York City, NY 10036, United States of America","price": "$$$$"}
+            #     ],
+            # },
 
-            {
-            'attractions':
-                [
-                    {'name':"The Metropolitan Museum of Art", 'time': "2-3 hours","address":"1000 5th Ave, New York City, NY 10028-0198","desc": "A museum"},
-                    {'name':"The Metropolitan Museum of Art", 'time': "2-3 hours","address":"1000 5th Ave, New York City, NY 10028-0198","desc": "A museum"},
-                    {'name':"The Metropolitan Museum of Art", 'time': "2-3 hours","address":"1000 5th Ave, New York City, NY 10028-0198","desc": "A museum"}
-                ],
-            'hotel':
-                [
-                    {'name':"414 Hotel", 'score': "9.4","reviews":"287", "address":"414 West 46 Street, Hell's Kitchen, New York City, NY 10036, United States of America","price": "$$"}
-                ],
-            'restaurant':
-                [
-                    {'name':"D'Amore Winebar & Ristorante", 'type': "French","score":"5","reviews":"153", "address":"West 46 Street, Hell's Kitchen, New York City, NY 10036, United States of America","price": "$$$$"}
-                ]
-            }
-            ]
+            # {
+            # 'attractions':
+            #     [
+            #         {'name':"The Metropolitan Museum of Art", 'time': "2-3 hours","address":"1000 5th Ave, New York City, NY 10028-0198","desc": "A museum"},
+            #         {'name':"The Metropolitan Museum of Art", 'time': "2-3 hours","address":"1000 5th Ave, New York City, NY 10028-0198","desc": "A museum"},
+            #         {'name':"The Metropolitan Museum of Art", 'time': "2-3 hours","address":"1000 5th Ave, New York City, NY 10028-0198","desc": "A museum"}
+            #     ],
+            # 'hotel':
+            #     [
+            #         {'name':"414 Hotel", 'score': "9.4","reviews":"287", "address":"414 West 46 Street, Hell's Kitchen, New York City, NY 10036, United States of America","price": "$$"}
+            #     ],
+            # 'restaurant':
+            #     [
+            #         {'name':"D'Amore Winebar & Ristorante", 'type': "French","score":"5","reviews":"153", "address":"West 46 Street, Hell's Kitchen, New York City, NY 10036, United States of America","price": "$$$$"}
+            #     ]
+            # }
+            # ]
 
             template = "trip/plan.html"
             context={

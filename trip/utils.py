@@ -4,8 +4,15 @@ import pandas as pd
 
 def serialize(final_data):
     # serialize json data
-    form_data = final_data["form_data"]
-    crawl_data = final_data["crawl_data"]
+    if "form_data" in final_data:
+        form_data = final_data["form_data"]
+    else:
+        form_data = None 
+
+    if "crawl_data" in final_data:
+        crawl_data = final_data["crawl_data"]
+    else:
+        crawl_data = None
 
     start_address = form_data["startcity"]
     end_address = form_data["endcity"]
