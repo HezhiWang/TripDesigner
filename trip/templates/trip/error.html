@@ -1,0 +1,11 @@
+{% load static %}
+{% include "trip/header.html" %}
+
+<div class="container plan" style="height:auto; margin-bottom: 150px; text-align: center">
+
+<h2 style="margin-top: 100px">Your destination is not available!</h2>
+
+<a class="btn btn-danger btn-lg" href="{% url 'search' %}" role="button">Go Back and Try Again</a>
+</div>  
+
+{% include "trip/footer.html" %}

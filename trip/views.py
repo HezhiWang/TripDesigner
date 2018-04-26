@@ -263,3 +263,8 @@ def about(request):
     template = "trip/about.html"
     context = {}
     return render(request, template, context)
+
+def error(request):
+    template = "trip/error.html"
+    context = {}
+    return render(request, template, context)

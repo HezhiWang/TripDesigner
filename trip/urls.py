@@ -9,7 +9,8 @@ urlpatterns = [
     path('search', views.search, name='search'),
     path('about', views.about, name='about'),
     path('plan', views.plan, name='plan'),
-    path('crawl', views.crawl, name='crawl')
+    path('crawl', views.crawl, name='crawl'),
+    path('error', views.error, name='error')
 ]
 
 #urlpatterns += staticfiles_urlpatterns()
