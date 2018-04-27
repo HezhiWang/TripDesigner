@@ -27,9 +27,9 @@ This web application uses 3 free APIs:
 Please follow the links and get the keys. Then,
 
 ```
-cd TripDesigner
-touch trip/api/config.py
-touch trip/static/trip/config.js
+$ cd TripDesigner
+$ touch trip/api/config.py
+$ touch trip/static/trip/config.js
 ```
 In config.py, enter your API keys like so:
 ```
@@ -47,13 +47,15 @@ var config = {
 ### 3. Connect to Scrapyd service
 cd into the home directory, and in the command line
 ```
-cd scrapy_app
-scrapyd
+$ cd scrapy_app
+$ scrapyd
 ```
+Make sure **not** to close this window while using the app.
+
 ### 4. Start the app
 Open a new command line window, into the home directory,
 ```
-python manage.py runserver
+$ python manage.py runserver
 ```
 
 ### 5. Browser Requirements
