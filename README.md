@@ -13,7 +13,7 @@ Han Zhao [https://github.com/hzhao16](https://github.com/hzhao16) Netid: hz1411
 ### 1. Install the dependencies
 
 ```
-pip install -r requirements.txt
+$ pip install -r requirements.txt
 ```
 
 ### 2. Get API keys
