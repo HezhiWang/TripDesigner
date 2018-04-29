@@ -97,16 +97,20 @@
             <td colspan="6"><h5>Restaurants</h5></td>
         </tr>
         <!-- lunch  -->
+        {%if day.restaurant.lunch %}
         <tr>       
             <td><h6>{{day.restaurant.lunch.name}}</h6></td>   <!-- (Add a link?) -->
             <td colspan="1"></td>
             <td colspan="2" class="last">{{day.restaurant.lunch.price}}</td>
         </tr>
+        
         <tr>
-            <td>Address: {{day.restaurant.dinner.address.0}}, {{day.restaurant.dinner.address.1}} </td>
+            <td>Address: {{day.restaurant.lunch.address.0}}, {{day.restaurant.lunch.address.1}} </td>
             <td colspan="5" class="last">Rating: {{day.restaurant.lunch.rating}}/5 (From {{day.restaurant.lunch.review_count}} Reviews)</td>
         </tr>
+        {% endif %}
         <!-- dinner -->
+        {%if day.restaurant.dinner %}
         <tr>       
             <td><h6>{{day.restaurant.dinner.name}}</h6></td>   <!-- (Add a link?) -->
             <td colspan="1"></td>
@@ -116,6 +120,7 @@
             <td>Address: {{day.restaurant.dinner.address.0}}, {{day.restaurant.dinner.address.1}}</td>
             <td colspan="5" class="last">Rating: {{day.restaurant.dinner.rating}}/5 (From {{day.restaurant.dinner.review_count}} Reviews)</td>
         </tr>
+        {% endif %}
     </table>
 {% endfor %}
 

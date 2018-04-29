@@ -99,7 +99,7 @@ def crawl(request):
 @csrf_exempt
 def plan(request):
     if request.method == "GET":
-        return redirect("../login")
+        return redirect("search")
     elif request.method == "POST":
         final_data = json.loads(request.POST['finaldata'])
 

@@ -1,3 +1,4 @@
+
 {% load static %}
 {% include "trip/header.html" %}
 <!-- header ends -->
@@ -88,7 +89,7 @@
         </table>
 
         <button class="btn btn-danger btn-lg" type="reset" id="reset">Reset</button>
-        <button type="submit" id="submit" class="btn btn-success btn-lg" onclick="showloader();">Submit!</button>
+        <button type="submit" id="submit" class="btn btn-success btn-lg">Submit!</button>
     </form>
     <form id="plan-form" action="{% url 'plan' %}" method="post" style="display: none">
     <input name="finaldata" id="finaldata" type="hidden"></input>
@@ -145,13 +146,21 @@ var globalstate = {
       statusInterval: 1
 }
 
-$('#myform').submit(function(event){
+function showloader(){
+    document.getElementById("loader").style.display = "block";
+    document.getElementById("loader-text1").style.display = "block";
+    document.getElementById("mainbody").style.display = "none";
+}
+
+$('#myform').submit(
+    function(event){
     $.ajax({
       url: $('#myform').attr('action'),
       type: 'POST',
       data : $('#myform').serialize(),
       success: 
         function(response){
+            showloader();
             globalstate.state.taskID = response.task_id;
             globalstate.state.uniqueID= response.unique_id;
             globalstate.state.crawlingStatus= response.status;
@@ -161,6 +170,7 @@ $('#myform').submit(function(event){
     });
     return false;
 });
+
 
 function checkCrawlStatus(){
     $.get($('#myform').attr('action'),
@@ -191,6 +201,7 @@ function checkCrawlStatus(){
                 alert(response.error)
             }
             else if(response.status){
+                // showloader();
                 globalstate.state.crawlingStatus = response.status;
                 console.log(response.status)
             }
@@ -201,11 +212,7 @@ function checkCrawlStatus(){
         }
 )};
 
-function showloader(){
-    document.getElementById("loader").style.display = "block";
-    document.getElementById("loader-text1").style.display = "block";
-    document.getElementById("mainbody").style.display = "none";
-}
+
 
 </script>
 

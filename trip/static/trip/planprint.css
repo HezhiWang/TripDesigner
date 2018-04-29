@@ -3,6 +3,11 @@
 	display: none;
 }
 
+a[href]::after {
+    content: none;
+    visibility: hidden;
+}
+
 title{
 	text-align: center;
 }
