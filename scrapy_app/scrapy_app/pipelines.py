@@ -20,12 +20,10 @@ class ScrapyAppPipeline(object):
 class ScrapyAttractionPipeline(object):
     def __init__(self, unique_id, *args, **kwargs):
         self.unique_id = unique_id
-        # print("id2", self.unique_id)
         self.items = []
 
     @classmethod
     def from_crawler(cls, crawler):
-    	# print("id3", crawler.settings.get('unique_id'))
         return cls(
             unique_id=crawler.settings.get('unique_id'), # this will be passed from django view
         )
@@ -34,13 +32,10 @@ class ScrapyAttractionPipeline(object):
         # And here we are saving our crawled data with django models.
         item = Attraction()
         item.unique_id = self.unique_id
-        print("id4", item.unique_id)
         item.data = json.dumps(self.items)
-        # print(item.data)
         item.save()
 
     def process_item(self, item, spider):
         self.items.append(item)
-        #print(item)
         return item
    

@@ -81,7 +81,7 @@ def get_business(api_key, business_id_list):
     return restarants
 
 
-def get_restaurants(latitude, longitude, number_of_best=1):
+def get_restaurants(latitude, longitude):
     """Queries the API by the input values from the user.
     Args:
         latitude (decimal): The latitude of the business to query.
@@ -108,14 +108,9 @@ def get_restaurants(latitude, longitude, number_of_best=1):
     #sort by review_count, rating
     restarants.sort_values(by=["review_count", "rating"], inplace=True, ascending=False)
 
-    #print(restarants)
     print(restarants.shape)
-    if (number_of_best > 1):
-        return restarants.iloc[:number_of_best]
-        print(restarants.iloc[:number_of_best])
-    print(restarants.iloc[0])
-    return restarants.iloc[0]
 
+    return restarants
 
 ################# Multiprocessing version #################
 
@@ -191,43 +186,3 @@ def yelp_api(latitude, longitude):
 
     return restarants
 """
-
-
-
-
-
-
-
-def multi_processes_check():
-    ts = time()
-
-
-    print('Took {}s'.format(time() - ts))
-
-def main():
-    parser = argparse.ArgumentParser()
-
-    parser.add_argument('-q', '--term', dest='term', default=DEFAULT_TERM,
-                        type=str, help='Search term (default: %(default)s)')
-    parser.add_argument('-l', '--location', dest='location',
-                        default=DEFAULT_LOCATION, type=str,
-                        help='Search location (default: %(default)s)')
-
-    input_values = parser.parse_args()
-
-    #print(input_values)
-    start_time = time.time()
-    try:
-        restarants = yelp_api(LAT, LNG)
-    except HTTPError as error:
-        sys.exit(
-            'Encountered HTTP error {0} on {1}:\n {2}\nAbort program.'.format(
-                error.code,
-                error.url,
-                error.read(),
-            )
-        )
-    print(time.time() - start_time)
-
-if __name__ == '__main__':
-    main()

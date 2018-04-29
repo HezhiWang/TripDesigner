@@ -4,6 +4,7 @@ import pandas as pd
 import numpy as np
 import json
 import googlemaps
+import time
 
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, render_to_response
@@ -63,7 +64,6 @@ def crawl(request):
                 return JsonResponse({'error': str(e)})
         else:
             return JsonResponse({'status': status})
-        #return redirect("../login")
     elif request.method == "POST":
 
         print(request.POST)
@@ -78,7 +78,9 @@ def crawl(request):
         print(attraction_htmls)
         if len(attraction_htmls) == 0:
             ### display alert no avaliable city
-            print("Error: no avaliable city")
+            template = "trip/error.html"
+            context = {}
+            return render(request, template, context)
         else:
             url = attraction_htmls[0]
 
@@ -104,35 +106,28 @@ def plan(request):
         form_data, crawl_data, start_city, end_city, destination_city, start_date_str, length, end_date_str, destination_lat, destination_lng, start_city_iatas, end_city_iatas, destination_city_iatas = serialize(final_data)
 
         print(form_data)
-        print(type(crawl_data))
 
         if crawl_data is None:
             template = "trip/error.html"
             context = {}
             return render(request, template, context)
         else:
+            start_time = time.time()
             with Pool(NUMBER_OF_PROCESS) as p:
                 attractions = p.map(get_lat_log, crawl_data)
+            print(time.time() - start_time)
 
-            print(len(attractions))
             attractions_df = pd.DataFrame(attractions)
             attractions_df.fillna(value=np.nan, inplace=True)
             attractions_df.dropna(axis=0, subset=["latitude", "longitude"], inplace=True)
 
-            print(attractions_df.shape)
             bugdet = int(form_data["hotel"])
             degree = int(form_data["time"])
 
             planer = Planner(length, bugdet, degree)
             index_list, center_points, cordinate_data, recommendation_order, recommended_attractions = planer.design_attraction(attractions_df)
 
-            print(index_list)
-            # print("center_points",center_points)
-            #print(cordinate_data)2018-04-23
-            #print(recommendation_order)
-            #print(recommended_attraction)
-            # print("sds",start_date_str)
-            # print("eds",end_date_str)
+
             start_date = datetime.datetime.strptime(start_date_str, '%Y-%m-%d')
             end_date = datetime.datetime.strptime(end_date_str, '%Y-%m-%d')
             flight_end_date = end_date + datetime.timedelta(days=1)
@@ -140,11 +135,8 @@ def plan(request):
 
             dates = []
             while start_date <= end_date:
-                dates.append(start_date.strftime('%Y-%M-%d'))
+                dates.append(start_date.strftime('%Y-%m-%d'))
                 start_date += datetime.timedelta(days=1)
-            print("dates",dates)
-            #check_in = start_date_str
-            #check_out = end_date.strptime('%Y-%M-%d')
 
             hotels = {}
             for i, center in enumerate(center_points):
@@ -152,49 +144,57 @@ def plan(request):
                 best_hotel = sort_hotels(hotel)
                 hotels[i] = best_hotel
 
-            #print(hotels)
-
-            # print(cordinate_data)
-                
             recommended_attractions = recommended_attractions[["name", "hours", "location", "description", "number_of_reviews", "rating", "url"]]
             schedule = []
             restarants = {}
+
+            recommendated_restarant_ids = []
 
             for day in index_list:
                 attractions, hotel, restaurant = [], [], []
                 for attraction_index in index_list[day]:
                     attractions.append(recommended_attractions.iloc[attraction_index].to_dict())
-                    #print(recommended_attractions.iloc[attraction_index].to_dict())
 
                 l = len(index_list[day])
-                print("length: " + str(l))
-                # print(index_list[day])
                 if l == 1:
-                    # print(cordinate_data[index_list[day][0]][0], cordinate_data[index_list[day][0]][1])
-                    restarant = get_restaurants(cordinate_data[index_list[day][0]][0], cordinate_data[index_list[day][0]][1], 2)
-                    restarant_lunch, restarant_dinner = restarant.iloc[0], restarant.iloc[1]
+                    restarant = get_restaurants(cordinate_data[index_list[day][0]][0], cordinate_data[index_list[day][0]][1])
+                    if restarant is not None:
+                        recommendated_restarant = restarant.iloc[:2]
+                        restarant_lunch, restarant_dinner = recommendated_restarant.iloc[0], recommendated_restarant.iloc[1]
+                    else:
+                        restarant_lunch, restarant_dinner = None, None
                 elif l == 2 or l== 3:
-                    # print(cordinate_data[index_list[day][0]][0], cordinate_data[index_list[day][0]][1], cordinate_data[index_list[day][-1]][0], cordinate_data[index_list[day][-1]][1])
-                    restarant_lunch = get_restaurants(cordinate_data[index_list[day][0]][0], cordinate_data[index_list[day][0]][1])
-                    restarant_dinner = get_restaurants(cordinate_data[index_list[day][-1]][0], cordinate_data[index_list[day][-1]][1])
+                    restaurants_lunch = get_restaurants(cordinate_data[index_list[day][0]][0], cordinate_data[index_list[day][0]][1])
+                    restarants_dinner = get_restaurants(cordinate_data[index_list[day][-1]][0], cordinate_data[index_list[day][-1]][1])
+                    if restaurants_lunch is not None and restarants_dinner is not None:
+                        i, j = 0, 0
+                        while restaurants_lunch.iloc[i]["id"] ==  restarants_dinner.iloc[j]["id"]:
+                            i+=1
+                        restarant_lunch = restaurants_lunch.iloc[i]
+                        restarant_dinner = restarants_dinner.iloc[j]
+                    else:
+                        restarant_lunch, restarant_dinner = None, None
                 elif l >= 4:
                     if l % 2 == 0:
-                        # print(cordinate_data[index_list[day][l//2-1]][0], cordinate_data[index_list[day][l//2-1]][1])
-                        restarant_lunch = get_restaurants(cordinate_data[index_list[day][l//2-1]][0], cordinate_data[index_list[day][l//2-1]][1])
+                        restaurants_lunch = get_restaurants(cordinate_data[index_list[day][l//2-1]][0], cordinate_data[index_list[day][l//2-1]][1])
                     else:
-                        # print(cordinate_data[index_list[day][l//2]][0], cordinate_data[index_list[day][l//2]][1])
-                        restarant_lunch = get_restaurants(cordinate_data[index_list[day][l//2]][0], cordinate_data[index_list[day][l//2]][1])
-                    # print(cordinate_data[index_list[day][-1]][0], cordinate_data[index_list[day][-1]][1])
-                    restarant_dinner = get_restaurants(cordinate_data[index_list[day][-1]][0], cordinate_data[index_list[day][-1]][1])
+                        restaurants_lunch = get_restaurants(cordinate_data[index_list[day][l//2]][0], cordinate_data[index_list[day][l//2]][1])
+                    restarants_dinner = get_restaurants(cordinate_data[index_list[day][-1]][0], cordinate_data[index_list[day][-1]][1])
+                    if restaurants_lunch is not None and restarants_dinner is not None:
+                        i, j = 0, 0
+                        while restaurants_lunch.iloc[i]["id"] ==  restarants_dinner.iloc[j]["id"]:
+                            i+=1
+                        restarant_lunch = restaurants_lunch.iloc[i]
+                        restarant_dinner = restarants_dinner.iloc[j]
+                    else:
+                        restarant_lunch, restarant_dinner = None, None                    
                 else:
-                    print("haha")
-                    print(index_list[day])
                     continue
 
-                restarants[i] = {"lunch": restarant_lunch, "dinner": restarant_dinner}
-
-                schedule.append({"attractions": attractions, "hotel": hotels[day], "restaurant": {"lunch": restarant_lunch.to_dict(), "dinner": restarant_dinner.to_dict()}})            
-
+                if restarant_lunch is not None and restarant_dinner is not None:
+                    schedule.append({"attractions": attractions, "hotel": hotels[day], "restaurant": {"lunch": restarant_lunch.to_dict(), "dinner": restarant_dinner.to_dict()}})            
+                else:
+                    schedule.append({"attractions": attractions, "hotel": hotels[day], "restaurant": {"lunch": None, "dinner": None}})   
             # call flights api to get flights data
 
             flightsinfo = {
@@ -202,12 +202,10 @@ def plan(request):
                 'return':[],
                 'fare': {}
             }
-            print(start_date_str, flight_end_date_str)
+
             if (start_city_iatas[0] == end_city_iatas[0]):
                 flights = get_flights(start_city_iatas[0], destination_city_iatas[0], start_date_str, flight_end_date_str, False)
                 best_flight = sort_flights(flights)
-                print("HAHA")
-                print(best_flight)
                 if best_flight:
                     departf = best_flight['itineraries'][0]['outbound']['flights']
                     returnf = best_flight['itineraries'][0]['inbound']['flights']

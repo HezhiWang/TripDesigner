@@ -13,4 +13,3 @@ urlpatterns = [
     path('error', views.error, name='error')
 ]
 
-#urlpatterns += staticfiles_urlpatterns()
