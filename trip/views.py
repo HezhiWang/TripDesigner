@@ -57,15 +57,16 @@ def crawl(request):
         if status == 'finished':
             try:
                 # this is the unique_id that we created even before crawling started.\
-
-                attraction = Attraction.objects.get(unique_id=unique_id)
-                print("attraction", attraction)
-                print("attraction type", type(attraction))
+                print("haha")
                 attraction_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../scrapy_app/'+str(unique_id)+'.csv'))
-                if attraction:
+                try: 
+                    attraction = Attraction.objects.get(unique_id=unique_id)
+                    print("attraction", attraction)
+                    print("attraction type", type(attraction))
+                # if attraction:
                     data = attraction.to_dict['data']
                     print("get number of attractions: " + str(len(data)))
-                else: 
+                except: 
                     attraction = pd.read_csv(attraction_path)
                     attraction = attraction.where((pd.notnull(attraction)),None)
                     data = attraction.to_dict('records')
