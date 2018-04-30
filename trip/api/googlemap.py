@@ -1,8 +1,8 @@
 import googlemaps
 import os
-#from .config import GOOGLEMAP_KEY
+from .config import GOOGLEMAP_KEY
 
-GOOGLEMAP_KEY = os.environ['GOOGLEMAP_KEY']
+# GOOGLEMAP_KEY = os.environ['GOOGLEMAP_KEY']
 
 def get_lat_log(attraction):
 	gmaps = googlemaps.Client(key=GOOGLEMAP_KEY)
