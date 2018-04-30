@@ -57,9 +57,22 @@ def crawl(request):
         if status == 'finished':
             try:
                 # this is the unique_id that we created even before crawling started.\
+
                 attraction = Attraction.objects.get(unique_id=unique_id)
-                print("get number of attractions: " + str(len(attraction.to_dict['data'])))
-                return JsonResponse({'data': attraction.to_dict['data']})
+                attraction_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../scrapy_app/'+str(unique_id)+'.csv'))
+                if attraction:
+                    data = attraction.to_dict['data']
+                    print("get number of attractions: " + str(len(data)))
+                else: 
+                    attraction = pd.read_csv(attraction_path)
+                    attraction = attraction.where((pd.notnull(attraction)),None)
+                    data = attraction.to_dict('records')
+                    print("get number of local attractions: " + str(len(data)))
+                os.remove(attraction_path)
+                #print('../scrapy_app/'+str(unique_id)+'.csv')
+                # return JsonResponse({'data': attraction.to_dict['data']})
+                return JsonResponse({'data': data})
+                # return JsonResponse({'data': "datadata"})
             except Exception as e:
                 return JsonResponse({'error': str(e)})
         else:
