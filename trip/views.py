@@ -59,6 +59,8 @@ def crawl(request):
                 # this is the unique_id that we created even before crawling started.\
 
                 attraction = Attraction.objects.get(unique_id=unique_id)
+                print("attraction", attraction)
+                print("attraction type", type(attraction))
                 attraction_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../scrapy_app/'+str(unique_id)+'.csv'))
                 if attraction:
                     data = attraction.to_dict['data']
