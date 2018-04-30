@@ -1,7 +1,9 @@
 import json
 import requests
 from .request import request
-from .config import AMADEUS_API_KEY
+
+#from .config import AMADEUS_API_KEY
+AMADEUS_API_KEY = os.environ['AMADEUS_API_KEY']
 
 API_HOST = 'https://api.sandbox.amadeus.com/v1.2/'
 HOTEL_PATH = 'hotels/search-circle'

@@ -17,7 +17,8 @@ from functools import partial
 from multiprocessing.pool import Pool
 
 from .request import request
-from .config import YELP_API_KEY
+YELP_API_KEY = os.environ['YELP_API_KEY']
+#from .config import YELP_API_KEY
 
 # API constants, you shouldn't have to change these.
 API_HOST = 'https://api.yelp.com'
