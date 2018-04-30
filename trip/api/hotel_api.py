@@ -1,5 +1,6 @@
 import json
 import requests
+import os
 from .request import request
 
 #from .config import AMADEUS_API_KEY
