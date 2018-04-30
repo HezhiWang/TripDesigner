@@ -11,3 +11,4 @@ python-scrapyd-api==2.1.2
 pandas==0.21.0
 honcho==0.7.1
 googlemaps==2.5.1
+sklearn==0.18.1
