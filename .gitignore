@@ -8,6 +8,9 @@
 
 # Byte-compiled / optimized / DLL files
 trip/api/config.py
+tripdesigner.sublime-project
+tripdesigner.sublime-workspace
+
 __pycache__/
 *.py[cod]
 *$py.class
