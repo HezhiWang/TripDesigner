@@ -15,6 +15,10 @@ We have a live version deployed on Heroku: http://tripdesigner.herokuapp.com/tri
 
 Due to certain limitations of a free account, the restaurant search functionality is disabled. 
 
+## Browser Requirements
+
+To avoid any error, please use the newest version of Google Chrome. 
+
 ## How to run locally
 
 If you want to run locally, follow these steps:
@@ -66,7 +70,10 @@ Open a new command line window, into the home directory,
 ```
 $ python manage.py runserver
 ```
+Then in Google Chrome, open
+```
+http://localhost:8000/trip/
+```
 
-### 5. Browser Requirements
-To avoid any error, please use the newest version of Google Chrome. 
+
 
