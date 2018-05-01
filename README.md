@@ -1,6 +1,6 @@
 # Trip Designer
 
-This is the final project for **DS-GA 3001 Advanced Python**, which originates from the course project for [**DS-GA 1007 Programming for Data Science**](https://github.com/hzhao16/final_project/tree/master/hz1411-hw1567-sar516-master). This is a web application written in Python Django Framework. It can design travel plans for users with specific preferences.
+This is the final project for **DS-GA 3001 Advanced Python**, which originates from the course project for [**DS-GA 1007 Programming for Data Science**](https://github.com/hzhao16/final_project/tree/master/hz1411-hw1567-sar516-master). This is a web application written in Python Django Framework. It can design travel plans for users with specific preferences. The output is a detailed travel itinerary with information of travel attractions, recommendations for flights, hotels and restaurants.
 
 ## Contributors
 
@@ -8,7 +8,16 @@ Hezhi Wang [https://github.com/HezhiWang](https://github.com/HezhiWang) Netid: h
 
 Han Zhao [https://github.com/hzhao16](https://github.com/hzhao16) Netid: hz1411
 
+
+## Online Deployment
+
+We have a live version deployed on Heroku: http://tripdesigner.herokuapp.com/trip/.
+
+Due to certain limitations of a free account, the restaurant search functionality is disabled. 
+
 ## How to run locally
+
+If you want to run locally, follow these steps:
 
 ### 1. Install the dependencies
 
@@ -60,3 +69,4 @@ $ python manage.py runserver
 
 ### 5. Browser Requirements
 To avoid any error, please use the newest version of Google Chrome. 
+
